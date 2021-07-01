@@ -3,11 +3,7 @@ import React, { useState, useEffect } from "react";
 const API_ROOT = `https://api.spoonacular.com/`;
 const findByIngredients = "recipes/findByIngredients?ingredients=";
 const queryItem = "banana";
-const URL = `${API_ROOT}${findByIngredients}${queryItem}&apiKey=${process.env.REACT_APP_SPOONACULAR}&number=3`;
-
-console.log(process.env.REACT_APP_SPOONACULAR);
-
-// https://api.spoonacular.com/recipes/findByIngredients?ingredients=banana&apiKey=35646f06e7c643658247b551653f1c83&number=3
+const URL = `${API_ROOT}${findByIngredients}${queryItem}&apiKey=${process.env.REACT_APP_SPOONACULAR}`;
 
 const Ajax = () => {
   const [data, setData] = useState(null);
