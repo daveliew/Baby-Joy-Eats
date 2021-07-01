@@ -1,9 +1,12 @@
-import Ajax from "./Ajax";
+import Ajax from "./Ajax/Ajax";
+import Header from "../pages/Header";
+import Main from "../pages/Main";
 
 function App() {
   return (
     <div className="App">
-      <Ajax />
+      <Header />
+      <Main />
     </div>
   );
 }
