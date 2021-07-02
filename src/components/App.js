@@ -1,3 +1,4 @@
+import React, { useContext, useReducer } from "react";
 import Ajax from "./Ajax/Ajax";
 import Header from "../pages/Header";
 import Main from "../pages/Main";
