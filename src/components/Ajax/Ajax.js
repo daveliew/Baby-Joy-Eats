@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 const Ajax = () => {
-  const [data, setData] = useState(null);
-  const [toggle, setToggle] = useState(false);
+  // const [data, setData] = useState(null);
+  // const [toggle, setToggle] = useState(false);
 
-  const handleToggle = () => {
-    console.log("click");
-    setToggle(!toggle);
-  };
+  // const handleToggle = () => {
+  //   console.log("click");
+  //   setToggle(!toggle);
+  // };
 
   //! rewrite this such that we search on form submit
   useEffect(() => {
@@ -35,15 +35,17 @@ const Ajax = () => {
     //     });
   }, []);
 
-  return data === null ? (
-    <h1>LOADING</h1>
-  ) : (
-    <>
-      <button onClick={handleToggle}> New Recipe </button>
-      <h1>{data.title}</h1>
-      <p>Likes: {data.likes}</p>
-    </>
-  );
+  return <div>Hello from Ajax</div>;
+
+  // return data === null ? (
+  //   <h1>LOADING</h1>
+  // ) : (
+  //   <>
+  //     <button onClick={handleToggle}> New Recipe </button>
+  //     <h1>{data.title}</h1>
+  //     <p>Likes: {data.likes}</p>
+  //   </>
+  // );
 };
 
 export default Ajax;

@@ -1,6 +1,6 @@
 import React from "react";
 import complexData from "../data/complexData";
-import recipesArr from "../data/recipesData";
+// import recipesArr from "../data/recipesData";
 
 const Planner = () => {
   const maxRecipesShown = 6;

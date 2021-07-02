@@ -1,7 +1,7 @@
 import React from "react";
 import dataReturn from "../data/dataReturnById";
 
-const instructions = dataReturn.analyzedInstructions[0].steps[0].step;
+// const instructions = dataReturn.analyzedInstructions[0].steps[0].step;
 
 console.log(dataReturn.analyzedInstructions[0].steps);
 
