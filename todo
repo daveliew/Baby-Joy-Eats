@@ -2,20 +2,20 @@
 1 search query
 3 recipes (cards)
 
-
 #Phase 2
-- Add to favourites
-- meal prep info
-- Do not add list
-- Search params + data structure for search
+- Daily plan
+- meal prep info --> steps ok
+- 7 day plan
 
 #Phase 3
-- 7 day plan
-- Monthly view
+- Add to favourites
 - Individual food widget
+- ingredients exclusion list
+- Search params + data structure for search
 
 
 #Bonus
 - data base
+- Monthly view
 - whats in your fridge 
 - google translate
