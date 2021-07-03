@@ -12,11 +12,12 @@ const Ajax = () => {
   //! rewrite this such that we search on form submit
   useEffect(() => {
     const API_ROOT = `https://api.spoonacular.com/`;
-    const findByIngredients = "findByIngredients?ingredients=";
-    const complexSearch = "complexSearch";
-    const categories = [findByIngredients, complexSearch];
+    const findByIngredients = "recipes/findByIngredients?ingredients=";
+    const complexSearch = "recipes/complexSearch";
+    const ingredients = "food/ingredients/search";
+    const categories = [findByIngredients, complexSearch, ingredients];
     const queryItem = "apple";
-    const URL = `${API_ROOT}recipes/${categories[0]}${queryItem}&apiKey=${process.env.REACT_APP_SPOONACULAR}`;
+    const URL = `${API_ROOT}${categories[2]}${queryItem}&apiKey=${process.env.REACT_APP_SPOONACULAR}`;
     console.log(URL);
 
     //   fetch(URL)
