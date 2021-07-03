@@ -12,6 +12,17 @@ code {
     monospace;
 }
 
+.nav {
+  background-color: darkgoldenrod;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-item {
+  color: cornsilk;
+  margin: 1em;
+  font-weight: bold;
+}
 /* .main {
   display: grid;
   margin: 0 auto;
@@ -90,7 +101,7 @@ code {
   display: flex;
   align-items: center;
   border: solid 2px pink;
-  box-shadow: 2px 3px;
+  box-shadow: 3px 3px;
   border-radius: 0.2em;
   padding: 0.5em 0.8em 0.5em 0.5em;
   margin-bottom: 1em;

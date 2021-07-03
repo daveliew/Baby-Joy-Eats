@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import ingredientsArr from "../data/ingredientsData";
+import ingredientsArr from "../../data/ingredientsData";
 
 const IngredientsDND = () => {
   const [ingredients, setIngredients] = useState(ingredientsArr);

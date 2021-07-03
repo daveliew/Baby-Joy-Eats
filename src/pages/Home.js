@@ -1,6 +1,6 @@
 import React from "react";
-import IngredientsDND from "../components/IngredientsDND";
-import PlannerDND from "../components/PlannerDND";
+import IngredientsDND from "../components/DND/IngredientsDND";
+import PlannerDND from "../components/DND/PlannerDND";
 
 const Home = () => {
   return (
