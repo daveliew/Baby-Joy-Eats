@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import ingredientsArr from "../data/ingredientsData";
 
-const DND = () => {
+const PlannerDND = () => {
   const [ingredients, setIngredients] = useState(ingredientsArr);
 
   const handleOnDragEnd = (result) => {
@@ -15,9 +15,11 @@ const DND = () => {
   };
 
   return (
-    <div className="dashboard">
+    <div className="planner-dnd">
       <div className="dnd">
-        <h1>Cool stuff is coming up here</h1>
+        <h1>
+          This will be a 7 x 4 weekly view where ingredients can be dropped in
+        </h1>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="ingredients">
             {(provided) => (
@@ -35,11 +37,7 @@ const DND = () => {
                           {...provided.dragHandleProps}
                           ref={provided.innerRef}
                         >
-                          <div className="ingredients-thumb">
-                            {/* <img src="" alt="">
-                              img
-                            </img> */}
-                          </div>
+                          <div className="ingredients-thumb"></div>
                           <p>{name}</p>
                         </li>
                       )}
@@ -57,4 +55,4 @@ const DND = () => {
   );
 };
 
-export default DND;
+export default PlannerDND;
