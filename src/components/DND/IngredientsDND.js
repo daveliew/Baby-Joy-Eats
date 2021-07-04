@@ -15,11 +15,10 @@ const IngredientsDND = () => {
   };
 
   return (
-    <div className="ingredients-dnd">
-      <div className="dnd">
+    <div className="dnd">
+      <div className="ingredients-dnd">
         <p>Add input for adding new ingredient here</p>
         <p>Init with ingredients (stored in local storage??)</p>
-        <p>Change to scrollable list</p>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="ingredients">
             {(provided) => (
@@ -37,11 +36,7 @@ const IngredientsDND = () => {
                           {...provided.dragHandleProps}
                           ref={provided.innerRef}
                         >
-                          <div className="ingredients-thumb">
-                            {/* <img src="" alt="">
-                              img
-                            </img> */}
-                          </div>
+                          <div className="ingredients-thumb"></div>
                           <p>{name}</p>
                         </li>
                       )}

@@ -1,5 +1,8 @@
 body {
   margin: 0;
+  max-height: 100vh;
+  max-width: 100vw;
+
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -23,16 +26,19 @@ code {
   margin: 1em;
   font-weight: bold;
 }
-/* .main {
-  display: grid;
+.main {
+  display: flex;
+  flex-wrap: wrap;
   margin: 0 auto;
-  grid-template-columns: 1fr 3fr 1fr;
-  grid-auto-rows: minmax(50px, 10%);
+  padding: 1rem;
   border: 1px solid red;
-} */
+}
 
 .planner {
   grid-column: 2 / auto;
+  padding: 5em;
+  width: 100vw;
+  height: 50%;
 }
 
 .recipe-grid {
@@ -41,6 +47,7 @@ code {
   padding: 1em;
 
   border: 1px solid green;
+  overflow-x: scroll;
 }
 
 .recipe-card {
@@ -51,9 +58,9 @@ code {
 }
 
 .food-image {
-  height: 100px;
-  width: 100px;
   overflow: hidden;
+  /* height: 100px;
+  width: 100px; */
 }
 
 .main {
@@ -70,37 +77,45 @@ code {
 
 .dashboard {
   position: relative;
-  grid-column: 2 / 4;
-  display: grid;
-  height: 600px;
+  display: flex;
+  /* max-height: 300px; */
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: repeat(4, 4fr);
-  background-color: greenyellow;
-}
-
-.ingredients-dnd {
-  padding: 10px;
-  border: 1px solid orange;
-  grid-column: 1 / 2;
   background-color: whitesmoke;
 }
 
-.planner-dnd {
+.dnd {
+  display: grid;
+  max-height: 500px;
   padding: 10px;
   border: 1px solid orange;
+  background-color: whitesmoke;
+  overflow-x: scroll;
+}
+.ingredients-dnd {
+  /* max-height: 500px; */
+
+  grid-column: 1 / 2;
+  overflow-y: scroll;
+}
+
+.planner-dnd {
   grid-column: 2 / 5;
   background-color: lightgoldenrodyellow;
+  overflow-y: scroll;
 }
 
 .ingredients {
-  list-style: none;
   padding-left: 0;
+  list-style: none;
 }
 
 .ingredients li {
   display: flex;
   align-items: center;
+
   border: solid 2px pink;
+  background-color: whitesmoke;
   box-shadow: 3px 3px;
   border-radius: 0.2em;
   padding: 0.5em 0.8em 0.5em 0.5em;

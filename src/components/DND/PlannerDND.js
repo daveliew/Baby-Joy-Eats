@@ -15,8 +15,8 @@ const PlannerDND = () => {
   };
 
   return (
-    <div className="planner-dnd">
-      <div className="dnd">
+    <div className="dnd">
+      <div className="planner-dnd">
         <h1>
           This will be a 7 x 4 weekly view where ingredients can be dropped in
         </h1>

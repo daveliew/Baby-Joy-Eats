@@ -15,6 +15,9 @@ const Header = () => {
         <Link to="/info" className="nav-item">
           Info
         </Link>
+        <Link to="/test" className="nav-item">
+          Test
+        </Link>
       </Toolbar>
     </AppBar>
   );

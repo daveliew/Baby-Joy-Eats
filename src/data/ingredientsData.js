@@ -19,6 +19,26 @@ const ingredientsArr = [
     id: "162",
     name: "avocado",
   },
+  {
+    id: "1612",
+    name: "chips",
+  },
+  {
+    id: "6126",
+    name: "yogurt",
+  },
+  {
+    id: "12788",
+    name: "candy",
+  },
+  {
+    id: "7818",
+    name: "papaya",
+  },
+  {
+    id: "116162",
+    name: "fish",
+  },
 ];
 
 export default ingredientsArr;
