@@ -1,18 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
-import Column from "./Column";
-import initialData from "../../data/initialData";
 import { v4 as uuidv4 } from "uuid";
+import Column from "./Column";
+import { DataContext } from "../App";
 
 const Container = styled.div`
   display: flex;
   height: 50vh;
-  overflow: scroll;
+  overflow-y: scroll;
+  padding: 0.5rem;
 `;
 
 const DashboardDND = () => {
-  const [stateObj, setStateObj] = useState(initialData);
+  const value = useContext(DataContext);
+  const { state, dispatch, ACTIONS } = value;
+  const [stateObj, setStateObj] = useState(state.ingredientsData);
 
   const onDragEnd = (result) => {
     const { destination, source } = result;
@@ -40,6 +43,7 @@ const DashboardDND = () => {
       if (startCol.id === "main") {
         //* creates a clone of the ingredients list and adds it to a day of the week
         const item = sourceItems[source.index]; // clone a copy!
+        sourceItems.splice(source.index, 1);
         destinationItems.splice(destination.index, 0, {
           ...item,
           id: uuidv4(),
@@ -63,6 +67,7 @@ const DashboardDND = () => {
           },
         };
         setStateObj(newState);
+        dispatch({ type: ACTIONS.UPDATE_INGREDIENTS, payload: newState });
       } else {
         //* transfer item to new position
         const [removedItem] = sourceItems.splice(source.index, 1); // grab item from sourceCol itemsArr
@@ -87,6 +92,7 @@ const DashboardDND = () => {
           },
         };
         setStateObj(newState);
+        dispatch({ type: ACTIONS.UPDATE_INGREDIENTS, payload: newState });
       }
     } else {
       const copiedItems = [...startCol.itemsArr];
@@ -107,6 +113,7 @@ const DashboardDND = () => {
       };
 
       setStateObj(newState);
+      dispatch({ type: ACTIONS.UPDATE_INGREDIENTS, payload: newState });
     }
   };
 

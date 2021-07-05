@@ -7,23 +7,27 @@ const Container = styled.div`
   margin: 8px;
   border: 1px solid #dedbd2;
   border-radius: 2px;
-  width: 10vw;
 
   flex-direction: column;
   align-items: center;
 `;
+
 const Title = styled.h3`
-  padding: 8px;
+  padding: 0.5rem;
+  align-items: center;
 `;
 const ItemList = styled.div`
-  padding: 8px;
+  padding: 0.5rem;
   transition: background-color 0.2s ease;
   background-color: ${(props) =>
     props.isDraggingOver ? "#dedbd2" : "#b0c4b1"};
   flex-grow: 1;
+  flex-wrap: wrap;
   min-height: 30vh;
-  overflow-y: scroll;
+  min-width: 10vh;
 `;
+//   height: minmax(30vh, 70vh);
+//  width: minmax(10vw, 30vw);
 
 const Column = (props) => {
   return (

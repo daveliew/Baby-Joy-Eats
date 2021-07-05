@@ -1,9 +1,9 @@
 #MVP
 - 1 search query (query autocomplete prepend into array)
 - 7 day plan:
-    - DND must haves: (i) ingredients draggable (2) 7 day droppable (3) auto scroll √ (4) snapshot colors
-- Ingredient list ("pick up") feature => 
-
+    - DND must haves: (i) ingredients draggable √ (2) 7 day droppable (3) auto scroll √ (4) snapshot colors √
+- Ingredient list ("pick up") feature  √
+- Link airtable to state
 
 
 #Phase 2

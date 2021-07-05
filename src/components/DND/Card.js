@@ -8,6 +8,7 @@ const Item = styled.div`
   padding: 8px;
   margin-bottom: 8px;
   background-color: #f7e1d7;
+  border-radius: 3px;
 `;
 
 // background-color: ${(props) => (props.isDragging ? "#edafb8" : "#f7e1d7")};
