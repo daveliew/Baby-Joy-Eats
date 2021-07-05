@@ -8,9 +8,9 @@ const IngredientForm = () => {
   const [ingredient, setIngredient] = useState({ id: "", content: "" });
 
   const handleSubmit = () => {
-    console.log("handleSubmit");
-    setIngredient({ id: "", content: "" });
-    console.log(ingredient);
+    // console.log("handleSubmit");
+    // setIngredient({ id: "", content: "" });
+    // console.log(ingredient);
     dispatch({
       type: ACTIONS.ADD_INGREDIENT,
       payload: { ...ingredient, id: uuidv4() },

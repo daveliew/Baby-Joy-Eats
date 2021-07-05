@@ -16,6 +16,13 @@ const DashboardDND = () => {
   const value = useContext(DataContext);
   const { state, dispatch, ACTIONS } = value;
   const [stateObj, setStateObj] = useState(state.ingredientsData);
+  const [ingredient, setIngredient] = useState(state.ingredientsArr);
+
+  //! fix state ingredient passing down here
+  stateObj.columns.main.itemsArr = ingredient;
+  console.log(stateObj.columns.main.itemsArr, "items arr");
+  console.log(ingredient, "ingredient from app");
+  console.log("app state", state);
 
   const onDragEnd = (result) => {
     const { destination, source } = result;
