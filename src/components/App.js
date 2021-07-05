@@ -7,9 +7,11 @@ export const DataContext = createContext();
 
 const ACTIONS = {
   ADD_FAVE: "addFave",
+  ADD_INGREDIENT: "addIngredient",
+  UPDATE_INGREDIENTS: "updateIngredients",
 };
 
-const recipeReducer = (state, action) => {
+const appReducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.ADD_FAVE:
       return console.log("added");
@@ -18,18 +20,22 @@ const recipeReducer = (state, action) => {
         ...state,
         ingredientsData: action.payload,
       };
+    case ACTIONS.ADD_INGREDIENT:
+      console.log("new ingredient!", action.payload);
+      return {
+        ...state,
+        ingredientsArr: [...state.ingredientsArr, action.payload],
+      };
     default:
       return state;
   }
 };
 
 function App() {
-  const [state, dispatch] = useReducer(recipeReducer, {
+  const [state, dispatch] = useReducer(appReducer, {
     ingredientsArr: ingredients,
     ingredientsData: initialData,
   });
-
-  console.log(initialData);
 
   const value = { state, dispatch, ACTIONS };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import dataReturn from "../data/dataReturnById";
-import Ajax from "../components/Ajax/Ajax";
+// import Ajax from "../components/Ajax/Ajax";
 
 // const instructions = dataReturn.analyzedInstructions[0].steps[0].step;
 
@@ -47,7 +47,6 @@ const Info = () => {
       </div>
       <div>
         <h1>Get another recipe?</h1>
-        <Ajax />
       </div>
     </>
   );
