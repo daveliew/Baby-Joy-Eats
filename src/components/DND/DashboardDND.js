@@ -11,13 +11,24 @@ const Container = styled.div`
   overflow-y: scroll;
 `;
 
-const foodItem = {
-  id: uuidv4(),
-  content: "some food",
+//!
+const createClone = (info) => {
+  const clone = {
+    id: uuidv4(),
+    content: info,
+  };
+  return clone;
 };
 
-const test = Object.create(foodItem);
-console.log(test.id, test.content);
+const createItem = (info) => {
+  const item = createClone(info);
+  initialData.items[item.id] = item;
+};
+
+// console.log(test);
+// initialData.items[test.id] = test;
+// console.log(initialData);
+//!
 
 const DashboardDND = () => {
   const [stateObj, setStateObj] = useState(initialData);
@@ -48,11 +59,14 @@ const DashboardDND = () => {
       destinationItems.splice(destination.index, 0, removedItem); // insert item into destCol itemsArr
 
       //* creates a clone of the item that has been dragged from main ingredients list to a day of the week
+      //! test
       if (startCol.id === "main") {
         const copiedItem = removedItem;
+        console.log(copiedItem);
         startCol.itemsArr = [copiedItem, ...startCol.itemsArr];
         console.log("cloning item", startCol.itemsArr);
-        console.log(uuidv4());
+        createItem("fish");
+        console.log(initialData.items);
 
         const fromCol = {
           ...startCol,
