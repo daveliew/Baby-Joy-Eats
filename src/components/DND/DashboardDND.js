@@ -8,26 +8,25 @@ import { v4 as uuidv4 } from "uuid";
 const Container = styled.div`
   display: flex;
   height: 50vh;
-  overflow-y: scroll;
+  overflow: scroll;
 `;
 
 //!
-const createClone = (info) => {
+const createClone = (obj) => {
   const clone = {
     id: uuidv4(),
-    content: info,
+    content: obj.content,
   };
+  console.log("clone made", clone);
   return clone;
 };
 
-const createItem = (info) => {
+const createItem = (info, state) => {
   const item = createClone(info);
-  initialData.items[item.id] = item;
+  state.items[item.id] = item;
+  return item;
 };
 
-// console.log(test);
-// initialData.items[test.id] = test;
-// console.log(initialData);
 //!
 
 const DashboardDND = () => {
@@ -62,11 +61,12 @@ const DashboardDND = () => {
       //! test
       if (startCol.id === "main") {
         const copiedItem = removedItem;
-        console.log(copiedItem);
-        startCol.itemsArr = [copiedItem, ...startCol.itemsArr];
-        console.log("cloning item", startCol.itemsArr);
-        createItem("fish");
-        console.log(initialData.items);
+        // // console.log(copiedItem);
+        // // startCol.itemsArr = [copiedItem, ...startCol.itemsArr
+        // const test = createItem(copiedItem, stateObj);
+        // startCol.itemsArr = [test.id, ...startCol.itemsArr];
+        // console.log("cloning item", startCol.itemsArr);
+        // destinationItems.splice(destination.index, 0, test);
 
         const fromCol = {
           ...startCol,
@@ -135,11 +135,10 @@ const DashboardDND = () => {
         <Container>
           {stateObj.columnOrder.map((columnId) => {
             const column = stateObj.columns[columnId];
-            const items = column.itemsArr.map(
-              (itemId) => stateObj.items[itemId]
-            );
 
-            return <Column key={column.id} column={column} items={items} />;
+            return (
+              <Column key={column.id} column={column} items={column.itemsArr} />
+            );
           })}
         </Container>
       </DragDropContext>

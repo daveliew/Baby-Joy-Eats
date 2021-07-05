@@ -16,13 +16,13 @@ code {
 }
 
 .nav {
-  background-color: darkgoldenrod;
+  background-color: #4a5759;
   align-items: center;
   justify-content: center;
 }
 
 .nav-item {
-  color: cornsilk;
+  color: #f7e1d7;
   margin: 1em;
   font-weight: bold;
 }
@@ -31,7 +31,6 @@ code {
   flex-wrap: wrap;
   margin: 0 auto;
   padding: 1rem;
-  border: 1px solid red;
 }
 
 .planner {
@@ -47,7 +46,7 @@ code {
   padding: 1em;
 
   border: 1px solid green;
-  overflow-x: scroll;
+  overflow: scroll;
 }
 
 .recipe-card {
@@ -69,8 +68,8 @@ code {
   justify-content: center;
   align-items: center;
   border: 3px solid red;
-  background-color: aqua;
-  /* max-width: 500px; */
+  background-color: #f7e1d7;
+
   width: 100%;
   height: 800px;
 }
@@ -81,7 +80,7 @@ code {
   /* max-height: 300px; */
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: repeat(4, 4fr);
-  background-color: whitesmoke;
+  /* background-color: #b0c4b1; */
 }
 
 .dnd {
@@ -89,20 +88,27 @@ code {
   max-height: 500px;
   padding: 10px;
   border: 1px solid orange;
-  background-color: whitesmoke;
-  overflow-x: scroll;
+  /* background-color: #edafb8; */
+  overflow: scroll;
 }
 .ingredients-dnd {
   /* max-height: 500px; */
 
   grid-column: 1 / 2;
-  overflow-y: scroll;
+  overflow: scroll;
 }
 
 .planner-dnd {
   grid-column: 2 / 5;
-  background-color: lightgoldenrodyellow;
-  overflow-y: scroll;
+  background-color: #b0c4b1;
+  overflow: scroll;
+}
+
+.Dashboard-DND {
+  display: flex;
+  height: 50vh;
+  overflow: scroll;
+  background-color: #b0c4b1;
 }
 
 .ingredients {
@@ -115,7 +121,7 @@ code {
   align-items: center;
 
   border: solid 2px pink;
-  background-color: whitesmoke;
+  background-color: #dedbd2;
   box-shadow: 3px 3px;
   border-radius: 0.2em;
   padding: 0.5em 0.8em 0.5em 0.5em;
@@ -133,7 +139,7 @@ code {
   flex-shrink: 0;
   width: 2em;
   height: 2em;
-  background-color: green;
+  background-color: #4a5759;
   padding: 0.5em;
   margin-right: 0.5em;
 }

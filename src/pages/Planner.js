@@ -19,17 +19,6 @@ const Planner = () => {
       );
     });
 
-  // let recipes = recipesArr.map((recipe, index) => {
-  //   return (
-  //     <div className="recipe-card" key={index}>
-  //       <img src={recipe.image} alt={recipe.title}></img>
-  //       <h3>{recipe.title}</h3>
-
-  //       {/* <p>{recipe.missedIngredients}</p> */}
-  //     </div>
-  //   );
-  // });
-
   return (
     <div className="planner">
       <h1>Hello from Planner</h1>
@@ -40,3 +29,14 @@ const Planner = () => {
 };
 
 export default Planner;
+
+// let recipes = recipesArr.map((recipe, index) => {
+//   return (
+//     <div className="recipe-card" key={index}>
+//       <img src={recipe.image} alt={recipe.title}></img>
+//       <h3>{recipe.title}</h3>
+
+//       {/* <p>{recipe.missedIngredients}</p> */}
+//     </div>
+//   );
+// });

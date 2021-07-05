@@ -2,26 +2,33 @@ import React from "react";
 import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
 
-const Container = styled.div`
+const Item = styled.div`
   border: 1px solid lightgrey;
   border-radius: 2px;
   padding: 8px;
   margin-bottom: 8px;
-  background-color: ${(props) => (props.isDragging ? "lightgreen" : "white")};
+  background-color: #f7e1d7;
 `;
 
+const Clone = styled(Item)`
+  + div {
+    display: none !important;
+  }
+`;
+// background-color: ${(props) => (props.isDragging ? "#edafb8" : "#f7e1d7")};
 const Card = (props) => {
   return (
     <Draggable draggableId={props.item.id} index={props.index}>
       {(provided, snapshot) => (
-        <Container
+        <Item
           {...provided.draggableProps} // identify children
           {...provided.dragHandleProps} //allow moving
           ref={provided.innerRef} // identify array
           isDragging={snapshot.isDragging} //apply style
         >
           {props.item.content}
-        </Container>
+          {snapshot.isDragging && <Clone>{props.item.content}</Clone>}
+        </Item>
       )}
     </Draggable>
   );

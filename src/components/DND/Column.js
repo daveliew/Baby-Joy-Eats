@@ -5,11 +5,10 @@ import Card from "./Card";
 
 const Container = styled.div`
   margin: 8px;
-  border: 1px solid lightgrey;
+  border: 1px solid #dedbd2;
   border-radius: 2px;
   width: 10vw;
 
-  display: flex;
   flex-direction: column;
   align-items: center;
 `;
@@ -19,9 +18,10 @@ const Title = styled.h3`
 const ItemList = styled.div`
   padding: 8px;
   transition: background-color 0.2s ease;
-  background-color: ${(props) => (props.isDraggingOver ? "skyblue" : "white")};
+  background-color: ${(props) =>
+    props.isDraggingOver ? "#dedbd2" : "#b0c4b1"};
   flex-grow: 1;
-  min-height: 100px;
+  min-height: 30vh;
   overflow-y: scroll;
 `;
 
