@@ -11,24 +11,6 @@ const Container = styled.div`
   overflow: scroll;
 `;
 
-//!
-const createClone = (obj) => {
-  const clone = {
-    id: uuidv4(),
-    content: obj.content,
-  };
-  console.log("clone made", clone);
-  return clone;
-};
-
-const createItem = (info, state) => {
-  const item = createClone(info);
-  state.items[item.id] = item;
-  return item;
-};
-
-//!
-
 const DashboardDND = () => {
   const [stateObj, setStateObj] = useState(initialData);
 
@@ -52,21 +34,16 @@ const DashboardDND = () => {
     console.log("I'm dragging", startCol);
 
     if (startCol !== endCol) {
-      let sourceItems = [...startCol.itemsArr];
+      const sourceItems = [...startCol.itemsArr];
       const destinationItems = [...endCol.itemsArr];
-      const [removedItem] = sourceItems.splice(source.index, 1); // grab item from sourceCol itemsArr
-      destinationItems.splice(destination.index, 0, removedItem); // insert item into destCol itemsArr
 
-      //* creates a clone of the item that has been dragged from main ingredients list to a day of the week
-      //! test
       if (startCol.id === "main") {
-        const copiedItem = removedItem;
-        // // console.log(copiedItem);
-        // // startCol.itemsArr = [copiedItem, ...startCol.itemsArr
-        // const test = createItem(copiedItem, stateObj);
-        // startCol.itemsArr = [test.id, ...startCol.itemsArr];
-        // console.log("cloning item", startCol.itemsArr);
-        // destinationItems.splice(destination.index, 0, test);
+        //* creates a clone of the ingredients list and adds it to a day of the week
+        const item = sourceItems[source.index]; // clone a copy!
+        destinationItems.splice(destination.index, 0, {
+          ...item,
+          id: uuidv4(),
+        }); // add clone to destination with new id
 
         const fromCol = {
           ...startCol,
@@ -87,6 +64,10 @@ const DashboardDND = () => {
         };
         setStateObj(newState);
       } else {
+        //* transfer item to new position
+        const [removedItem] = sourceItems.splice(source.index, 1); // grab item from sourceCol itemsArr
+        destinationItems.splice(destination.index, 0, removedItem); // insert item into destCol itemsArr
+
         const fromCol = {
           ...startCol,
           itemsArr: sourceItems,

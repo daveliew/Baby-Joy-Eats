@@ -22,7 +22,6 @@ const ingredients = [
   { id: uuidv4(), content: "Blueberry" },
   { id: uuidv4(), content: "Quinoa" },
   { id: uuidv4(), content: "Grape" },
-  { id: uuidv4(), content: "Fish" },
 ];
 
 const initialData = {

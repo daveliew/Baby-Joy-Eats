@@ -10,11 +10,6 @@ const Item = styled.div`
   background-color: #f7e1d7;
 `;
 
-const Clone = styled(Item)`
-  + div {
-    display: none !important;
-  }
-`;
 // background-color: ${(props) => (props.isDragging ? "#edafb8" : "#f7e1d7")};
 const Card = (props) => {
   return (
@@ -27,7 +22,6 @@ const Card = (props) => {
           isDragging={snapshot.isDragging} //apply style
         >
           {props.item.content}
-          {snapshot.isDragging && <Clone>{props.item.content}</Clone>}
         </Item>
       )}
     </Draggable>
