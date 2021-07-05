@@ -4,7 +4,7 @@ import Ajax from "../components/Ajax/Ajax";
 
 // const instructions = dataReturn.analyzedInstructions[0].steps[0].step;
 
-console.log(dataReturn.analyzedInstructions[0].steps);
+// console.log(dataReturn.analyzedInstructions[0].steps);
 
 const instructionsArr = dataReturn.analyzedInstructions[0].steps;
 let instructionSteps = instructionsArr.map((step, index) => {

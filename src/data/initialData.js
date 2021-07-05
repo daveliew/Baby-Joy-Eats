@@ -22,11 +22,12 @@ const initialData = {
     "item-5": { id: "item-5", content: "Blueberry" },
     "item-6": { id: "item-6", content: "Quinoa" },
     "item-7": { id: "item-7", content: "Grape" },
+    "item-8": { id: "item-8", content: "Fish" },
   },
   columns: {
     main: {
       id: "main",
-      title: "My Ingredient List",
+      title: "My List",
       itemsArr: ["item-1", "item-2", "item-3", "item-4", "item-5"],
     },
     "column-2": {
@@ -37,7 +38,7 @@ const initialData = {
     "column-3": {
       id: "column-3",
       title: daysOfWeek[1],
-      itemsArr: [],
+      itemsArr: ["item-1"],
     },
     "column-4": {
       id: "column-4",
@@ -67,7 +68,7 @@ const initialData = {
   },
   // Facilitate reordering of the columns
   columnOrder: [
-    "column-1",
+    "main",
     "column-2",
     "column-3",
     "column-4",

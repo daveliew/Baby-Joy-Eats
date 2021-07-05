@@ -13,10 +13,16 @@ react-router-dom
 react-beautiful-dnd
 styled-components
 material-ui
+uuid
 
 ### APIs
 
 [Spoonacular](https://spoonacular.com)
+
+### Feature Highlights
+
+React-Beautiful-DND:
+Draggable content that can be fetched from API and moved around planner Droppable zones.
 
 ### Credits
 

@@ -17,7 +17,7 @@ const Card = (props) => {
         <Container
           {...provided.draggableProps} // identify children
           {...provided.dragHandleProps} //allow moving
-          ref={provided.innerRef} // identify araay
+          ref={provided.innerRef} // identify array
           isDragging={snapshot.isDragging} //apply style
         >
           {props.item.content}
