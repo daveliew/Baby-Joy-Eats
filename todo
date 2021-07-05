@@ -28,3 +28,10 @@
 - Monthly view
 - whats in your fridge 
 - google translate
+
+
+===
+draggable features:
+1. when item added to !main column, create clone in main itemsArr
+2. create feature to remove ingredient from anywhere (except main)
+3. add to faves

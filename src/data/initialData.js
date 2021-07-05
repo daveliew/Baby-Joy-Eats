@@ -24,9 +24,9 @@ const initialData = {
     "item-7": { id: "item-7", content: "Grape" },
   },
   columns: {
-    "column-1": {
-      id: "column-1",
-      title: "My List",
+    main: {
+      id: "main",
+      title: "My Ingredient List",
       itemsArr: ["item-1", "item-2", "item-3", "item-4", "item-5"],
     },
     "column-2": {

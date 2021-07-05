@@ -25,6 +25,8 @@ Courses:
 
 [react-beautiful-dnd YouTube course by Colby Fayock] (https://youtu.be/aYZRRyukuIw)
 
+[2 column DND tutorial by LogRocket] (https://www.youtube.com/watch?v=Vqa9NMzF3wc&t=131s)
+
 React and CSS tutorials:
 [Fireship.io] (https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA)
 [Web Dev Simplified] (https://www.youtube.com/channel/UCFbNIlppjAuEX4znoulh0Cw)
