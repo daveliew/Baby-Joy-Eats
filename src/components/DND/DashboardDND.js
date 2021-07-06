@@ -16,7 +16,7 @@ const DashboardDND = () => {
   const value = useContext(DataContext);
   const { state, dispatch, ACTIONS } = value;
 
-  const [stateObj, setStateObj] = useState(state.ingredientsData);
+  const [stateObj, setStateObj] = useState(state.dndData);
 
   //! fix state ingredient passing down here
   console.log("app state", state);
@@ -55,7 +55,7 @@ const DashboardDND = () => {
 
         const fromCol = {
           ...startCol,
-          itemsArr: startCol.itemsArr,
+          itemsArr: sourceItems,
         };
         const toCol = {
           ...endCol,

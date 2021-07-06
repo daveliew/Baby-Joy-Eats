@@ -18,23 +18,27 @@ const appReducer = (state, action) => {
     case ACTIONS.UPDATE_INGREDIENTS:
       return {
         ...state,
-        ingredientsData: action.payload,
+        dndData: action.payload,
       };
     case ACTIONS.ADD_INGREDIENT:
       console.log("new ingredient!", action.payload);
 
       return {
         ...state,
-        ingredientsData: {
-          ...state.columns,
-          columns: {
-            ...state.columns.main,
-            main: {
-              itemsArr: [action.payload, ...state.columns.main.itemsArr],
-            },
-          },
-        },
+        ingredientsArr: action.payload.concat(state.ingredientsArr),
       };
+    // return {
+    //   ...state,
+    //   dndData: {
+    //     ...state.columns,
+    //     columns: {
+    //       ...state.columns.main,
+    //       main: {
+    //         itemsArr: [action.payload, ...state.columns.main.itemsArr],
+    //       },
+    //     },
+    //   },
+    // };
     default:
       return state;
   }
@@ -43,7 +47,7 @@ const appReducer = (state, action) => {
 function App() {
   const [state, dispatch] = useReducer(appReducer, {
     ingredientsArr: ingredients,
-    ingredientsData: initialData,
+    dndData: initialData,
   });
 
   const value = { state, dispatch, ACTIONS };

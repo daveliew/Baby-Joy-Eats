@@ -5,23 +5,25 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const IngredientAjax = () => {
-  const inputRef = useRef();
-  const [ingredient, setIngredient] = useState({ id: "", content: "" });
-  const [data, setData] = useState([]);
-  const [toggle, setToggle] = useState(false);
-  const [query, setQuery] = useState("");
-  const [tags, setTags] = useState([]);
-
   const value = useContext(DataContext);
   const { dispatch, ACTIONS } = value;
 
+  const [ingredient, setIngredient] = useState({ id: "", content: "" }); // capture user selection
+  const [data, setData] = useState([]); // return API call
+  const [query, setQuery] = useState(""); //for URL
+  const [tags, setTags] = useState([]); // for autocomplete
+  const [toggle, setToggle] = useState(false); //! is this needed?
+  const inputRef = useRef(); //! is this needed?
+
+  //! FIX handler to update App State
   const sendIngredient = () => {
     setToggle(!toggle);
     console.log("sending ingredient", tags);
-    // dispatch({
-    //   type: ACTIONS.ADD_INGREDIENT,
-    //   payload: { id: uuidv4(), content: query },
-    // });
+    console.log();
+    dispatch({
+      type: ACTIONS.ADD_INGREDIENT,
+      payload: [{ id: uuidv4(), content: ingredient }],
+    });
   };
   const handleTags = (event, values) => {
     setTags(values);
@@ -36,16 +38,6 @@ const IngredientAjax = () => {
     setIngredient({
       ...ingredient,
       content: value,
-    });
-  };
-
-  const handleClick = (e) => {
-    console.log("handleclick", e.target.value);
-    console.log(inputRef.current);
-
-    setIngredient({
-      ...ingredient,
-      content: inputRef.current,
     });
   };
 
@@ -74,7 +66,6 @@ const IngredientAjax = () => {
       });
   }, [query]);
 
-  //   return <div>Hello from Ajax</div>;
   return (
     <>
       <div>
@@ -105,7 +96,6 @@ const IngredientAjax = () => {
                 }
               }}
               onChange={handleChange}
-              //   value={ingredient.content}
               placeholder="e.g. banana"
             />
           )}
