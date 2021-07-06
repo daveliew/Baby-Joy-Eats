@@ -14,6 +14,7 @@ react-beautiful-dnd
 styled-components
 material-ui
 uuid
+autosuggest-highlight
 
 ### APIs
 
