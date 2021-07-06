@@ -44,9 +44,8 @@ const Info = () => {
         <img src={dataReturn.image} alt={dataReturn.title}></img>
         <h3>Cooking Instructions</h3>
         <div>{instructionSteps}</div>
-      </div>
-      <div>
-        <h1>Get another recipe?</h1>
+        <hr />
+        <button>Get another recipe?</button>
       </div>
     </>
   );

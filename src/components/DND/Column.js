@@ -21,10 +21,10 @@ const ItemList = styled.div`
   padding: 0.5rem;
   transition: background-color 0.2s ease;
   background-color: ${(props) =>
-    props.isDraggingOver ? "#dedbd2" : "#b0c4b1"};
+    props.isDraggingOver ? "#edafb8" : "#b0c4b1"};
   flex-grow: 1;
   min-width: 10vh;
-  min-height: 50vh;
+  min-height: 30vh;
 `;
 
 // max-height: 300px;

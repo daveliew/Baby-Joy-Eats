@@ -7,11 +7,10 @@ const Item = styled.div`
   border-radius: 2px;
   padding: 8px;
   margin-bottom: 8px;
-  background-color: #f7e1d7;
   border-radius: 3px;
+  background-color: ${(props) => (props.isDragging ? "#dedbd2" : "#f7e1d7")};
 `;
 
-// background-color: ${(props) => (props.isDragging ? "#edafb8" : "#f7e1d7")};
 const Card = (props) => {
   return (
     <Draggable draggableId={props.item.id} index={props.index}>

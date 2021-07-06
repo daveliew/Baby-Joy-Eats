@@ -104,8 +104,6 @@ function App() {
 
   const value = { state, dispatch, ACTIONS };
 
-  console.log(initialData.columns.main, "TEST");
-
   return (
     <div className="App">
       <DataContext.Provider value={value}>

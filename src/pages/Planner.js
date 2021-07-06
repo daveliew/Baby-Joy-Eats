@@ -1,6 +1,6 @@
+import { Grid } from "@material-ui/core";
 import React from "react";
 import complexData from "../data/complexData";
-// import recipesArr from "../data/recipesData";
 
 const Planner = () => {
   const maxRecipesShown = 6;
@@ -20,11 +20,14 @@ const Planner = () => {
     });
 
   return (
-    <div className="planner">
-      <h1>Hello from Planner</h1>
-      <h3>Meals for the week</h3>
+    //! add Grid
+    <Grid container>
+      <h1>Meals for the week</h1>
       <div className="recipe-grid">{recipes}</div>
-    </div>
+    </Grid>
+    // <div className="planner">
+
+    // </div>
   );
 };
 
