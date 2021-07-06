@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
 const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
 // const objectMap = (obj, fn) => {
 //   let k, v;
 //   Object.fromEntries(Object.entries(obj).map([k, v], (i) => [k, fn(v, k, i)]));

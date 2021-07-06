@@ -20,8 +20,6 @@ const DashboardDND = () => {
 
   //! fix state ingredient passing down here
   stateObj.columns.main.itemsArr = ingredient;
-  console.log(stateObj.columns.main.itemsArr, "items arr");
-  console.log(ingredient, "ingredient from app");
   console.log("app state", state);
 
   const onDragEnd = (result) => {
@@ -130,6 +128,7 @@ const DashboardDND = () => {
         <Container>
           {stateObj.columnOrder.map((columnId) => {
             const column = stateObj.columns[columnId];
+            console.log("columnId", stateObj.columns[columnId]);
 
             return (
               <Column key={column.id} column={column} items={column.itemsArr} />

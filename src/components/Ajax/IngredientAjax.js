@@ -3,7 +3,8 @@ import Autosuggest from "react-autosuggest";
 import axios from "axios";
 import { DataContext } from "../App";
 import { v4 as uuidv4 } from "uuid";
-import ComboBox from "./Test";
+import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const IngredientAjax = () => {
   const [ingredient, setIngredient] = useState({ id: "", content: "" });
@@ -25,9 +26,6 @@ const IngredientAjax = () => {
   };
 
   const handleChange = (event) => {
-    // const name = event.target.name;
-    // console.log("handleChange - event", event.target.computedName);
-
     const value = event.target.value;
     console.log("handleChange - value", event.target.value);
 
@@ -66,19 +64,28 @@ const IngredientAjax = () => {
   //   return <div>Hello from Ajax</div>;
   return (
     <>
-      <input
-        onChange={handleChange}
-        value={ingredient.content}
-        options={data}
-        type="text"
-        className="form-control"
-        name="name"
-        placeholder="Add an ingredient"
-        autoComplete="off"
-      />
-
+      <div style={{ width: 300 }}>
+        <Autocomplete
+          id="free-solo-demo"
+          freeSolo
+          disableClearable
+          options={data.map((option) => option.name)}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Search input"
+              margin="normal"
+              variant="outlined"
+              InputProps={{ ...params.InputProps, type: "search" }}
+              onChange={handleChange}
+              value={ingredient.content}
+              placeholder="Add an ingredient"
+              autoComplete="off"
+            />
+          )}
+        />
+      </div>
       <button onClick={handleToggle}> Add to Ingredient List </button>
-      <ComboBox value={data} />
     </>
   );
 };
