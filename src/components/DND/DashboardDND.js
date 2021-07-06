@@ -46,32 +46,34 @@ const DashboardDND = () => {
 
       if (startCol.id === "main") {
         //* creates a clone of the ingredients list and adds it to a day of the week
-        const mainItems = [...state.ingredientsArr]; //! does this work?
+        const mainItems = [...state.ingredientsArr];
         const item = mainItems[source.index]; // clone a copy!
         sourceItems.splice(source.index, 1);
-        destinationItems.splice(destination.index, 0, {
-          ...item,
-          id: uuidv4(),
-        }); // add clone to destination with new id
+        if (!endCol.itemsArr.map((obj) => obj.content).includes(item.content)) {
+          //* checks if ingredient already exists in destination
+          destinationItems.splice(destination.index, 0, {
+            ...item,
+            id: uuidv4(),
+          }); // add clone to destination with new id
+          const fromCol = {
+            ...startCol,
+            itemsArr: sourceItems,
+          };
+          const toCol = {
+            ...endCol,
+            itemsArr: destinationItems,
+          };
 
-        const fromCol = {
-          ...startCol,
-          itemsArr: sourceItems,
-        };
-        const toCol = {
-          ...endCol,
-          itemsArr: destinationItems,
-        };
-
-        const newState = {
-          ...stateObj,
-          columns: {
-            ...stateObj.columns,
-            [startCol.id]: fromCol,
-            [endCol.id]: toCol,
-          },
-        };
-        setStateObj(newState);
+          const newState = {
+            ...stateObj,
+            columns: {
+              ...stateObj.columns,
+              [startCol.id]: fromCol,
+              [endCol.id]: toCol,
+            },
+          };
+          setStateObj(newState);
+        }
       } else {
         //* transfer item to new position
         const [removedItem] = sourceItems.splice(source.index, 1); // grab item from sourceCol itemsArr
