@@ -31,5 +31,10 @@ draggable features:
 //! Bugs
 - ingredient value capture when return key pressed √
 - add to ingredient list √
-- dnd logic from main to other columns
-- prevent add ingredient button from being clicked with no data (error case catch)
+- dnd logic from main to other columns √
+- prevent add ingredient button from being clicked with no data (error case catch) 
+- capitalise all first words when adding new ingredient
+
+=== QoL improvements 
+1. re-style and re-size main
+2. allow for reordering of main column
