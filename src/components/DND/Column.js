@@ -7,9 +7,10 @@ const Container = styled.div`
   margin: 8px;
   border: 1px solid #dedbd2;
   border-radius: 2px;
-
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 80%;
 `;
 
 const Title = styled.h3`
@@ -22,10 +23,11 @@ const ItemList = styled.div`
   background-color: ${(props) =>
     props.isDraggingOver ? "#dedbd2" : "#b0c4b1"};
   flex-grow: 1;
-  flex-wrap: wrap;
-  min-height: 30vh;
   min-width: 10vh;
+  min-height: 50vh;
 `;
+
+// max-height: 300px;
 //   height: minmax(30vh, 70vh);
 //  width: minmax(10vw, 30vw);
 

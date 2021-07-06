@@ -1,6 +1,4 @@
 import React, { useEffect, useState, useContext } from "react";
-import Autosuggest from "react-autosuggest";
-import axios from "axios";
 import { DataContext } from "../App";
 import { v4 as uuidv4 } from "uuid";
 import TextField from "@material-ui/core/TextField";
@@ -73,14 +71,14 @@ const IngredientAjax = () => {
           renderInput={(params) => (
             <TextField
               {...params}
-              label="Search input"
+              id="filled-secondary"
+              label="Add an ingredient"
               margin="normal"
               variant="outlined"
               InputProps={{ ...params.InputProps, type: "search" }}
               onChange={handleChange}
               value={ingredient.content}
-              placeholder="Add an ingredient"
-              autoComplete="off"
+              placeholder="e.g. banana"
             />
           )}
         />

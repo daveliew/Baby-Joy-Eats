@@ -7,6 +7,7 @@ import { DataContext } from "../App";
 
 const Container = styled.div`
   display: flex;
+
   height: 50vh;
   overflow-y: scroll;
   padding: 0.5rem;
@@ -128,8 +129,6 @@ const DashboardDND = () => {
         <Container>
           {stateObj.columnOrder.map((columnId) => {
             const column = stateObj.columns[columnId];
-            console.log("columnId", stateObj.columns[columnId]);
-
             return (
               <Column key={column.id} column={column} items={column.itemsArr} />
             );

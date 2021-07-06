@@ -32,7 +32,7 @@ const appReducer = (state, action) => {
           columns: {
             ...state.columns.main,
             main: {
-              itemsArr: [...state.columns.main.itemsArr, action.payload],
+              itemsArr: [action.payload, ...state.columns.main.itemsArr],
             },
           },
         },

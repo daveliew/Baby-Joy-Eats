@@ -7,9 +7,7 @@ const Home = () => {
     <div className="Home">
       <h1>Welcome to Joy's Meal Planner v2</h1>
       <IngredientAjax />
-      {/* <div className="dashboard"> */}
       <DashboardDND />
-      {/* </div> */}
     </div>
   );
 };

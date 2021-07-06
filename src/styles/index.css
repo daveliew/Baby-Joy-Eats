@@ -29,9 +29,6 @@ code {
 
 .main {
   display: flex;
-  margin: 0 auto;
-  flex-direction: row;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   background-color: #f7e1d7;
@@ -72,18 +69,18 @@ code {
 .dashboard {
   position: relative;
   display: flex;
-  /* max-height: 300px; */
+  flex-direction: row;
+  max-height: 300px;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: repeat(4, 4fr);
-  /* background-color: #b0c4b1; */
+  background-color: #b0c4b1;
 }
-
 .dnd {
   display: grid;
-  max-height: 500px;
+
   padding: 10px;
   border: 1px solid orange;
-  /* background-color: #edafb8; */
+  background-color: #edafb8;
   overflow-y: scroll;
 }
 .ingredients-dnd {
@@ -99,8 +96,6 @@ code {
 }
 
 .Dashboard-DND {
-  /* display: flex; */
-  /* height: 50vh; */
   overflow-y: scroll;
   background-color: #b0c4b1;
 }
