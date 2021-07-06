@@ -6,15 +6,12 @@ import initialData, { ingredients } from "../data/initialData";
 export const DataContext = createContext();
 
 const ACTIONS = {
-  ADD_FAVE: "addFave",
   ADD_INGREDIENT: "addIngredient",
   UPDATE_INGREDIENTS: "updateIngredients",
 };
 
 const appReducer = (state, action) => {
   switch (action.type) {
-    case ACTIONS.ADD_FAVE:
-      return console.log("added");
     case ACTIONS.UPDATE_INGREDIENTS:
       return {
         ...state,

@@ -16,9 +16,9 @@ const DashboardDND = () => {
   const value = useContext(DataContext);
   const { state, dispatch, ACTIONS } = value;
 
+  //! fix state ingredient passing down here
   const [stateObj, setStateObj] = useState(state.dndData);
 
-  //! fix state ingredient passing down here
   console.log("app state", state);
 
   const onDragEnd = (result) => {
@@ -38,7 +38,7 @@ const DashboardDND = () => {
     const startCol = stateObj.columns[source.droppableId]; // column-obj at start of drag.
     const endCol = stateObj.columns[destination.droppableId]; // column-obj at end of drag.
 
-    // console.log("I'm dragging", startCol);
+    console.log("I'm dragging", startCol);
 
     if (startCol !== endCol) {
       const sourceItems = [...startCol.itemsArr];
@@ -46,7 +46,8 @@ const DashboardDND = () => {
 
       if (startCol.id === "main") {
         //* creates a clone of the ingredients list and adds it to a day of the week
-        const item = sourceItems[source.index]; // clone a copy!
+        const mainItems = [...state.ingredientsArr]; //! does this work?
+        const item = mainItems[source.index]; // clone a copy!
         sourceItems.splice(source.index, 1);
         destinationItems.splice(destination.index, 0, {
           ...item,
@@ -71,7 +72,6 @@ const DashboardDND = () => {
           },
         };
         setStateObj(newState);
-        dispatch({ type: ACTIONS.UPDATE_INGREDIENTS, payload: newState });
       } else {
         //* transfer item to new position
         const [removedItem] = sourceItems.splice(source.index, 1); // grab item from sourceCol itemsArr
@@ -96,7 +96,6 @@ const DashboardDND = () => {
           },
         };
         setStateObj(newState);
-        dispatch({ type: ACTIONS.UPDATE_INGREDIENTS, payload: newState });
       }
     } else {
       //* reorder items in the same column
@@ -118,8 +117,8 @@ const DashboardDND = () => {
       };
 
       setStateObj(newState);
-      dispatch({ type: ACTIONS.UPDATE_INGREDIENTS, payload: newState });
     }
+    dispatch({ type: ACTIONS.UPDATE_INGREDIENTS, payload: stateObj });
   };
 
   return (
@@ -132,7 +131,7 @@ const DashboardDND = () => {
             items={state.ingredientsArr}
           />
           {stateObj.columnOrder
-            .filter((column) => column !== "main")
+            .filter((column) => column !== "main") //! bypass main to map rest of columns
             .map((columnId) => {
               const column = stateObj.columns[columnId];
               return (

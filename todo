@@ -29,5 +29,7 @@ draggable features:
 3. add to faves
 
 //! Bugs
-- ingredient value capture when return key pressed
-- add to ingredient list
+- ingredient value capture when return key pressed √
+- add to ingredient list √
+- dnd logic from main to other columns
+- prevent add ingredient button from being clicked with no data (error case catch)
