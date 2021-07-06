@@ -10,20 +10,25 @@ const IngredientAjax = () => {
   const [data, setData] = useState([]);
   const [toggle, setToggle] = useState(false);
   const [query, setQuery] = useState("");
+  const [tags, setTags] = useState([]);
 
   const value = useContext(DataContext);
   const { dispatch, ACTIONS } = value;
 
   const sendIngredient = () => {
     setToggle(!toggle);
-    console.log("sending ingredient", query);
+    console.log("sending ingredient", tags);
     // dispatch({
     //   type: ACTIONS.ADD_INGREDIENT,
     //   payload: { id: uuidv4(), content: query },
     // });
   };
-
-  const handleChange = (event) => {
+  const handleTags = (event, values) => {
+    setTags(values);
+    setIngredient(values);
+    console.log("handleTag", values);
+  };
+  const handleChange = (event, values) => {
     const value = event.target.value;
     console.log("handleChange - value", event.target.value);
 
@@ -81,13 +86,13 @@ const IngredientAjax = () => {
           onInputChange={(e) => {
             setIngredient(e.target.value);
           }}
+          onChange={handleTags}
           options={data.map((option) => option.name)}
           renderInput={(params) => (
             <TextField
               {...params}
               id="filled-primary"
               label="Add an ingredient"
-              onChange={handleChange}
               margin="normal"
               variant="outlined"
               value={ingredient.content}
@@ -99,6 +104,7 @@ const IngredientAjax = () => {
                   console.log(e.target.value, "return key");
                 }
               }}
+              onChange={handleChange}
               //   value={ingredient.content}
               placeholder="e.g. banana"
             />
