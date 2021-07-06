@@ -7,7 +7,6 @@ import { DataContext } from "../App";
 
 const Container = styled.div`
   display: flex;
-
   height: 50vh;
   overflow-y: scroll;
   padding: 0.5rem;
@@ -16,11 +15,10 @@ const Container = styled.div`
 const DashboardDND = () => {
   const value = useContext(DataContext);
   const { state, dispatch, ACTIONS } = value;
+
   const [stateObj, setStateObj] = useState(state.ingredientsData);
-  const [ingredient, setIngredient] = useState(state.ingredientsArr);
 
   //! fix state ingredient passing down here
-  stateObj.columns.main.itemsArr = ingredient;
   console.log("app state", state);
 
   const onDragEnd = (result) => {
@@ -101,6 +99,7 @@ const DashboardDND = () => {
         dispatch({ type: ACTIONS.UPDATE_INGREDIENTS, payload: newState });
       }
     } else {
+      //* reorder items in the same column
       const copiedItems = [...startCol.itemsArr];
       const [removedItem] = copiedItems.splice(source.index, 1);
       copiedItems.splice(destination.index, 0, removedItem);
@@ -127,12 +126,23 @@ const DashboardDND = () => {
     <div className="Dashboard-DND">
       <DragDropContext onDragEnd={onDragEnd}>
         <Container>
-          {stateObj.columnOrder.map((columnId) => {
-            const column = stateObj.columns[columnId];
-            return (
-              <Column key={column.id} column={column} items={column.itemsArr} />
-            );
-          })}
+          <Column
+            key={"main"}
+            column={stateObj.columns["main"]}
+            items={state.ingredientsArr}
+          />
+          {stateObj.columnOrder
+            .filter((column) => column !== "main")
+            .map((columnId) => {
+              const column = stateObj.columns[columnId];
+              return (
+                <Column
+                  key={column.id}
+                  column={column}
+                  items={column.itemsArr}
+                />
+              );
+            })}
         </Container>
       </DragDropContext>
     </div>

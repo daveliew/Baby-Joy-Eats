@@ -1,26 +1,26 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { DataContext } from "../App";
 import { v4 as uuidv4 } from "uuid";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const IngredientAjax = () => {
+  const inputRef = useRef();
   const [ingredient, setIngredient] = useState({ id: "", content: "" });
-  const [data, setData] = useState([{ test: "test" }]);
+  const [data, setData] = useState([]);
   const [toggle, setToggle] = useState(false);
-  const [query, setQuery] = useState([{ test: "test" }]);
-  //   const [suggestions, setSuggestions] = useState([]);
+  const [query, setQuery] = useState("");
 
   const value = useContext(DataContext);
   const { dispatch, ACTIONS } = value;
 
-  const handleToggle = () => {
-    console.log("query", query);
+  const sendIngredient = () => {
     setToggle(!toggle);
-    dispatch({
-      type: ACTIONS.ADD_INGREDIENT,
-      payload: { id: uuidv4(), content: query },
-    });
+    console.log("sending ingredient", query);
+    // dispatch({
+    //   type: ACTIONS.ADD_INGREDIENT,
+    //   payload: { id: uuidv4(), content: query },
+    // });
   };
 
   const handleChange = (event) => {
@@ -31,6 +31,16 @@ const IngredientAjax = () => {
     setIngredient({
       ...ingredient,
       content: value,
+    });
+  };
+
+  const handleClick = (e) => {
+    console.log("handleclick", e.target.value);
+    console.log(inputRef.current);
+
+    setIngredient({
+      ...ingredient,
+      content: inputRef.current,
     });
   };
 
@@ -62,28 +72,40 @@ const IngredientAjax = () => {
   //   return <div>Hello from Ajax</div>;
   return (
     <>
-      <div style={{ width: 300 }}>
+      <div>
         <Autocomplete
-          id="free-solo-demo"
+          id="free-solo"
+          style={{ width: 300 }}
           freeSolo
           disableClearable
+          onInputChange={(e) => {
+            setIngredient(e.target.value);
+          }}
           options={data.map((option) => option.name)}
           renderInput={(params) => (
             <TextField
               {...params}
-              id="filled-secondary"
+              id="filled-primary"
               label="Add an ingredient"
+              onChange={handleChange}
               margin="normal"
               variant="outlined"
-              InputProps={{ ...params.InputProps, type: "search" }}
-              onChange={handleChange}
               value={ingredient.content}
+              InputProps={{ ...params.InputProps, type: "search" }}
+              ref={inputRef}
+              onKeyDown={(e) => {
+                if (e.key === 13 && e.target.value) {
+                  setIngredient(e.target.value);
+                  console.log(e.target.value, "return key");
+                }
+              }}
+              //   value={ingredient.content}
               placeholder="e.g. banana"
             />
           )}
         />
       </div>
-      <button onClick={handleToggle}> Add to Ingredient List </button>
+      <button onClick={sendIngredient}> Add to Ingredient List </button>
     </>
   );
 };

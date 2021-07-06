@@ -1,9 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
 const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-// const objectMap = (obj, fn) => {
-//   let k, v;
-//   Object.fromEntries(Object.entries(obj).map([k, v], (i) => [k, fn(v, k, i)]));
-// };
 
 export const ingredients = [
   { id: uuidv4(), content: "Fish" },
@@ -15,6 +11,11 @@ export const ingredients = [
   { id: uuidv4(), content: "Grape" },
 ];
 
+// const objectMap = (obj, fn) => {
+//   let k, v;
+//   Object.fromEntries(Object.entries(obj).map([k, v], (i) => [k, fn(v, k, i)]));
+// };
+
 const initialData = {
   columns: {
     main: {
@@ -22,38 +23,38 @@ const initialData = {
       title: "My List",
       itemsArr: ingredients,
     },
-    "column-2": {
-      id: "column-2",
+    Mon: {
+      id: daysOfWeek[0],
       title: daysOfWeek[0],
       itemsArr: [],
     },
-    "column-3": {
-      id: "column-3",
+    Tue: {
+      id: daysOfWeek[1],
       title: daysOfWeek[1],
       itemsArr: [],
     },
-    "column-4": {
-      id: "column-4",
+    Wed: {
+      id: daysOfWeek[2],
       title: daysOfWeek[2],
       itemsArr: [],
     },
-    "column-5": {
-      id: "column-5",
+    Thu: {
+      id: daysOfWeek[3],
       title: daysOfWeek[3],
       itemsArr: [],
     },
-    "column-6": {
-      id: "column-6",
+    Fri: {
+      id: daysOfWeek[4],
       title: daysOfWeek[4],
       itemsArr: [],
     },
-    "column-7": {
-      id: "column-7",
+    Sat: {
+      id: daysOfWeek[5],
       title: daysOfWeek[5],
       itemsArr: [],
     },
-    "column-8": {
-      id: "column-8",
+    Sun: {
+      id: daysOfWeek[6],
       title: daysOfWeek[6],
       itemsArr: [],
     },
@@ -61,13 +62,13 @@ const initialData = {
   // Facilitate reordering of the columns
   columnOrder: [
     "main",
-    "column-2",
-    "column-3",
-    "column-4",
-    "column-5",
-    "column-6",
-    "column-7",
-    "column-8",
+    daysOfWeek[0],
+    daysOfWeek[1],
+    daysOfWeek[2],
+    daysOfWeek[3],
+    daysOfWeek[4],
+    daysOfWeek[5],
+    daysOfWeek[6],
   ],
 };
 

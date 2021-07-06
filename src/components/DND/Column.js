@@ -27,10 +27,6 @@ const ItemList = styled.div`
   min-height: 30vh;
 `;
 
-// max-height: 300px;
-//   height: minmax(30vh, 70vh);
-//  width: minmax(10vw, 30vw);
-
 const Column = (props) => {
   return (
     <Container>
