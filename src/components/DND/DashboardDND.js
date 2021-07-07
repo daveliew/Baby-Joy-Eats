@@ -15,7 +15,7 @@ const Container = styled.div`
 const DashboardDND = () => {
   const value = useContext(DataContext);
   const { state, dispatch, ACTIONS } = value;
-
+  state.dndColumns.main.itemsArr = state.ingredientsArr;
   const [columns, setColumns] = useState(state.dndColumns);
 
   const MAIN = "main";
@@ -38,27 +38,11 @@ const DashboardDND = () => {
       return;
     }
 
-    const startCol = columns[source.droppableId]; // column-obj at start of drag.
-    const endCol = columns[destination.droppableId]; // column-obj at end of drag.
+    const startCol = state.dndColumns[source.droppableId]; // column-obj at start of drag.
+    const endCol = state.dndColumns[destination.droppableId]; // column-obj at end of drag.
     console.log("I'm dragging", startCol.itemsArr[source.index]);
 
-    if (startCol === endCol) {
-      //* reorder items in the same column
-      const copiedItems = [...startCol.itemsArr];
-      const [removedItem] = copiedItems.splice(source.index, 1);
-      copiedItems.splice(destination.index, 0, removedItem);
-
-      const newState = {
-        ...columns,
-        [startCol.id]: {
-          ...startCol,
-          itemsArr: copiedItems,
-        },
-      };
-
-      setColumns(newState);
-      // console.log("reordering", newState);
-    } else {
+    if (startCol !== endCol) {
       const sourceItems = [...startCol.itemsArr];
       const destinationItems = [...endCol.itemsArr];
 
@@ -92,9 +76,10 @@ const DashboardDND = () => {
             },
           };
           setColumns(newState);
+          dispatch({ type: ACTIONS.UPDATE_COLS, payload: newState });
         }
       } else {
-        //* transfer item to new position
+        //* transfer item to new position (and prevents items being dragged into main list)
         if (endCol.id !== MAIN) {
           const [removedItem] = sourceItems.splice(source.index, 1); // grab item from source
           destinationItems.splice(destination.index, 0, removedItem); // insert item into destination
@@ -111,10 +96,27 @@ const DashboardDND = () => {
             },
           };
           setColumns(newState);
+          dispatch({ type: ACTIONS.UPDATE_COLS, payload: newState });
         }
       }
+    } else {
+      //* reorder items in the same column
+      const copiedItems = [...startCol.itemsArr];
+      const [removedItem] = copiedItems.splice(source.index, 1);
+      copiedItems.splice(destination.index, 0, removedItem);
+
+      const newState = {
+        ...columns,
+        [startCol.id]: {
+          ...startCol,
+          itemsArr: copiedItems,
+        },
+      };
+
+      setColumns(newState);
+
+      dispatch({ type: ACTIONS.UPDATE_COLS, payload: newState });
     }
-    dispatch({ type: ACTIONS.UPDATE_COLS, payload: columns });
   };
 
   return (
@@ -128,6 +130,7 @@ const DashboardDND = () => {
             key={MAIN}
             items={columns[MAIN].itemsArr}
             column={columns[MAIN]}
+            //! I split the main items from the rest of the render. wondering if safe.
           />
           {state.dndColOrder
             .filter((colId) => colId !== MAIN)

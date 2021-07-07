@@ -15,7 +15,12 @@ const ACTIONS = {
 const appReducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.UPDATE_COLS:
-      return { ...state, dndColumns: action.payload };
+      return {
+        ...state,
+        dndColumns: action.payload,
+        ingredientsArr: action.payload.main.itemsArr,
+      };
+
     case ACTIONS.ADD_INGREDIENT:
       console.log("new ingredient!", action.payload);
       return {

@@ -19,8 +19,8 @@ const initialData = {
   ingredients: [
     { id: uuidv4(), content: "Fish" },
     { id: uuidv4(), content: "Avocado" },
-    // { id: uuidv4(), content: "Lemon" },
-    // { id: uuidv4(), content: "Strawberry" },
+    { id: uuidv4(), content: "Lemon" },
+    { id: uuidv4(), content: "Strawberry" },
     // { id: uuidv4(), content: "Blueberry" },
     // { id: uuidv4(), content: "Quinoa" },
     // { id: uuidv4(), content: "Grape" },
@@ -29,15 +29,7 @@ const initialData = {
     main: {
       id: "main",
       title: "My List",
-      itemsArr: [
-        { id: uuidv4(), content: "Fish" },
-        { id: uuidv4(), content: "Avocado" },
-        // { id: uuidv4(), content: "Lemon" },
-        // { id: uuidv4(), content: "Strawberry" },
-        // { id: uuidv4(), content: "Blueberry" },
-        // { id: uuidv4(), content: "Quinoa" },
-        // { id: uuidv4(), content: "Grape" },
-      ],
+      itemsArr: [],
     },
     Mon: {
       id: daysOfWeek[0],
