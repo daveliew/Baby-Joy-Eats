@@ -61,18 +61,17 @@ const DashboardDND = () => {
 
       if (startCol.id === "main") {
         //* creates a clone of the ingredients list and adds it to a day of the week
-        // const mainItems = columns["main"].itemsArr;
         const clone = sourceItems[source.index]; // clone a copy of the ingredient card!
 
         if (
           !endCol.itemsArr.map((obj) => obj.content).includes(clone.content)
+          // don't create a clone if the ingredient already exists in destination
         ) {
-          //* don't create a clone if the ingredient already exists in destination
           destinationItems.splice(destination.index, 0, {
             ...clone,
             id: uuidv4(),
+            // add clone to destination with new id to prevent drag bug
           });
-          //* add clone to destination with new id
 
           const newState = {
             ...columns,
@@ -81,47 +80,27 @@ const DashboardDND = () => {
               itemsArr: sourceItems
                 .splice(source.index, 1)
                 .concat([...sourceItems]),
+              //reorder cloned ingredient to the top of the array
             },
             [endCol.id]: {
               ...endCol,
               itemsArr: destinationItems,
             },
           };
-
           setColumns(newState);
-          console.log(newState);
         }
       } else {
         //* transfer item to new position
-        const [removedItem] = sourceItems.splice(source.index, 1); // grab item from sourceCol itemsArr
-        destinationItems.splice(destination.index, 0, removedItem); // insert item into destCol itemsArr
-
-        // const fromCol = {
-        //   ...startCol,
-        //   itemsArr: sourceItems,
-        // };
-
-        // const toCol = {
-        //   ...endCol,
-        //   itemsArr: destinationItems,
-        // };
-
-        // const newState = {
-        //   ...columns,
-        //   columns: {
-        //     ...columns.columns,
-        //     [startCol.id]: fromCol,
-        //     [endCol.id]: toCol,
-        //   },
-        // };
+        const [removedItem] = sourceItems.splice(source.index, 1); // grab item from source
+        destinationItems.splice(destination.index, 0, removedItem); // insert item into destination
 
         const newState = {
           ...columns,
-          startCol: {
+          [startCol.id]: {
             ...startCol,
             itemsArr: sourceItems,
           },
-          endCol: {
+          [endCol.id]: {
             ...endCol,
             itemsArr: destinationItems,
           },
