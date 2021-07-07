@@ -37,7 +37,7 @@ const DashboardDND = () => {
 
     const startCol = columns[source.droppableId]; // column-obj at start of drag.
     const endCol = columns[destination.droppableId]; // column-obj at end of drag.
-    console.log("I'm dragging", startCol);
+    console.log(`I'm dragging ${startCol}`);
 
     if (startCol === endCol) {
       //* reorder items in the same column

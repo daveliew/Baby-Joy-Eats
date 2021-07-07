@@ -16,30 +16,18 @@ const appReducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.UPDATE_COLS:
       return { ...state, dndColumns: action.payload };
-    // return {
-    //   ...state,
-    //   dndData: {
-    //     ...state.dndData.columns,
-    //     columns: {
-    //       ...state.dndData.columns.main,
-    //       main: {
-    //         itemsArr: [
-    //           action.payload,
-    //           ...state.dndData.columns.main.itemsArr,
-    //         ],
-    //       },
-    //     },
-    //   },
-    // };
-
     case ACTIONS.ADD_INGREDIENT:
       console.log("new ingredient!", action.payload);
-
       return {
         ...state,
-        [state.dndColumns.main]: {
-          ...state.dndColumns.main,
-          itemsArr: action.payload.concat(state.ingredientsArr),
+        dndColumns: {
+          ...state.dndColumns,
+          main: {
+            ...state.dndColumns.main,
+            itemsArr: action.payload.concat([
+              ...state.dndColumns.main.itemsArr,
+            ]),
+          },
         },
         ingredientsArr: action.payload.concat(state.ingredientsArr),
       };
@@ -49,13 +37,6 @@ const appReducer = (state, action) => {
       return {
         ...state,
         dndData: {},
-      };
-
-    case ACTIONS.REORDER_ARR: //! fix this case
-      console.log("reorder ingredientsArr", action.payload);
-      return {
-        ...state,
-        dndData: action.payload,
       };
     default:
       return state;
