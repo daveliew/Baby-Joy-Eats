@@ -23,21 +23,17 @@ const appReducer = (state, action) => {
 
     case ACTIONS.ADD_INGREDIENT:
       console.log("new ingredient!", action.payload);
+
       return {
         ...state,
-
         ingredientsArr: action.payload.concat(state.ingredientsArr),
       };
     case ACTIONS.CLEAR_PLANNER:
       console.log("all gone now!");
-      console.log(
-        Object.entries(state.dndColumns).filter((colId) => colId !== "main")
-      );
-      // Object.entries(state.dndColumns)
-      //   .filter((colId) => colId !== "main")
-      //   .forEach((e) => (e.itemsArr = []));
-      // console.log(state.Object.entries(state.dndColumns));
 
+      Object.entries(state.dndColumns)
+        .filter((arr) => arr[0] !== "main")
+        .forEach((col) => (col[1].itemsArr = []));
       return {
         ...state,
       };

@@ -22,7 +22,6 @@ const DashboardDND = () => {
 
   console.log("App state", state);
   console.log("ingredients", state.ingredientsArr);
-  console.log("col itemsArr", state.dndColumns.main.itemsArr);
 
   const onDragEnd = (result) => {
     const { destination, source } = result;
