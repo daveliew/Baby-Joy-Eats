@@ -81,6 +81,7 @@ code {
   background-color: #edafb8;
   overflow-y: scroll;
 }
+
 .ingredients-dnd {
   /* max-height: 500px; */
   grid-column: 1 / 2;

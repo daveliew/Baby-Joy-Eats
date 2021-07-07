@@ -8,21 +8,20 @@ const IngredientAjax = () => {
   const value = useContext(DataContext);
   const { dispatch, ACTIONS } = value;
 
-  const [ingredient, setIngredient] = useState({ id: "", content: "" }); // capture user selection
+  const [ingredient, setIngredient] = useState({}); // capture user selection
   const [data, setData] = useState([]); // return API call
   const [query, setQuery] = useState(""); //for URL
   const [tags, setTags] = useState([]); // for autocomplete
-  const [toggle, setToggle] = useState(false); //! is this needed?
-  const inputRef = useRef(); //! is this needed?
+
+  // const inputRef = useRef(); //! is this needed?
 
   //! FIX handler to update App State
   const sendIngredient = () => {
-    setToggle(!toggle);
     console.log("sending ingredient", tags);
-    console.log();
+
     dispatch({
       type: ACTIONS.ADD_INGREDIENT,
-      payload: [{ id: uuidv4(), content: ingredient }],
+      payload: [{ id: uuidv4(), content: tags }],
     });
   };
 
@@ -89,13 +88,13 @@ const IngredientAjax = () => {
               variant="outlined"
               value={ingredient.content}
               InputProps={{ ...params.InputProps, type: "search" }}
-              ref={inputRef}
-              onKeyDown={(e) => {
-                if (e.key === 13 && e.target.value) {
-                  setIngredient(e.target.value);
-                  console.log(e.target.value, "return key");
-                }
-              }}
+              // ref={inputRef} //! is this needed?
+              // onKeyDown={(e) => {
+              //   if (e.key === 13 && e.target.value) {
+              //     setIngredient(e.target.value);
+              //     console.log(e.target.value, "return key");
+              //   }
+              // }}
               onChange={handleChange}
               placeholder="e.g. banana"
             />

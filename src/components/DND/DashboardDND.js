@@ -17,10 +17,12 @@ const DashboardDND = () => {
   const { state, dispatch, ACTIONS } = value;
 
   const [columns, setColumns] = useState(state.dndColumns);
-  const colOrder = state.dndColOrder;
+
   const MAIN = "main";
 
-  console.log("app state", state);
+  console.log("App state", state);
+  console.log("ingredients", state.ingredientsArr);
+  console.log("col itemsArr", state.dndColumns.main.itemsArr);
 
   const onDragEnd = (result) => {
     const { destination, source } = result;
@@ -82,7 +84,7 @@ const DashboardDND = () => {
               itemsArr: sourceItems
                 .splice(source.index, 1)
                 .concat([...sourceItems]),
-              //reorder cloned ingredient to the top of the array
+              //! reorder cloned ingredient to the top of the array
             },
             [endCol.id]: {
               ...endCol,
@@ -93,21 +95,23 @@ const DashboardDND = () => {
         }
       } else {
         //* transfer item to new position
-        const [removedItem] = sourceItems.splice(source.index, 1); // grab item from source
-        destinationItems.splice(destination.index, 0, removedItem); // insert item into destination
+        if (endCol.id !== MAIN) {
+          const [removedItem] = sourceItems.splice(source.index, 1); // grab item from source
+          destinationItems.splice(destination.index, 0, removedItem); // insert item into destination
 
-        const newState = {
-          ...columns,
-          [startCol.id]: {
-            ...startCol,
-            itemsArr: sourceItems,
-          },
-          [endCol.id]: {
-            ...endCol,
-            itemsArr: destinationItems,
-          },
-        };
-        setColumns(newState);
+          const newState = {
+            ...columns,
+            [startCol.id]: {
+              ...startCol,
+              itemsArr: sourceItems,
+            },
+            [endCol.id]: {
+              ...endCol,
+              itemsArr: destinationItems,
+            },
+          };
+          setColumns(newState);
+        }
       }
     }
     dispatch({ type: ACTIONS.UPDATE_COLS, payload: columns });
@@ -120,19 +124,24 @@ const DashboardDND = () => {
       </button>
       <DragDropContext onDragEnd={onDragEnd}>
         <Container>
-          {/* <Column
-            className={MAIN}
+          <Column
             key={MAIN}
-            column={state.dndColumns[MAIN]}
-            items={state.ingredientsArr}
-          /> */}
-          {colOrder.map((columnId) => {
-            const column = columns[columnId];
+            items={columns[MAIN].itemsArr}
+            column={columns[MAIN]}
+          />
+          {state.dndColOrder
+            .filter((colId) => colId !== MAIN)
+            .map((columnId) => {
+              const column = columns[columnId];
 
-            return (
-              <Column key={column.id} column={column} items={column.itemsArr} />
-            );
-          })}
+              return (
+                <Column
+                  key={column.id}
+                  column={column}
+                  items={column.itemsArr}
+                />
+              );
+            })}
         </Container>
       </DragDropContext>
     </div>
