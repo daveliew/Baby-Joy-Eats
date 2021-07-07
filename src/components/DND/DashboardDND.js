@@ -114,7 +114,6 @@ const DashboardDND = () => {
       };
 
       setColumns(newState);
-
       dispatch({ type: ACTIONS.UPDATE_COLS, payload: newState });
     }
   };

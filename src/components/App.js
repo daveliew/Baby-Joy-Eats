@@ -25,14 +25,7 @@ const appReducer = (state, action) => {
       console.log("new ingredient!", action.payload);
       return {
         ...state,
-        // //! THESE LINES STILL BUGGY! :(
-        dndColumns: {
-          ...state.dndColumns,
-          main: {
-            ...state.dndColumns.main,
-            itemsArr: action.payload.concat(state.ingredientsArr),
-          },
-        },
+
         ingredientsArr: action.payload.concat(state.ingredientsArr),
       };
     case ACTIONS.CLEAR_PLANNER:

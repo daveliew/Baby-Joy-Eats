@@ -86,7 +86,7 @@ const IngredientAjax = () => {
               label="Add an ingredient"
               margin="normal"
               variant="outlined"
-              value={ingredient.content}
+              // value={ingredient.content}
               InputProps={{ ...params.InputProps, type: "search" }}
               // ref={inputRef} //! is this needed?
               // onKeyDown={(e) => {
