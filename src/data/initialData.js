@@ -10,13 +10,21 @@ export const ingredients = [
   { id: uuidv4(), content: "Quinoa" },
   { id: uuidv4(), content: "Grape" },
 ];
-
 // const objectMap = (obj, fn) => {
 //   let k, v;
 //   Object.fromEntries(Object.entries(obj).map([k, v], (i) => [k, fn(v, k, i)]));
 // };
 
 const initialData = {
+  ingredients: [
+    { id: uuidv4(), content: "Fish" },
+    { id: uuidv4(), content: "Avocado" },
+    { id: uuidv4(), content: "Lemon" },
+    { id: uuidv4(), content: "Strawberry" },
+    { id: uuidv4(), content: "Blueberry" },
+    { id: uuidv4(), content: "Quinoa" },
+    { id: uuidv4(), content: "Grape" },
+  ],
   columns: {
     main: {
       id: "main",
