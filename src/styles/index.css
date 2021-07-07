@@ -9,15 +9,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
 .nav {
   background-color: #4a5759;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
 }
 
 .nav-item {
@@ -82,8 +78,13 @@ code {
   overflow-y: scroll;
 }
 
+.Dashboard-DND {
+  overflow-y: scroll;
+  background-color: #b0c4b1;
+}
+/* 
 .ingredients-dnd {
-  /* max-height: 500px; */
+  max-height: 500px;
   grid-column: 1 / 2;
   overflow: scroll;
 }
@@ -94,10 +95,7 @@ code {
   overflow: scroll;
 }
 
-.Dashboard-DND {
-  overflow-y: scroll;
-  background-color: #b0c4b1;
-}
+
 
 .ingredients {
   padding-left: 0;
@@ -130,4 +128,4 @@ code {
   display: block;
   width: 100%;
   height: auto;
-}
+} */

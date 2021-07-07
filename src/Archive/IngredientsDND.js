@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import ingredientsArr from "../../data/ingredientsData";
+import ingredientsArr from "../data/ingredientsData";
 
-const PlannerDND = () => {
+const IngredientsDND = () => {
   const [ingredients, setIngredients] = useState(ingredientsArr);
 
   const handleOnDragEnd = (result) => {
@@ -16,10 +16,9 @@ const PlannerDND = () => {
 
   return (
     <div className="dnd">
-      <div className="planner-dnd">
-        <h1>
-          This will be a 7 x 4 weekly view where ingredients can be dropped in
-        </h1>
+      <div className="ingredients-dnd">
+        <p>Add input for adding new ingredient here</p>
+        <p>Init with ingredients (stored in local storage??)</p>
         <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="ingredients">
             {(provided) => (
@@ -55,4 +54,4 @@ const PlannerDND = () => {
   );
 };
 
-export default PlannerDND;
+export default IngredientsDND;

@@ -6,6 +6,7 @@ const Header = () => {
   return (
     <AppBar>
       <Toolbar className="nav">
+        <h1>Baby Joy EATS</h1>
         <Link to="/" className="nav-item">
           Home
         </Link>
@@ -14,9 +15,6 @@ const Header = () => {
         </Link>
         <Link to="/info" className="nav-item">
           Info
-        </Link>
-        <Link to="/test" className="nav-item">
-          Test
         </Link>
       </Toolbar>
     </AppBar>

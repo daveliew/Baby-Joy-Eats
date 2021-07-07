@@ -6,7 +6,7 @@ import {
   ListItemText,
   ListItemSecondaryAction,
 } from "@material-ui/core";
-import CardModal from "../Modal";
+import CardModal from "./Modal";
 
 // const Item = styled.div`
 //   border: 1px solid lightgrey;

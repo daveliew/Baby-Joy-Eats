@@ -2,7 +2,6 @@ import React, { createContext, useReducer } from "react";
 import Header from "../pages/Header";
 import Main from "../pages/Main";
 import initialData from "../data/initialData";
-import ingredientsArr from "../data/ingredientsData";
 
 export const DataContext = createContext();
 
