@@ -34,7 +34,7 @@ const initialData = {
     Mon: {
       id: daysOfWeek[0],
       title: daysOfWeek[0],
-      itemsArr: [],
+      itemsArr: [{ id: uuidv4(), content: "Fish" }],
     },
     Tue: {
       id: daysOfWeek[1],

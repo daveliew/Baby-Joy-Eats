@@ -16,8 +16,7 @@ const DashboardDND = () => {
   const value = useContext(DataContext);
   const { state, dispatch, ACTIONS } = value;
 
-  //! fix state ingredient passing down here
-  const [dndColumns, setDndColumns] = useState(state.dndColumns);
+  const [columns, setColumns] = useState(state.dndColumns);
   const colOrder = state.dndColOrder;
 
   console.log("app state", state);
@@ -36,31 +35,25 @@ const DashboardDND = () => {
       return;
     }
 
-    const startCol = dndColumns[source.droppableId]; // column-obj at start of drag.
-    const endCol = dndColumns[destination.droppableId]; // column-obj at end of drag.
+    const startCol = columns[source.droppableId]; // column-obj at start of drag.
+    const endCol = columns[destination.droppableId]; // column-obj at end of drag.
     console.log("I'm dragging", startCol);
 
     if (startCol === endCol) {
       //* reorder items in the same column
-
       const copiedItems = [...startCol.itemsArr];
       const [removedItem] = copiedItems.splice(source.index, 1);
       copiedItems.splice(destination.index, 0, removedItem);
 
-      const updatedCol = {
-        ...startCol,
-        itemsArr: copiedItems,
-      };
-      console.log(copiedItems);
       const newState = {
-        ...dndColumns,
-        columns: {
-          ...dndColumns,
-          [startCol.id]: updatedCol,
+        ...columns,
+        [startCol.id]: {
+          ...startCol,
+          itemsArr: copiedItems,
         },
       };
 
-      setDndColumns(newState);
+      setColumns(newState);
       console.log("reordering", newState);
     } else {
       const sourceItems = [...startCol.itemsArr];
@@ -68,33 +61,51 @@ const DashboardDND = () => {
 
       if (startCol.id === "main") {
         //* creates a clone of the ingredients list and adds it to a day of the week
-        const mainItems = [...state.ingredientsArr];
-        const item = mainItems[source.index]; // clone a copy!
+        const mainItems = columns["main"].itemsArr;
+        console.log(mainItems);
+        const clone = mainItems[source.index]; // clone a copy!
         sourceItems.splice(source.index, 1);
-        if (!endCol.itemsArr.map((obj) => obj.content).includes(item.content)) {
+        if (
+          !endCol.itemsArr.map((obj) => obj.content).includes(clone.content)
+        ) {
           //* checks if ingredient already exists in destination
           destinationItems.splice(destination.index, 0, {
-            ...item,
+            ...clone,
             id: uuidv4(),
-          }); // add clone to destination with new id
-          const fromCol = {
-            ...startCol,
-            itemsArr: sourceItems,
-          };
-          const toCol = {
-            ...endCol,
-            itemsArr: destinationItems,
-          };
-
+          });
+          // add clone to destination with new id
+          // const fromCol = {
+          //   ...startCol,
+          //   itemsArr: sourceItems,
+          // };
+          // const toCol = {
+          //   ...endCol,
+          //   itemsArr: destinationItems,
+          // };
+          // const newState = {
+          //   ...columns,
+          //   [startCol.id]: {
+          //     ...startCol,
+          //     itemsArr: sourceItems,
+          //   },
+          //   [endCol.id]: {
+          //     ...endCol,
+          //     itemsArr: destinationItems,
+          //   }
+          //   },
           const newState = {
-            ...dndColumns,
-            columns: {
-              ...dndColumns.columns,
-              [startCol.id]: fromCol,
-              [endCol.id]: toCol,
+            ...columns,
+            startCol: {
+              ...startCol,
+              itemsArr: sourceItems,
+            },
+            endCol: {
+              ...endCol,
+              itemsArr: destinationItems,
             },
           };
-          setDndColumns(newState);
+
+          setColumns(newState);
         }
       } else {
         //* transfer item to new position
@@ -112,17 +123,17 @@ const DashboardDND = () => {
         };
 
         const newState = {
-          ...dndColumns,
+          ...columns,
           columns: {
-            ...dndColumns.columns,
+            ...columns.columns,
             [startCol.id]: fromCol,
             [endCol.id]: toCol,
           },
         };
-        setDndColumns(newState);
+        setColumns(newState);
       }
     }
-    dispatch({ type: ACTIONS.UPDATE_INGREDIENTS, payload: dndColumns });
+    dispatch({ type: ACTIONS.UPDATE_COLS, payload: columns });
   };
 
   return (
@@ -133,7 +144,7 @@ const DashboardDND = () => {
       <DragDropContext onDragEnd={onDragEnd}>
         <Container>
           {colOrder.map((columnId) => {
-            const column = dndColumns[columnId];
+            const column = columns[columnId];
             return (
               <Column key={column.id} column={column} items={column.itemsArr} />
             );

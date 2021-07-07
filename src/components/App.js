@@ -7,15 +7,15 @@ export const DataContext = createContext();
 
 const ACTIONS = {
   ADD_INGREDIENT: "addIngredient",
-  UPDATE_INGREDIENTS: "updateIngredients",
+  UPDATE_COLS: "updateCols",
   REORDER_ARR: "reorderArr",
   CLEAR_PLANNER: "clearPlanner",
 };
 
 const appReducer = (state, action) => {
   switch (action.type) {
-    case ACTIONS.UPDATE_INGREDIENTS:
-      return { ...state };
+    case ACTIONS.UPDATE_COLS:
+      return { ...state, dndColumns: action.payload };
     // return {
     //   ...state,
     //   dndData: {
