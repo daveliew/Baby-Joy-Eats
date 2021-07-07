@@ -37,6 +37,10 @@ const appReducer = (state, action) => {
 
       return {
         ...state,
+        [state.dndColumns.main]: {
+          ...state.dndColumns.main,
+          itemsArr: action.payload.concat(state.ingredientsArr),
+        },
         ingredientsArr: action.payload.concat(state.ingredientsArr),
       };
     case ACTIONS.CLEAR_PLANNER:
