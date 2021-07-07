@@ -33,7 +33,7 @@ const IngredientAjax = () => {
 
   const handleChange = (event, values) => {
     const value = event.target.value;
-    console.log("handleChange - value", event.target.value);
+    console.log("handleChange - query", event.target.value);
 
     setQuery(value);
     setIngredient({

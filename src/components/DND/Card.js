@@ -6,7 +6,7 @@ import {
   ListItemText,
   ListItemSecondaryAction,
 } from "@material-ui/core";
-import Modal from "../Modal";
+import CardModal from "../Modal";
 
 // const Item = styled.div`
 //   border: 1px solid lightgrey;
@@ -57,7 +57,7 @@ const Card = (props) => {
             secondary={props.item.id}
           />
           <ListItemSecondaryAction>
-            <Modal />
+            <CardModal item={props.item.content} />
           </ListItemSecondaryAction>
         </ListItem>
       )}

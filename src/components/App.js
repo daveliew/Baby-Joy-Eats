@@ -2,14 +2,16 @@ import React, { createContext, useReducer } from "react";
 import Header from "../pages/Header";
 import Main from "../pages/Main";
 import initialData from "../data/initialData";
+import ingredientsArr from "../data/ingredientsData";
 
 export const DataContext = createContext();
 
 const ACTIONS = {
   ADD_INGREDIENT: "addIngredient",
-  UPDATE_COLS: "updateCols",
-  REORDER_ARR: "reorderArr",
   CLEAR_PLANNER: "clearPlanner",
+  EDIT_INGREDIENT: "editIngredient",
+  REORDER_ARR: "reorderArr",
+  UPDATE_COLS: "updateCols",
 };
 
 const appReducer = (state, action) => {
@@ -43,6 +45,15 @@ const appReducer = (state, action) => {
       return {
         ...state,
       };
+
+    case ACTIONS.EDIT_INGREDIENT:
+      console.log("changing item");
+      //! continue to add data
+      return {
+        ...state,
+        // ingredientsArr:
+      };
+
     default:
       return state;
   }
