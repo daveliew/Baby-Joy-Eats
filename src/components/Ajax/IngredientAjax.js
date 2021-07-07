@@ -43,6 +43,12 @@ const IngredientAjax = () => {
     });
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      document.getElementById("addBox").click();
+    }
+  };
+
   useEffect(() => {
     const autoComplete =
       "https://api.spoonacular.com/food/ingredients/autocomplete";
@@ -90,10 +96,11 @@ const IngredientAjax = () => {
             InputProps={{ ...params.InputProps, type: "search" }}
             onChange={handleChange}
             placeholder="e.g. banana"
+            onKeyPress={handleKeyPress}
           />
         )}
       />
-      <IconButton onClick={sendIngredient}>
+      <IconButton id="addBox" onClick={sendIngredient}>
         <AddBox />
       </IconButton>
     </div>
