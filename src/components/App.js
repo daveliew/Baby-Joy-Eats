@@ -24,10 +24,26 @@ const appReducer = (state, action) => {
     case ACTIONS.ADD_INGREDIENT:
       console.log("new ingredient!", action.payload);
 
-      return {
-        ...state,
-        ingredientsArr: action.payload.concat(state.ingredientsArr),
-      };
+      if (action.payload.content.length === 0) {
+        console.log("hello??");
+
+        return {
+          ...state,
+        };
+      } else {
+        return {
+          ...state,
+          ingredientsArr: [action.payload, ...state.ingredientsArr],
+        };
+      }
+    // if (action.payload.content.length === 0) {
+    //   console.log("NOTHING HERE!");
+    //   return;
+    // } else
+    //   return {
+    //     ...state,
+    //     ingredientsArr: [action.payload, ...state.ingredientsArr],
+    //   };
     case ACTIONS.CLEAR_PLANNER:
       console.log("all gone now!");
 
