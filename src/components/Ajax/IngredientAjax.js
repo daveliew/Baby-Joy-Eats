@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { DataContext } from "../App";
 import { v4 as uuidv4 } from "uuid";
-import TextField from "@material-ui/core/TextField";
+import { TextField, IconButton } from "@material-ui/core/";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import { AddBox } from "@material-ui/icons";
 
 const IngredientAjax = () => {
   const value = useContext(DataContext);
@@ -67,35 +68,35 @@ const IngredientAjax = () => {
   }, [query]);
 
   return (
-    <>
-      <div>
-        <Autocomplete
-          id="free-solo"
-          style={{ width: 300 }}
-          freeSolo
-          disableClearable
-          onInputChange={(e) => {
-            setIngredient(e.target.value);
-          }}
-          onChange={handleTags}
-          options={data.map((option) => option.name)}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              id="filled-primary"
-              label="Add an ingredient"
-              margin="normal"
-              variant="outlined"
-              value={ingredient.content}
-              InputProps={{ ...params.InputProps, type: "search" }}
-              onChange={handleChange}
-              placeholder="e.g. banana"
-            />
-          )}
-        />
-      </div>
-      <button onClick={sendIngredient}> Add to Ingredient List </button>
-    </>
+    <div className="Ingredient-Ajax">
+      <Autocomplete
+        id="free-solo"
+        style={{ width: 300 }}
+        freeSolo
+        disableClearable
+        onInputChange={(e) => {
+          setIngredient(e.target.value);
+        }}
+        onChange={handleTags}
+        options={data.map((option) => option.name)}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            id="filled-primary"
+            label="Add an ingredient"
+            margin="normal"
+            variant="outlined"
+            value={ingredient.content}
+            InputProps={{ ...params.InputProps, type: "search" }}
+            onChange={handleChange}
+            placeholder="e.g. banana"
+          />
+        )}
+      />
+      <IconButton onClick={sendIngredient}>
+        <AddBox />
+      </IconButton>
+    </div>
   );
 };
 

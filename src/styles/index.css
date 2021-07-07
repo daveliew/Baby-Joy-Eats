@@ -24,7 +24,6 @@ body {
 
 .main {
   display: flex;
-  justify-content: center;
   background-color: #f7e1d7;
   height: 100vh;
   width: 100vw;
@@ -60,6 +59,24 @@ body {
   width: 100px; */
 }
 
+.Home {
+  background-color: #b0c4b1;
+}
+
+.Ingredient-Ajax {
+  background-color: skyblue;
+  padding: 2rem;
+  display: flex;
+}
+
+.Dashboard-DND {
+  top: 0%;
+  display: grid;
+  padding: 2rem;
+  overflow-y: scroll;
+}
+
+/* 
 .dashboard {
   position: relative;
   display: flex;
@@ -70,19 +87,10 @@ body {
   background-color: #b0c4b1;
 }
 .dnd {
-  display: grid;
-
-  padding: 10px;
   border: 1px solid orange;
   background-color: #edafb8;
   overflow-y: scroll;
 }
-
-.Dashboard-DND {
-  overflow-y: scroll;
-  background-color: #b0c4b1;
-}
-/* 
 .ingredients-dnd {
   max-height: 500px;
   grid-column: 1 / 2;
