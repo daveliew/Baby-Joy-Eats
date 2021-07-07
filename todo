@@ -1,21 +1,35 @@
 #MVP
-1 search query
-3 recipes (cards)
-
+- 1 search query (query autocomplete prepend into array) √
+- 7 day plan:
+    - DND must haves: (i) ingredients draggable √ (2) 7 day droppable √ (3) auto scroll √ (4) snapshot colors √
+- Ingredient list ("pick up") feature  √
 
 #Phase 2
-- Add to favourites
-- meal prep info
-- Do not add list
-- Search params + data structure for search
+- generate data from API call:
+    - meal prep info --> steps ok
+    - query new ingredient and append to myList 
+    - recipe generate based on selected recipe card
+- 7 day plan summary row
+- 3 recipes (cards)
+- Monthly view with API for stats
+
 
 #Phase 3
-- 7 day plan
-- Monthly view
+- Add to favourites
 - Individual food widget
+- ingredients exclusion list
+- Search params + data structure for search
+- hook up firebase
 
 
-#Bonus
-- data base
-- whats in your fridge 
-- google translate
+===
+draggable features:
+1. when item added to !main column, create clone in main itemsArr √
+2. create feature to remove ingredient from anywhere (except main)
+3. add to faves
+
+//! Bugs
+- ingredient value capture when return key pressed √
+- add to ingredient list √
+- dnd logic from main to other columns
+- prevent add ingredient button from being clicked with no data (error case catch)

@@ -1,0 +1,132 @@
+body {
+  margin: 0;
+  max-height: 80vmax;
+  max-width: 80vmax;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.nav {
+  background-color: #4a5759;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-item {
+  color: #f7e1d7;
+  margin: 1em;
+  font-weight: bold;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  background-color: #f7e1d7;
+  height: 100vh;
+  width: 100vw;
+  padding: 5rem;
+}
+
+.planner {
+  grid-column: 2 / auto;
+  padding: 5em;
+  width: 100vw;
+  height: 50%;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  padding: 1em;
+
+  border: 1px solid green;
+  overflow: scroll;
+}
+
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border: 1px solid blue;
+}
+
+.food-image {
+  overflow: hidden;
+  /* height: 100px;
+  width: 100px; */
+}
+
+.dashboard {
+  position: relative;
+  display: flex;
+
+  max-height: 300px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: repeat(4, 4fr);
+  background-color: #b0c4b1;
+}
+.dnd {
+  display: grid;
+
+  padding: 10px;
+  border: 1px solid orange;
+  background-color: #edafb8;
+  overflow-y: scroll;
+}
+.ingredients-dnd {
+  /* max-height: 500px; */
+  grid-column: 1 / 2;
+  overflow: scroll;
+}
+
+.planner-dnd {
+  grid-column: 2 / 5;
+  background-color: #b0c4b1;
+  overflow: scroll;
+}
+
+.Dashboard-DND {
+  overflow-y: scroll;
+  background-color: #b0c4b1;
+}
+
+.ingredients {
+  padding-left: 0;
+  list-style: none;
+}
+
+.ingredients li {
+  display: flex;
+  align-items: center;
+
+  border: solid 2px pink;
+  background-color: #dedbd2;
+  box-shadow: 3px 3px;
+  border-radius: 0.2em;
+  padding: 0.5em 0.8em 0.5em 0.5em;
+  margin-bottom: 1em;
+}
+
+.ingredients-thumb {
+  overflow: hidden;
+  flex-shrink: 0;
+  width: 2em;
+  height: 2em;
+  background-color: #4a5759;
+  padding: 0.5em;
+  margin-right: 0.5em;
+}
+
+.ingredients-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
