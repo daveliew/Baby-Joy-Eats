@@ -27,19 +27,21 @@ const DashboardDND = () => {
     const { destination, source } = result;
 
     if (!destination) {
-      return;
+      return; // prevent drag that goes out of drop context
     }
 
     if (
       destination.droppableId === source.droppableId &&
       destination.index === source.index
     ) {
-      return;
+      return; // do nothing if item goes to same position
     }
 
+    //* Handle 3 cases: (1) Create new item (2) Shift item to new column (3) Reorder item in same column
     const startCol = state.dndColumns[source.droppableId]; // column-obj at start of drag.
     const endCol = state.dndColumns[destination.droppableId]; // column-obj at end of drag.
-    console.log("I'm dragging", startCol.itemsArr[source.index]);
+    // console.log("I'm dragging", startCol.itemsArr[source.index]);
+    // console.log("I landed in", endCol.id);
 
     if (startCol !== endCol) {
       const sourceItems = [...startCol.itemsArr];
@@ -49,8 +51,10 @@ const DashboardDND = () => {
         //* creates a clone of the ingredients list and adds it to a day of the week
 
         const clone = sourceItems[source.index]; // clone a copy of the ingredient card!
-        // sourceItems.splice(source.index, 1);
-        if (
+
+        if (endCol.id === "Bin") {
+          return;
+        } else if (
           !endCol.itemsArr.map((obj) => obj.content).includes(clone.content)
           // don't create a clone if the ingredient already exists in destination
         ) {
@@ -67,7 +71,7 @@ const DashboardDND = () => {
               itemsArr: sourceItems
                 .splice(source.index, 1)
                 .concat([...sourceItems]),
-              //! reorder cloned ingredient to the top of the array
+              // reorder cloned ingredient to the top of the array
             },
             [endCol.id]: {
               ...endCol,
@@ -81,7 +85,11 @@ const DashboardDND = () => {
         //* transfer item to new position (and prevents items being dragged into main list)
         if (endCol.id !== MAIN) {
           const [removedItem] = sourceItems.splice(source.index, 1); // grab item from source
-          destinationItems.splice(destination.index, 0, removedItem); // insert item into destination
+
+          if (endCol.id !== "Bin") {
+            destinationItems.splice(destination.index, 0, removedItem); // insert item into destination
+            console.log("I moved");
+          }
 
           const newState = {
             ...columns,
