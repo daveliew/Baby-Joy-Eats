@@ -18,6 +18,7 @@ const DashboardDND = () => {
 
   const [columns, setColumns] = useState(state.dndColumns);
   const colOrder = state.dndColOrder;
+  const MAIN = "main";
 
   console.log("app state", state);
 
@@ -37,7 +38,7 @@ const DashboardDND = () => {
 
     const startCol = columns[source.droppableId]; // column-obj at start of drag.
     const endCol = columns[destination.droppableId]; // column-obj at end of drag.
-    console.log(`I'm dragging ${startCol}`);
+    console.log("I'm dragging", startCol.itemsArr[source.index]);
 
     if (startCol === endCol) {
       //* reorder items in the same column
@@ -59,10 +60,11 @@ const DashboardDND = () => {
       const sourceItems = [...startCol.itemsArr];
       const destinationItems = [...endCol.itemsArr];
 
-      if (startCol.id === "main") {
+      if (startCol.id === MAIN) {
         //* creates a clone of the ingredients list and adds it to a day of the week
-        const clone = sourceItems[source.index]; // clone a copy of the ingredient card!
 
+        const clone = sourceItems[source.index]; // clone a copy of the ingredient card!
+        // sourceItems.splice(source.index, 1);
         if (
           !endCol.itemsArr.map((obj) => obj.content).includes(clone.content)
           // don't create a clone if the ingredient already exists in destination
@@ -118,8 +120,15 @@ const DashboardDND = () => {
       </button>
       <DragDropContext onDragEnd={onDragEnd}>
         <Container>
+          {/* <Column
+            className={MAIN}
+            key={MAIN}
+            column={state.dndColumns[MAIN]}
+            items={state.ingredientsArr}
+          /> */}
           {colOrder.map((columnId) => {
             const column = columns[columnId];
+
             return (
               <Column key={column.id} column={column} items={column.itemsArr} />
             );
