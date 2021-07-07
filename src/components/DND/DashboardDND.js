@@ -40,7 +40,34 @@ const DashboardDND = () => {
 
     console.log("I'm dragging", startCol);
 
-    if (startCol !== endCol) {
+    if (startCol === endCol) {
+      //* reorder items in the same column
+      //! bring this to starting condition as the default case
+      const copiedItems = [...startCol.itemsArr];
+      const [removedItem] = copiedItems.splice(source.index, 1);
+      copiedItems.splice(destination.index, 0, removedItem);
+
+      const updatedCol = {
+        ...startCol,
+        itemsArr: copiedItems,
+      };
+
+      const newState = {
+        ...stateObj,
+        columns: {
+          ...stateObj.columns,
+          [startCol.id]: updatedCol,
+        },
+      };
+
+      setStateObj(newState);
+
+      if (startCol === "main") {
+        dispatch({ type: ACTIONS.REORDER_ARR, payload: updatedCol.itemsArr });
+      } else {
+        dispatch({ type: ACTIONS.UPDATE_INGREDIENTS, payload: stateObj });
+      }
+    } else {
       const sourceItems = [...startCol.itemsArr];
       const destinationItems = [...endCol.itemsArr];
 
@@ -99,28 +126,8 @@ const DashboardDND = () => {
         };
         setStateObj(newState);
       }
-    } else {
-      //* reorder items in the same column
-      const copiedItems = [...startCol.itemsArr];
-      const [removedItem] = copiedItems.splice(source.index, 1);
-      copiedItems.splice(destination.index, 0, removedItem);
-
-      const updatedCol = {
-        ...startCol,
-        itemsArr: copiedItems,
-      };
-
-      const newState = {
-        ...stateObj,
-        columns: {
-          ...stateObj.columns,
-          [startCol.id]: updatedCol,
-        },
-      };
-
-      setStateObj(newState);
+      dispatch({ type: ACTIONS.UPDATE_INGREDIENTS, payload: stateObj });
     }
-    dispatch({ type: ACTIONS.UPDATE_INGREDIENTS, payload: stateObj });
   };
 
   return (

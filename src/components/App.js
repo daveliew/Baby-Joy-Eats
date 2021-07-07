@@ -8,6 +8,7 @@ export const DataContext = createContext();
 const ACTIONS = {
   ADD_INGREDIENT: "addIngredient",
   UPDATE_INGREDIENTS: "updateIngredients",
+  REORDER_ARR: "reorderArr",
 };
 
 const appReducer = (state, action) => {
@@ -23,6 +24,13 @@ const appReducer = (state, action) => {
       return {
         ...state,
         ingredientsArr: action.payload.concat(state.ingredientsArr),
+      };
+
+    case ACTIONS.REORDER_ARR:
+      console.log("reorder ingredientsArr", action.payload);
+      return {
+        ...state,
+        ingredientsArr: action.payload,
       };
     // return {
     //   ...state,
