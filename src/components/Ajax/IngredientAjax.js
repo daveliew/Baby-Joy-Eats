@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { DataContext } from "../App";
 import { v4 as uuidv4 } from "uuid";
 import TextField from "@material-ui/core/TextField";
@@ -13,7 +13,6 @@ const IngredientAjax = () => {
   const [query, setQuery] = useState(""); //for URL
   const [tags, setTags] = useState([]); // for autocomplete
 
-  //! FIX handler to update App State
   const sendIngredient = () => {
     console.log("sending tag", tags);
     console.log("sending ingredient", ingredient);
