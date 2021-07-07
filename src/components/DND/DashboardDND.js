@@ -37,34 +37,36 @@ const DashboardDND = () => {
 
     const startCol = stateObj.columns[source.droppableId]; // column-obj at start of drag.
     const endCol = stateObj.columns[destination.droppableId]; // column-obj at end of drag.
-
     console.log("I'm dragging", startCol);
 
     if (startCol === endCol) {
       //* reorder items in the same column
-      //! bring this to starting condition as the default case
-      const copiedItems = [...startCol.itemsArr];
-      const [removedItem] = copiedItems.splice(source.index, 1);
-      copiedItems.splice(destination.index, 0, removedItem);
-
-      const updatedCol = {
-        ...startCol,
-        itemsArr: copiedItems,
-      };
-
-      const newState = {
-        ...stateObj,
-        columns: {
-          ...stateObj.columns,
-          [startCol.id]: updatedCol,
-        },
-      };
-
-      setStateObj(newState);
 
       if (startCol === "main") {
-        dispatch({ type: ACTIONS.REORDER_ARR, payload: updatedCol.itemsArr });
+        const copiedItems = [...state.ingredientsArr];
+        const [removed] = copiedItems.splice(source.index, 1);
+        copiedItems.splice(destination.index, 0, removed);
+        console.log("handling main");
+        dispatch({ type: ACTIONS.REORDER_ARR, payload: copiedItems });
       } else {
+        const copiedItems = [...startCol.itemsArr];
+        const [removedItem] = copiedItems.splice(source.index, 1);
+        copiedItems.splice(destination.index, 0, removedItem);
+
+        const updatedCol = {
+          ...startCol,
+          itemsArr: copiedItems,
+        };
+
+        const newState = {
+          ...stateObj,
+          columns: {
+            ...stateObj.columns,
+            [startCol.id]: updatedCol,
+          },
+        };
+
+        setStateObj(newState);
         dispatch({ type: ACTIONS.UPDATE_INGREDIENTS, payload: stateObj });
       }
     } else {
@@ -132,6 +134,9 @@ const DashboardDND = () => {
 
   return (
     <div className="Dashboard-DND">
+      <button onClick={() => dispatch({ type: ACTIONS.CLEAR_PLANNER })}>
+        Clear Planner
+      </button>
       <DragDropContext onDragEnd={onDragEnd}>
         <Container>
           <Column

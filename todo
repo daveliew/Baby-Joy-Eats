@@ -5,6 +5,8 @@
 - Ingredient list ("pick up") feature  √
 
 #Phase 2
+- clear days of week button. 
+- re-factor logic for DND
 - generate data from API call:
     - meal prep info --> steps ok
     - query new ingredient and append to myList 

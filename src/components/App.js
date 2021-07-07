@@ -9,6 +9,7 @@ const ACTIONS = {
   ADD_INGREDIENT: "addIngredient",
   UPDATE_INGREDIENTS: "updateIngredients",
   REORDER_ARR: "reorderArr",
+  CLEAR_PLANNER: "clearPlanner",
 };
 
 const appReducer = (state, action) => {
@@ -25,25 +26,31 @@ const appReducer = (state, action) => {
         ...state,
         ingredientsArr: action.payload.concat(state.ingredientsArr),
       };
+    case ACTIONS.CLEAR_PLANNER:
+      console.log("all gone now!");
 
-    case ACTIONS.REORDER_ARR:
+      return {
+        ...state,
+        dndData: {},
+      };
+
+    case ACTIONS.REORDER_ARR: //! fix this case
       console.log("reorder ingredientsArr", action.payload);
       return {
         ...state,
-        ingredientsArr: action.payload,
+        dndData: {
+          ...state.dndData.columns,
+          columns: {
+            ...state.dndData.columns.main,
+            main: {
+              itemsArr: [
+                action.payload,
+                ...state.dndData.columns.main.itemsArr,
+              ],
+            },
+          },
+        },
       };
-    // return {
-    //   ...state,
-    //   dndData: {
-    //     ...state.columns,
-    //     columns: {
-    //       ...state.columns.main,
-    //       main: {
-    //         itemsArr: [action.payload, ...state.columns.main.itemsArr],
-    //       },
-    //     },
-    //   },
-    // };
     default:
       return state;
   }

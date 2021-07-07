@@ -25,11 +25,13 @@ const IngredientAjax = () => {
       payload: [{ id: uuidv4(), content: ingredient }],
     });
   };
+
   const handleTags = (event, values) => {
     setTags(values);
     setIngredient(values);
     console.log("handleTag", values);
   };
+
   const handleChange = (event, values) => {
     const value = event.target.value;
     console.log("handleChange - value", event.target.value);
@@ -41,7 +43,6 @@ const IngredientAjax = () => {
     });
   };
 
-  //! rewrite this such that we search on form submit
   useEffect(() => {
     const autoComplete =
       "https://api.spoonacular.com/food/ingredients/autocomplete";
