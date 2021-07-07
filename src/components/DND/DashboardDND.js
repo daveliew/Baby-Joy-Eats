@@ -17,7 +17,8 @@ const DashboardDND = () => {
   const { state, dispatch, ACTIONS } = value;
 
   //! fix state ingredient passing down here
-  const [stateObj, setStateObj] = useState(state.dndData);
+  const [dndColumns, setDndColumns] = useState(state.dndColumns);
+  const colOrder = state.dndColOrder;
 
   console.log("app state", state);
 
@@ -35,40 +36,32 @@ const DashboardDND = () => {
       return;
     }
 
-    const startCol = stateObj.columns[source.droppableId]; // column-obj at start of drag.
-    const endCol = stateObj.columns[destination.droppableId]; // column-obj at end of drag.
+    const startCol = dndColumns[source.droppableId]; // column-obj at start of drag.
+    const endCol = dndColumns[destination.droppableId]; // column-obj at end of drag.
     console.log("I'm dragging", startCol);
 
     if (startCol === endCol) {
       //* reorder items in the same column
 
-      if (startCol === "main") {
-        const copiedItems = [...state.ingredientsArr];
-        const [removed] = copiedItems.splice(source.index, 1);
-        copiedItems.splice(destination.index, 0, removed);
-        console.log("handling main");
-        dispatch({ type: ACTIONS.REORDER_ARR, payload: copiedItems });
-      } else {
-        const copiedItems = [...startCol.itemsArr];
-        const [removedItem] = copiedItems.splice(source.index, 1);
-        copiedItems.splice(destination.index, 0, removedItem);
+      const copiedItems = [...startCol.itemsArr];
+      const [removedItem] = copiedItems.splice(source.index, 1);
+      copiedItems.splice(destination.index, 0, removedItem);
 
-        const updatedCol = {
-          ...startCol,
-          itemsArr: copiedItems,
-        };
+      const updatedCol = {
+        ...startCol,
+        itemsArr: copiedItems,
+      };
+      console.log(copiedItems);
+      const newState = {
+        ...dndColumns,
+        columns: {
+          ...dndColumns,
+          [startCol.id]: updatedCol,
+        },
+      };
 
-        const newState = {
-          ...stateObj,
-          columns: {
-            ...stateObj.columns,
-            [startCol.id]: updatedCol,
-          },
-        };
-
-        setStateObj(newState);
-        dispatch({ type: ACTIONS.UPDATE_INGREDIENTS, payload: stateObj });
-      }
+      setDndColumns(newState);
+      console.log("reordering", newState);
     } else {
       const sourceItems = [...startCol.itemsArr];
       const destinationItems = [...endCol.itemsArr];
@@ -94,14 +87,14 @@ const DashboardDND = () => {
           };
 
           const newState = {
-            ...stateObj,
+            ...dndColumns,
             columns: {
-              ...stateObj.columns,
+              ...dndColumns.columns,
               [startCol.id]: fromCol,
               [endCol.id]: toCol,
             },
           };
-          setStateObj(newState);
+          setDndColumns(newState);
         }
       } else {
         //* transfer item to new position
@@ -119,17 +112,17 @@ const DashboardDND = () => {
         };
 
         const newState = {
-          ...stateObj,
+          ...dndColumns,
           columns: {
-            ...stateObj.columns,
+            ...dndColumns.columns,
             [startCol.id]: fromCol,
             [endCol.id]: toCol,
           },
         };
-        setStateObj(newState);
+        setDndColumns(newState);
       }
-      dispatch({ type: ACTIONS.UPDATE_INGREDIENTS, payload: stateObj });
     }
+    dispatch({ type: ACTIONS.UPDATE_INGREDIENTS, payload: dndColumns });
   };
 
   return (
@@ -139,23 +132,12 @@ const DashboardDND = () => {
       </button>
       <DragDropContext onDragEnd={onDragEnd}>
         <Container>
-          <Column
-            key={"main"}
-            column={stateObj.columns["main"]}
-            items={state.ingredientsArr}
-          />
-          {stateObj.columnOrder
-            .filter((column) => column !== "main") //! bypass main to map rest of columns
-            .map((columnId) => {
-              const column = stateObj.columns[columnId];
-              return (
-                <Column
-                  key={column.id}
-                  column={column}
-                  items={column.itemsArr}
-                />
-              );
-            })}
+          {colOrder.map((columnId) => {
+            const column = dndColumns[columnId];
+            return (
+              <Column key={column.id} column={column} items={column.itemsArr} />
+            );
+          })}
         </Container>
       </DragDropContext>
     </div>

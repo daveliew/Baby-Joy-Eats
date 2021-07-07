@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from "react";
 import Header from "../pages/Header";
 import Main from "../pages/Main";
-import initialData, { ingredients } from "../data/initialData";
+import initialData from "../data/initialData";
 
 export const DataContext = createContext();
 
@@ -15,21 +15,22 @@ const ACTIONS = {
 const appReducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.UPDATE_INGREDIENTS:
-      return {
-        ...state,
-        dndData: {
-          ...state.dndData.columns,
-          columns: {
-            ...state.dndData.columns.main,
-            main: {
-              itemsArr: [
-                action.payload,
-                ...state.dndData.columns.main.itemsArr,
-              ],
-            },
-          },
-        },
-      };
+      return { ...state };
+    // return {
+    //   ...state,
+    //   dndData: {
+    //     ...state.dndData.columns,
+    //     columns: {
+    //       ...state.dndData.columns.main,
+    //       main: {
+    //         itemsArr: [
+    //           action.payload,
+    //           ...state.dndData.columns.main.itemsArr,
+    //         ],
+    //       },
+    //     },
+    //   },
+    // };
 
     case ACTIONS.ADD_INGREDIENT:
       console.log("new ingredient!", action.payload);
@@ -59,10 +60,10 @@ const appReducer = (state, action) => {
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, {
-    ingredientsArr: ingredients,
-    dndData: initialData,
+    ingredientsArr: initialData.ingredients,
+    dndColumns: initialData.columns,
+    dndColOrder: initialData.columnOrder,
   });
-
   const value = { state, dispatch, ACTIONS };
 
   return (

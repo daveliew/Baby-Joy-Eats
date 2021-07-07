@@ -29,7 +29,7 @@ const initialData = {
     main: {
       id: "main",
       title: "My List",
-      itemsArr: [],
+      itemsArr: ingredients,
     },
     Mon: {
       id: daysOfWeek[0],
