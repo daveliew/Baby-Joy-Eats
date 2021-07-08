@@ -73,8 +73,8 @@ const CardModal = (props) => {
     }
   };
 
-  const imageURL = `https://spoonacular.com/cdn/ingredients_100x100/
-  ${props.item.toLowerCase()}.jpg`;
+  // const imageURL = `https://spoonacular.com/cdn/ingredients_100x100/
+  // ${props.item.toLowerCase()}.jpg`;
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
@@ -103,11 +103,6 @@ const CardModal = (props) => {
       </h2>
       <p id="simple-modal-description">{props.item}</p>
 
-      <img
-        src="https://spoonacular.com/cdn/ingredients_100x100/apple
-  .jpg"
-        alt="food-item-pic"
-      />
       {/* <RecipeAjax /> */}
     </div>
   );

@@ -2,25 +2,25 @@ import React from "react";
 import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
 import Card from "./Card";
-import { List } from "@material-ui/core";
+import { List, Grid, Typography, Container } from "@material-ui/core";
 import RootRef from "@material-ui/core/RootRef";
 // import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
-const Container = styled.div`
-  margin: 8px;
-  border: 1px solid #dedbd2;
-  border-radius: 2px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 80%;
-  overflow-y: scroll;
-`;
+// const Container = styled.div`
+//   margin: 8px;
+//   border: 1px solid #dedbd2;
+//   border-radius: 2px;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   height: 80%;
+//   overflow-y: scroll;
+// `;
 
-const Title = styled.h3`
-  padding: 0.5rem;
-  align-items: center;
-`;
+// const Title = styled.h3`
+//   padding: 0.5rem;
+//   align-items: center;
+// `;
 // const ItemList = styled.div`
 //   padding: 0.5rem;
 //   transition: background-color 0.2s ease;
@@ -53,7 +53,9 @@ const getListStyle = (isDraggingOver) => ({
 const Column = (props) => {
   return (
     <Container>
-      <Title>{props.column.title}</Title>
+      <Typography title gutterBottom>
+        {props.column.title}
+      </Typography>
       <Droppable droppableId={props.column.id}>
         {(provided, snapshot) => (
           <RootRef rootRef={provided.innerRef}>

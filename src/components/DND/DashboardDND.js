@@ -1,26 +1,44 @@
 import React, { useState, useContext } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import { Grid, Container, Paper } from "@material-ui/core";
+import { Grid, Container, Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { v4 as uuidv4 } from "uuid";
 import Column from "./Column";
 import { DataContext } from "../App";
-
-// const Container = styled.div`
-//   display: flex;
-//   height: 50vh;
-//   overflow-y: scroll;
-//   padding: 0.5rem;
-// `;
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    backgroundColor: "2a9d8f",
+    minWidth: "90vw",
+    minHeight: "100vh",
   },
   paper: {
     padding: theme.spacing(1),
     textAlign: "center",
     color: theme.palette.text.secondary,
+  },
+  grid: {
+    flexGrow: 1,
+  },
+  bin: {
+    color: "#white",
+    backgroundColor: "264653",
+    minHeight: "10vh",
+  },
+  main: {
+    maxHeight: "60vh",
+    // overflowY: "scroll",
+  },
+  days: {
+    minHeight: "20vh",
+    height: "50vh",
+    width: "20vw",
+  },
+  button: {
+    margin: theme.spacing(1),
+    marginBottom: theme.spacing(5),
   },
 }));
 
@@ -33,6 +51,7 @@ const DashboardDND = () => {
   const [columns, setColumns] = useState(state.dndColumns);
 
   const MAIN = "main";
+  const BIN = "bin";
 
   console.log("App state", state);
   console.log("ingredients", state.ingredientsArr);
@@ -66,7 +85,7 @@ const DashboardDND = () => {
 
         const clone = sourceItems[source.index]; // clone a copy of the ingredient card!
 
-        if (endCol.id === "Bin") {
+        if (endCol.id === BIN) {
           sourceItems.splice(source.index, 1);
         } else if (
           !endCol.itemsArr.map((obj) => obj.content).includes(clone.content)
@@ -100,7 +119,7 @@ const DashboardDND = () => {
         if (endCol.id !== MAIN) {
           const [removedItem] = sourceItems.splice(source.index, 1); // grab item from source
 
-          if (endCol.id !== "Bin") {
+          if (endCol.id !== BIN) {
             destinationItems.splice(destination.index, 0, removedItem); // insert item into destination
             console.log("I moved");
           }
@@ -139,25 +158,22 @@ const DashboardDND = () => {
     }
   };
 
-  const FormRow = () => {
-    return (
-      <>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}></Paper>
-        </Grid>
-      </>
-    );
-  };
-
   return (
-    <div className="Dashboard-DND">
-      <button onClick={() => dispatch({ type: ACTIONS.CLEAR_PLANNER })}>
-        Clear Planner
-      </button>
-
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Container>
-          <Grid container sm={12}>
+    <div className={classes.root}>
+      <Container>
+        <Grid container justify="flex-end">
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            startIcon={<DeleteIcon />}
+            onClick={() => dispatch({ type: ACTIONS.CLEAR_PLANNER })}
+          >
+            Clear Items
+          </Button>
+        </Grid>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Grid container spacing={2} className={classes.main}>
             <Grid item xs={3}>
               <Column
                 key={MAIN}
@@ -165,25 +181,41 @@ const DashboardDND = () => {
                 column={columns[MAIN]}
               />
             </Grid>
+            <Grid
+              container
+              xs={9}
+              spacing={1}
+              direction="row"
+              className={classes.days}
+            >
+              {state.dndColOrder
+                .filter((colId) => colId !== MAIN)
+                .filter((colId) => colId !== BIN)
+                .map((columnId) => {
+                  const column = columns[columnId];
 
-            {state.dndColOrder
-              .filter((colId) => colId !== MAIN)
-              .map((columnId) => {
-                const column = columns[columnId];
+                  return (
+                    <Grid item xs={3}>
+                      <Column
+                        key={column.id}
+                        column={column}
+                        items={column.itemsArr}
+                      />
+                    </Grid>
+                  );
+                })}
 
-                return (
-                  <Grid item xs={1} column>
-                    <Column
-                      key={column.id}
-                      column={column}
-                      items={column.itemsArr}
-                    />
-                  </Grid>
-                );
-              })}
+              <Grid item xs={3} className={classes.bin}>
+                <Column
+                  key={BIN}
+                  items={columns[BIN].itemsArr}
+                  column={columns[BIN]}
+                />
+              </Grid>
+            </Grid>
           </Grid>
-        </Container>
-      </DragDropContext>
+        </DragDropContext>
+      </Container>
     </div>
   );
 };

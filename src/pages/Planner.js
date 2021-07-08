@@ -10,7 +10,6 @@ import {
   Typography,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import useStyles from "../styles/styles";
 
 // let recipes = recipesArr.map((recipe, index) => {
 //   return (
@@ -22,6 +21,21 @@ import useStyles from "../styles/styles";
 //     </div>
 //   );
 // });
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: "red",
+  },
+  paper: {
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
+  grid: {
+    flexGrow: 1,
+  },
+}));
 
 const Planner = () => {
   const classes = useStyles();

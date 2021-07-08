@@ -58,8 +58,8 @@ const initialData = {
       title: daysOfWeek[6],
       itemsArr: [],
     },
-    Bin: {
-      id: "Bin",
+    bin: {
+      id: "bin",
       title: "Bin",
       itemsArr: [],
     },
@@ -74,7 +74,7 @@ const initialData = {
     daysOfWeek[4],
     daysOfWeek[5],
     daysOfWeek[6],
-    "Bin",
+    "bin",
   ],
 };
 

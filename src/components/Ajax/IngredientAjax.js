@@ -1,9 +1,26 @@
 import React, { useEffect, useState, useContext } from "react";
 import { DataContext } from "../App";
 import { v4 as uuidv4 } from "uuid";
-import { TextField, IconButton } from "@material-ui/core/";
+import { TextField, IconButton, Container, Grid } from "@material-ui/core/";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { AddBox } from "@material-ui/icons";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  autocomplete: {
+    flexGrow: 1,
+    marginTop: "1vh",
+    backgroundColor: "#E9C46A",
+  },
+  grid: {
+    flexGrow: 1,
+  },
+  addBox: {
+    justifyContent: "center",
+    marginTop: "1rem",
+    marginLeft: "2rem",
+  },
+}));
 
 const capitalizeWords = (words) => {
   let result = words
@@ -15,6 +32,8 @@ const capitalizeWords = (words) => {
 };
 
 const IngredientAjax = () => {
+  const classes = useStyles();
+
   const value = useContext(DataContext);
   const { dispatch, ACTIONS } = value;
 
@@ -84,35 +103,47 @@ const IngredientAjax = () => {
   }, [query]);
 
   return (
-    <div className="Ingredient-Ajax">
-      <Autocomplete
-        id="free-solo"
-        style={{ width: 300 }}
-        freeSolo
-        disableClearable
-        onInputChange={(e) => {
-          setIngredient(e.target.value);
-        }}
-        onChange={handleTags}
-        options={data.map((option) => option.name)}
-        onKeyPress={handleKeyPress}
-        renderInput={(params) => (
-          <TextField
-            {...params}
-            id="filled-primary"
-            label="Add an ingredient"
-            margin="normal"
-            variant="outlined"
-            value={ingredient.content}
-            InputProps={{ ...params.InputProps, type: "search" }}
-            onChange={handleChange}
-            placeholder="e.g. banana"
-          />
-        )}
-      />
-      <IconButton id="addBox" onClick={handleSubmit}>
-        <AddBox />
-      </IconButton>
+    <div className={classes.autocomplete}>
+      <Container>
+        <Grid container direction="row" alignItems="flex-start">
+          <Grid item xs={3}>
+            <Autocomplete
+              id="free-solo"
+              style={{ width: 300 }}
+              freeSolo
+              disableClearable
+              onInputChange={(e) => {
+                setIngredient(e.target.value);
+              }}
+              onChange={handleTags}
+              options={data.map((option) => option.name)}
+              onKeyPress={handleKeyPress}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  id="filled-primary"
+                  label="Add an ingredient"
+                  margin="normal"
+                  variant="outlined"
+                  value={ingredient.content}
+                  InputProps={{ ...params.InputProps, type: "search" }}
+                  onChange={handleChange}
+                  placeholder="e.g. banana"
+                />
+              )}
+            />
+          </Grid>
+          <Grid item xs={1} alignContent="center">
+            <IconButton
+              id="addBox"
+              onClick={handleSubmit}
+              className={classes.addBox}
+            >
+              <AddBox />
+            </IconButton>
+          </Grid>
+        </Grid>
+      </Container>
     </div>
   );
 };

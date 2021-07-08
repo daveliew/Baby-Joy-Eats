@@ -2,10 +2,20 @@ import React, { createContext, useReducer } from "react";
 import Header from "../pages/Header";
 import Main from "../pages/Main";
 import initialData from "../data/initialData";
-import { ThemeProvider } from "@material-ui/styles";
-import useStyles from "../styles/styles";
+import { makeStyles } from "@material-ui/styles";
 
-import { Grid, Container, CssBaseline, IconButton } from "@material-ui/core";
+import { Grid, Container, CssBaseline } from "@material-ui/core";
+
+const useStyles = makeStyles(() => ({
+  root: {
+    backgroundColor: "#f4a261",
+    height: "100vh",
+    padding: "0.5rem",
+  },
+  // grid: {
+  //   flexGrow: 1,
+  // },
+}));
 
 export const DataContext = createContext();
 
@@ -51,13 +61,9 @@ const appReducer = (state, action) => {
 
     case ACTIONS.EDIT_INGREDIENT:
       const { content, id, colId } = action.payload;
-      // console.log("FROM PAYLOAD", content, id, colId);
-
-      let tempArr = state.dndColumns[colId].itemsArr;
-      // console.log("tempArr", tempArr);
-      var result = tempArr.filter((obj) => obj.id === id);
-      // console.log("fetched", result);
-      result[0].content = content;
+      const tempArr = state.dndColumns[colId].itemsArr; // make a copy of column's item array
+      var result = tempArr.filter((obj) => obj.id === id); // sift out id that matches obj id within array
+      result[0].content = content; // replace with the new content
       console.log(result);
 
       return {
@@ -83,27 +89,25 @@ const App = () => {
   console.log(state.activeItem);
 
   return (
-    <ThemeProvider theme={useStyles.theme}>
-      <CssBaseline />
-      <div className="App">
-        <DataContext.Provider value={value}>
-          <Grid
-            container
-            maxWidth="md"
-            justify="center"
-            style={{ marginTop: 50 }}
-            className={classes.container}
-          >
-            <Grid item>
+    <>
+      <div className={classes.root}>
+        <CssBaseline />
+        <Container>
+          <DataContext.Provider value={value}>
+            <Grid
+              container
+              maxWidth="md"
+              justify="center"
+              style={{ marginTop: 50 }}
+              className={classes.container}
+            >
               <Header />
-            </Grid>
-            <Grid item>
               <Main />
             </Grid>
-          </Grid>
-        </DataContext.Provider>
+          </DataContext.Provider>
+        </Container>
       </div>
-    </ThemeProvider>
+    </>
   );
 };
 
