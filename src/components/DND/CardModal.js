@@ -2,7 +2,7 @@ import React, { useContext, useState, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import { Done, Edit } from "@material-ui/icons";
-import { IconButton, TextField } from "@material-ui/core";
+import { Grid, IconButton, TextField, Typography } from "@material-ui/core";
 import { DataContext } from "../App";
 
 import RecipeAjax from "../Ajax/RecipeAjax";
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CardModal = (props) => {
   const value = useContext(DataContext);
-  const { state, dispatch, ACTIONS } = value;
+  const { dispatch, ACTIONS } = value;
 
   const { inputRef } = useRef(); //! buggy
   const classes = useStyles();
@@ -73,9 +73,6 @@ const CardModal = (props) => {
     }
   };
 
-  // const imageURL = `https://spoonacular.com/cdn/ingredients_100x100/
-  // ${props.item.toLowerCase()}.jpg`;
-
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <h2 id="simple-modal-title">
@@ -95,9 +92,12 @@ const CardModal = (props) => {
           </>
         ) : (
           <>
-            <IconButton onClick={handleClick}>
-              <Edit />
-            </IconButton>
+            <Grid container>
+              <Typography>{props.item}</Typography>
+              <IconButton onClick={handleClick}>
+                <Edit />
+              </IconButton>
+            </Grid>
           </>
         )}
       </h2>
