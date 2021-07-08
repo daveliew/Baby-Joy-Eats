@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
 import Card from "./Card";
-import { List, Grid, Typography } from "@material-ui/core";
+import { List, Typography } from "@material-ui/core";
 import RootRef from "@material-ui/core/RootRef";
 
 const getListStyle = (isDraggingOver) => ({
