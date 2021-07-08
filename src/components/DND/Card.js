@@ -8,7 +8,7 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
 } from "@material-ui/core";
-import CardModal from "./Modal";
+import CardModal from "./CardModal";
 
 // const Item = styled.div`
 //   border: 1px solid lightgrey;

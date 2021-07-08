@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import React from "react";
 import complexData from "../data/complexData";
 
@@ -20,14 +20,14 @@ const Planner = () => {
     });
 
   return (
-    //! add Grid
-    <Grid container>
-      <h1>Meals for the week</h1>
-      <div className="recipe-grid">{recipes}</div>
-    </Grid>
-    // <div className="planner">
-
-    // </div>
+    <>
+      <Typography variant="h1" align="center" color="textPrimary" gutterBottom>
+        Meals for the week
+      </Typography>
+      <Grid container>
+        <div className="recipe-grid">{recipes}</div>
+      </Grid>
+    </>
   );
 };
 

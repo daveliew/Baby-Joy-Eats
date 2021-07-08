@@ -2,6 +2,35 @@ import React, { createContext, useReducer } from "react";
 import Header from "../pages/Header";
 import Main from "../pages/Main";
 import initialData from "../data/initialData";
+import {
+  makeStyles,
+  ThemeProvider,
+  createMuiTheme,
+} from "@material-ui/core/styles";
+import { orange, blue } from "@material-ui/core/colors";
+import { Grid, Container, CssBaseline, IconButton } from "@material-ui/core";
+
+const useStyles = makeStyles({
+  root: {
+    background: `linear-gradient(45 deg, #FE6B8B, #FF8ES3)`,
+    padding: `0 30px`,
+  },
+});
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: orange[500],
+    },
+    seconday: {
+      main: blue[500],
+    },
+  },
+});
+
+// const AppStyled = () => {
+//   const classes = useStyles();
+// };
 
 export const DataContext = createContext();
 
@@ -66,7 +95,7 @@ const appReducer = (state, action) => {
   }
 };
 
-function App() {
+const App = () => {
   const [state, dispatch] = useReducer(appReducer, {
     ingredientsArr: initialData.ingredients,
     dndColumns: initialData.columns,
@@ -78,13 +107,22 @@ function App() {
   console.log(state.activeItem);
 
   return (
-    <div className="App">
-      <DataContext.Provider value={value}>
-        <Header />
-        <Main />
-      </DataContext.Provider>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div className="App">
+        <DataContext.Provider value={value}>
+          <Grid container maxWidth="md" style={{ marginTop: 100 }}>
+            <Grid item>
+              <Header />
+            </Grid>
+            <Grid item>
+              <Main />
+            </Grid>
+          </Grid>
+        </DataContext.Provider>
+      </div>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;

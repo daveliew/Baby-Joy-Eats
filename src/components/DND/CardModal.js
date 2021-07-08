@@ -4,7 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import { Done, Edit } from "@material-ui/icons";
 import { IconButton, TextField } from "@material-ui/core";
 import { DataContext } from "../App";
-// import NutritionAjax from "../Ajax/NutritionAjax";
+
 import RecipeAjax from "../Ajax/RecipeAjax";
 
 function getModalStyle() {
@@ -124,6 +124,7 @@ const CardModal = (props) => {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         item={props.item}
+        color="primary"
       >
         {body}
       </Modal>

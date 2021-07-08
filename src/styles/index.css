@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   max-height: 80vmax;
   max-width: 80vmax;
@@ -54,11 +54,6 @@ body {
   border: 1px solid blue;
 }
 
-.food-image {
-  overflow: hidden;
-  /* height: 100px;
-  width: 100px; */
-}
 
 .Home {
   background-color: #b0c4b1;
@@ -74,7 +69,7 @@ body {
   top: 0%;
   display: grid;
   padding: 2rem;
-}
+} */
 
 /* 
 .dashboard {
