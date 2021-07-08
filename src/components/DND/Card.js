@@ -42,10 +42,8 @@ const Card = (props) => {
               )}
             >
               <ListItemAvatar>
-                <Avatar
-                  src={`https://spoonacular.com/cdn/ingredients_100x100/${props.item.content}.jpg`}
-                  alt=""
-                />
+                {/* <Avatar src="../../assets/Baby-Joy-Eats.jpeg" alt="" /> */}
+                <Avatar>{props.item.content.charAt(0)}</Avatar>
               </ListItemAvatar>
               <ListItemText primary={props.item.content} secondary="fruit" />
               <ListItemSecondaryAction>

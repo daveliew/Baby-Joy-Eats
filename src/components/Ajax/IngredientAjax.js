@@ -1,15 +1,22 @@
 import React, { useEffect, useState, useContext } from "react";
 import { DataContext } from "../App";
 import { v4 as uuidv4 } from "uuid";
-import { TextField, IconButton, Container, Grid } from "@material-ui/core/";
+import {
+  TextField,
+  IconButton,
+  Container,
+  Grid,
+  Button,
+} from "@material-ui/core/";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { AddBox } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
   autocomplete: {
     flexGrow: 1,
-    marginTop: "1vh",
+    marginTop: "2vh",
     backgroundColor: "#E9C46A",
   },
   grid: {
@@ -19,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     marginTop: "1rem",
     marginLeft: "2rem",
+  },
+  delBtn: {
+    marginTop: "-3rem",
+    marginBottom: "1rem",
   },
 }));
 
@@ -141,6 +152,17 @@ const IngredientAjax = () => {
             >
               <AddBox />
             </IconButton>
+          </Grid>
+          <Grid container className={classes.delBtn} justify="flex-end">
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              startIcon={<DeleteIcon />}
+              onClick={() => dispatch({ type: ACTIONS.CLEAR_PLANNER })}
+            >
+              Clear Items
+            </Button>
           </Grid>
         </Grid>
       </Container>

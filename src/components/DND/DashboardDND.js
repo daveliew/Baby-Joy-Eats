@@ -1,11 +1,10 @@
 import React, { useState, useContext } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import { Grid, Container, Button } from "@material-ui/core";
+import { Grid, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { v4 as uuidv4 } from "uuid";
 import Column from "./Column";
 import { DataContext } from "../App";
-import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -160,17 +159,6 @@ const DashboardDND = () => {
   return (
     <div className={classes.root}>
       <Container>
-        <Grid container justify="flex-end">
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            startIcon={<DeleteIcon />}
-            onClick={() => dispatch({ type: ACTIONS.CLEAR_PLANNER })}
-          >
-            Clear Items
-          </Button>
-        </Grid>
         <DragDropContext onDragEnd={onDragEnd}>
           <Grid container spacing={2} className={classes.main}>
             <Grid item xs={3}>
