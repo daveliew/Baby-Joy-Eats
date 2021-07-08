@@ -65,7 +65,13 @@ const Column = (props) => {
               isDraggingOver={snapshot.isDraggingOver}
               > */}
               {props.items.map((item, index) => (
-                <Card key={item.id} item={item} index={index} />
+                <Card
+                  key={item.id}
+                  item={item}
+                  index={index}
+                  id={item.id}
+                  colId={props.column.id}
+                />
               ))}
               {provided.placeholder}
               {/* </ItemList> */}

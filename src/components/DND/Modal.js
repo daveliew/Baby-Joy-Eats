@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import { Done, Edit } from "@material-ui/icons";
 import { IconButton, TextField } from "@material-ui/core";
-import { DataContext } from "../App/js";
+import { DataContext } from "../App";
 
 function getModalStyle() {
   const top = 50;
@@ -55,7 +55,7 @@ const CardModal = (props) => {
     setEdit(!edit);
     dispatch({
       type: ACTIONS.EDIT_INGREDIENT,
-      payload: { content: ingredient, id: props.item.id },
+      payload: { content: ingredient, id: props.id, colId: props.colId },
     });
   };
 

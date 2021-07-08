@@ -46,12 +46,23 @@ const appReducer = (state, action) => {
       };
 
     case ACTIONS.EDIT_INGREDIENT:
-      console.log("changing item");
-      const { content, id } = action.payload;
-      console.log(content, id);
+      const { content, id, colId } = action.payload;
+      console.log("FROM PAYLOAD", content, id, colId);
+      // const keysArr = Object.entries(state.dndColumns);
+      // console.log(keysArr);
+
+      // const fetch = keysArr.forEach((arr) => arr[1].itemsArr);
+
+      // console.log("test", fetch);
+      let tempArr = state.dndColumns[colId].itemsArr;
+      console.log("tempArr", tempArr);
+      var result = tempArr.filter((obj) => obj.id === id);
+      console.log("fetched", result);
+      result[0].content = content;
+      console.log(result);
+
       return {
         ...state,
-        // ingredientsArr:
       };
 
     default:

@@ -50,7 +50,11 @@ const Card = (props) => {
             secondary={props.item.id}
           />
           <ListItemSecondaryAction>
-            <CardModal item={props.item.content} id={props.item.id}/>
+            <CardModal
+              item={props.item.content}
+              id={props.item.id}
+              colId={props.colId}
+            />
           </ListItemSecondaryAction>
         </ListItem>
       )}
