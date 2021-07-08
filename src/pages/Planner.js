@@ -1,6 +1,6 @@
-import { Grid, Typography } from "@material-ui/core";
 import React from "react";
 import complexData from "../data/complexData";
+import { Grid, Typography, Button } from "@material-ui/core";
 
 const Planner = () => {
   const maxRecipesShown = 6;
@@ -24,8 +24,11 @@ const Planner = () => {
       <Typography variant="h1" align="center" color="textPrimary" gutterBottom>
         Meals for the week
       </Typography>
-      <Grid container>
-        <div className="recipe-grid">{recipes}</div>
+      <Button variant="contained" color="primary" disableElevation>
+        Disable elevation
+      </Button>
+      <Grid container spacing={2} justify="center">
+        <Grid item>{recipes}</Grid>
       </Grid>
     </>
   );

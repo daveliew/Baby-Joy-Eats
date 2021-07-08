@@ -4,13 +4,14 @@ import { DragDropContext } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
 import Column from "./Column";
 import { DataContext } from "../App";
+import { Grid, Container } from "@material-ui/core";
 
-const Container = styled.div`
-  display: flex;
-  height: 50vh;
-  overflow-y: scroll;
-  padding: 0.5rem;
-`;
+// const Container = styled.div`
+//   display: flex;
+//   height: 50vh;
+//   overflow-y: scroll;
+//   padding: 0.5rem;
+// `;
 
 const DashboardDND = () => {
   const value = useContext(DataContext);
@@ -133,25 +134,32 @@ const DashboardDND = () => {
 
       <DragDropContext onDragEnd={onDragEnd}>
         <Container>
-          <Column
-            key={MAIN}
-            items={columns[MAIN].itemsArr}
-            column={columns[MAIN]}
-            //! I split the main items from the rest of the render. wondering if safe.
-          />
-          {state.dndColOrder
-            .filter((colId) => colId !== MAIN)
-            .map((columnId) => {
-              const column = columns[columnId];
+          <Grid container sm={12}>
+            <Grid item xs={3}>
+              <Column
+                key={MAIN}
+                items={columns[MAIN].itemsArr}
+                column={columns[MAIN]}
+                //! I split the main items from the rest of the render. wondering if safe.
+              />
+            </Grid>
 
-              return (
-                <Column
-                  key={column.id}
-                  column={column}
-                  items={column.itemsArr}
-                />
-              );
-            })}
+            {state.dndColOrder
+              .filter((colId) => colId !== MAIN)
+              .map((columnId) => {
+                const column = columns[columnId];
+
+                return (
+                  <Grid item xs={1} column>
+                    <Column
+                      key={column.id}
+                      column={column}
+                      items={column.itemsArr}
+                    />
+                  </Grid>
+                );
+              })}
+          </Grid>
         </Container>
       </DragDropContext>
     </div>

@@ -7,12 +7,12 @@ import {
   ThemeProvider,
   createMuiTheme,
 } from "@material-ui/core/styles";
-import { orange, blue } from "@material-ui/core/colors";
+import { green, blue } from "@material-ui/core/colors";
 import { Grid, Container, CssBaseline, IconButton } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
-    background: `linear-gradient(45 deg, #FE6B8B, #FF8ES3)`,
+    // background: `linear-gradient(45 deg, #FE6B8B, #FF8ES3)`,
     padding: `0 30px`,
   },
 });
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: orange[500],
+      main: green[500],
     },
     seconday: {
       main: blue[500],
@@ -111,7 +111,12 @@ const App = () => {
       <CssBaseline />
       <div className="App">
         <DataContext.Provider value={value}>
-          <Grid container maxWidth="md" style={{ marginTop: 100 }}>
+          <Grid
+            container
+            maxWidth="md"
+            justify="center"
+            style={{ marginTop: 50 }}
+          >
             <Grid item>
               <Header />
             </Grid>
