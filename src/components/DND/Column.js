@@ -4,7 +4,7 @@ import { Droppable } from "react-beautiful-dnd";
 import Card from "./Card";
 import { List } from "@material-ui/core";
 import RootRef from "@material-ui/core/RootRef";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+// import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 
 const Container = styled.div`
   margin: 8px;

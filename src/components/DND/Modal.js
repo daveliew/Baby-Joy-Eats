@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import EditIcon from "@material-ui/icons/Edit";
 import { SaveAlt } from "@material-ui/icons";
-import { IconButton, TextField, Form } from "@material-ui/core";
+import { IconButton, TextField } from "@material-ui/core";
 
 function getModalStyle() {
   const top = 50;
@@ -47,10 +47,16 @@ const CardModal = (props) => {
     setEdit(!edit);
   };
 
-  const handleChange = (event) => {
-    const value = event.target.value;
+  const handleChange = (e) => {
+    const value = e.target.value;
     console.log("editing form", value);
     setIngredient(value);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      document.getElementById("saveBtn").click();
+    }
   };
 
   const body = (
@@ -63,8 +69,9 @@ const CardModal = (props) => {
               id="standard-basic"
               label="Edit Ingredient"
               value={ingredient}
+              onKeyPress={handleKeyPress}
             />
-            <IconButton onClick={handleClick}>
+            <IconButton id="saveBtn" onClick={handleClick}>
               <SaveAlt />
             </IconButton>
           </>
