@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import styled from "styled-components";
 import { DragDropContext } from "react-beautiful-dnd";
+import { Grid, Container, Paper } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { v4 as uuidv4 } from "uuid";
 import Column from "./Column";
 import { DataContext } from "../App";
-import { Grid, Container } from "@material-ui/core";
 
 // const Container = styled.div`
 //   display: flex;
@@ -13,7 +13,20 @@ import { Grid, Container } from "@material-ui/core";
 //   padding: 0.5rem;
 // `;
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
+}));
+
 const DashboardDND = () => {
+  const classes = useStyles();
+
   const value = useContext(DataContext);
   const { state, dispatch, ACTIONS } = value;
   state.dndColumns.main.itemsArr = state.ingredientsArr;
@@ -126,6 +139,16 @@ const DashboardDND = () => {
     }
   };
 
+  const FormRow = () => {
+    return (
+      <>
+        <Grid item xs={6}>
+          <Paper className={classes.paper}></Paper>
+        </Grid>
+      </>
+    );
+  };
+
   return (
     <div className="Dashboard-DND">
       <button onClick={() => dispatch({ type: ACTIONS.CLEAR_PLANNER })}>
@@ -140,7 +163,6 @@ const DashboardDND = () => {
                 key={MAIN}
                 items={columns[MAIN].itemsArr}
                 column={columns[MAIN]}
-                //! I split the main items from the rest of the render. wondering if safe.
               />
             </Grid>
 
