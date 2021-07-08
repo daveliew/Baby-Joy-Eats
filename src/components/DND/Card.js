@@ -11,21 +11,12 @@ import {
 } from "@material-ui/core";
 import CardModal from "./CardModal";
 
-// const Item = styled.div`
-//   border: 1px solid lightgrey;
-//   border-radius: 2px;
-//   padding: 8px;
-//   margin-bottom: 8px;
-//   border-radius: 3px;
-//   background-color: ${(props) => (props.isDragging ? "#dedbd2" : "#f7e1d7")};
-// `;
-
 const getItemStyle = (isDragging, draggableStyle) => ({
   // styles we need to apply on draggables
   ...draggableStyle,
 
   ...(isDragging && {
-    background: "#dedbd2",
+    background: "#2A9D8F",
   }),
 });
 
@@ -51,10 +42,6 @@ const Card = (props) => {
               )}
             >
               <ListItemAvatar>
-                {/* <Avatar
-              alt="Food-Pic"
-              src={`https://spoonacular.com/cdn/ingredients_100x100/${props.item.content}.jpg`}
-            /> */}
                 <Avatar
                   src={`https://spoonacular.com/cdn/ingredients_100x100/${props.item.content}.jpg`}
                   alt=""

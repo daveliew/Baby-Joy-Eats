@@ -10,7 +10,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: "2a9d8f",
+    backgroundColor: "e76f51",
     minWidth: "90vw",
     minHeight: "100vh",
   },
@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
   },
   main: {
     maxHeight: "60vh",
-    // overflowY: "scroll",
   },
   days: {
     minHeight: "20vh",

@@ -2,10 +2,14 @@ import React, { useContext, useState, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import { Done, Edit } from "@material-ui/icons";
-import { Grid, IconButton, TextField, Typography } from "@material-ui/core";
+import {
+  Button,
+  Grid,
+  IconButton,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import { DataContext } from "../App";
-
-import RecipeAjax from "../Ajax/RecipeAjax";
 
 function getModalStyle() {
   const top = 50;
@@ -106,8 +110,7 @@ const CardModal = (props) => {
         )}
       </h2>
       <Typography paragraph>I hope Joy likes this!</Typography>
-
-      <RecipeAjax />
+      <Button>Get some recipes!</Button>
     </div>
   );
 
