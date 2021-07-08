@@ -92,18 +92,22 @@ const CardModal = (props) => {
           </>
         ) : (
           <>
-            <Grid container>
-              <Typography>{props.item}</Typography>
-              <IconButton onClick={handleClick}>
-                <Edit />
-              </IconButton>
+            <Grid container direction="row">
+              <Grid item xs={6}>
+                <Typography variant="h5">{props.item}</Typography>
+              </Grid>
+              <Grid item xs={6}>
+                <IconButton onClick={handleClick}>
+                  <Edit />
+                </IconButton>
+              </Grid>
             </Grid>
           </>
         )}
       </h2>
-      <p id="simple-modal-description">{props.item}</p>
+      <Typography paragraph>I hope Joy likes this!</Typography>
 
-      {/* <RecipeAjax /> */}
+      <RecipeAjax />
     </div>
   );
 

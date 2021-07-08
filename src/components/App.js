@@ -12,9 +12,6 @@ const useStyles = makeStyles(() => ({
     height: "100vh",
     padding: "0.5rem",
   },
-  // grid: {
-  //   flexGrow: 1,
-  // },
 }));
 
 export const DataContext = createContext();
@@ -82,7 +79,7 @@ const App = () => {
     ingredientsArr: initialData.ingredients,
     dndColumns: initialData.columns,
     dndColOrder: initialData.colOrder,
-    activeItem: { id: "", content: "pear" },
+    activeItem: { id: "", content: "avocado" },
   });
   const value = { state, dispatch, ACTIONS };
 

@@ -1,12 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  AppBar,
-  IconButton,
-  Toolbar,
-  Typography,
-  Grid,
-} from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -35,39 +29,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const Header = () => {
-// const classes = useStyles();
-
-//   return (
-//     <div className={classes.root}>
-//       <AppBar position="fixed">
-//         <Toolbar className={classes.toolbar}>
-//           <IconButton
-//             edge="start"
-//             className={classes.menuButton}
-//             color="inherit"
-//             aria-label="open drawer"
-//           >
-//             <MenuIcon />
-//           </IconButton>
-//           <Typography className={classes.title} variant="h5" noWrap>
-//             Baby Joy Eats
-//           </Typography>
-//           <IconButton aria-label="search" color="inherit">
-//             <SearchIcon />
-//           </IconButton>
-//           <IconButton
-//             aria-label="display more actions"
-//             edge="end"
-//             color="inherit"
-//           >
-//             <MoreIcon />
-//           </IconButton>
-//         </Toolbar>
-//       </AppBar>
-//     </div>
-//   );
-// };
 const Header = () => {
   const classes = useStyles();
   return (
@@ -103,3 +64,37 @@ const Header = () => {
 };
 
 export default Header;
+
+// const Header = () => {
+// const classes = useStyles();
+
+//   return (
+//     <div className={classes.root}>
+//       <AppBar position="fixed">
+//         <Toolbar className={classes.toolbar}>
+//           <IconButton
+//             edge="start"
+//             className={classes.menuButton}
+//             color="inherit"
+//             aria-label="open drawer"
+//           >
+//             <MenuIcon />
+//           </IconButton>
+//           <Typography className={classes.title} variant="h5" noWrap>
+//             Baby Joy Eats
+//           </Typography>
+//           <IconButton aria-label="search" color="inherit">
+//             <SearchIcon />
+//           </IconButton>
+//           <IconButton
+//             aria-label="display more actions"
+//             edge="end"
+//             color="inherit"
+//           >
+//             <MoreIcon />
+//           </IconButton>
+//         </Toolbar>
+//       </AppBar>
+//     </div>
+//   );
+// };

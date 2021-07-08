@@ -11,40 +11,31 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-// let recipes = recipesArr.map((recipe, index) => {
-//   return (
-//     <div className="recipe-card" key={index}>
-//       <img src={recipe.image} alt={recipe.title}></img>
-//       <h3>{recipe.title}</h3>
-
-//       {/* <p>{recipe.missedIngredients}</p> */}
-//     </div>
-//   );
-// });
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    backgroundColor: "red",
-  },
-  paper: {
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
+    marginTop: "5vh",
+    alignItems: "center",
+    justifyContent: "center",
   },
   grid: {
     flexGrow: 1,
   },
+  btn: {
+    marginTop: "1vh",
+  },
 }));
+
+const handleClick = () => {};
 
 const Planner = () => {
   const classes = useStyles();
-  const maxRecipesShown = 6;
+  const maxRecipesShown = 8;
   let recipes = complexData.results
-    .filter((_, index) => index <= maxRecipesShown)
+    .filter((_, index) => index < maxRecipesShown)
     .map((recipe, index) => {
       return (
-        <Grid item key={index}>
+        <Grid item xs={6} sm={3} key={index}>
           <Card className={classes.card}>
             <CardMedia
               component="img"
@@ -55,7 +46,7 @@ const Planner = () => {
               title={recipe.title}
             />
             <CardContent className={classes.CardContent}>
-              <Typography gutterBottom variant="h5">
+              <Typography gutterBottom title variant="h5">
                 {recipe.title}
               </Typography>
             </CardContent>
@@ -65,27 +56,46 @@ const Planner = () => {
     });
 
   return (
-    <>
-      <Container>
-        <Typography
-          variant="h3"
-          align="center"
-          color="textPrimary"
-          gutterBottom
-        >
-          Meals for the week
-        </Typography>
-        {/* <Button variant="contained" color="primary" disableElevation>
-          Disable elevation
-        </Button> */}
-      </Container>
-      <Container className={classes.cardGrid} maxWidth="md">
-        <Grid container spacing={4} justify="center">
-          {recipes}
+    <Container className={classes.root}>
+      <Grid container xs={12}>
+        <Grid container xs={3}></Grid>
+        <Grid container xs={6} direction="row">
+          <Grid item xs={9}>
+            <Typography variant="h3" color="textPrimary" gutterBottom>
+              Meals for the week
+            </Typography>
+          </Grid>
+          <Grid item xs={3}>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.btn}
+              onClick={handleClick}
+            >
+              Fetch Recipes
+            </Button>
+          </Grid>
         </Grid>
-      </Container>
-    </>
+        <Grid container xs={3}></Grid>
+        <Container className={classes.cardGrid}>
+          <Grid container spacing={4} justify="center">
+            {recipes}
+          </Grid>
+        </Container>
+      </Grid>
+    </Container>
   );
 };
 
 export default Planner;
+
+// let recipes = recipesArr.map((recipe, index) => {
+//   return (
+//     <div className="recipe-card" key={index}>
+//       <img src={recipe.image} alt={recipe.title}></img>
+//       <h3>{recipe.title}</h3>
+
+//       {/* <p>{recipe.missedIngredients}</p> */}
+//     </div>
+//   );
+// });
