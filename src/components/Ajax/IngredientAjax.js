@@ -14,7 +14,7 @@ const IngredientAjax = () => {
   const [query, setQuery] = useState(""); //for URL
   const [tags, setTags] = useState([]); // for autocomplete
 
-  const sendIngredient = () => {
+  const handleSubmit = () => {
     console.log("sending tag", tags);
     console.log("sending ingredient", ingredient);
 
@@ -100,7 +100,7 @@ const IngredientAjax = () => {
           />
         )}
       />
-      <IconButton id="addBox" onClick={sendIngredient}>
+      <IconButton id="addBox" onClick={handleSubmit}>
         <AddBox />
       </IconButton>
     </div>

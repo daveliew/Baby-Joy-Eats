@@ -24,6 +24,7 @@ body {
 
 .main {
   display: flex;
+
   background-color: #f7e1d7;
   height: 100vh;
   width: 100vw;

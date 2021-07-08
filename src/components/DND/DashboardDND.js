@@ -53,7 +53,7 @@ const DashboardDND = () => {
         const clone = sourceItems[source.index]; // clone a copy of the ingredient card!
 
         if (endCol.id === "Bin") {
-          return;
+          sourceItems.splice(source.index, 1);
         } else if (
           !endCol.itemsArr.map((obj) => obj.content).includes(clone.content)
           // don't create a clone if the ingredient already exists in destination
@@ -63,24 +63,24 @@ const DashboardDND = () => {
             id: uuidv4(),
             // add clone to destination with new id to prevent drag bug
           });
-
-          const newState = {
-            ...columns,
-            [startCol.id]: {
-              ...startCol,
-              itemsArr: sourceItems
-                .splice(source.index, 1)
-                .concat([...sourceItems]),
-              // reorder cloned ingredient to the top of the array
-            },
-            [endCol.id]: {
-              ...endCol,
-              itemsArr: destinationItems,
-            },
-          };
-          setColumns(newState);
-          dispatch({ type: ACTIONS.UPDATE_COLS, payload: newState });
         }
+
+        const newState = {
+          ...columns,
+          [startCol.id]: {
+            ...startCol,
+            itemsArr: sourceItems
+              .splice(source.index, 1)
+              .concat([...sourceItems]),
+            // reorder cloned ingredient to the top of the array
+          },
+          [endCol.id]: {
+            ...endCol,
+            itemsArr: destinationItems,
+          },
+        };
+        setColumns(newState);
+        dispatch({ type: ACTIONS.UPDATE_COLS, payload: newState });
       } else {
         //* transfer item to new position (and prevents items being dragged into main list)
         if (endCol.id !== MAIN) {
