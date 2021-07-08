@@ -14,6 +14,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   height: 80%;
+  overflow-y: scroll;
 `;
 
 const Title = styled.h3`

@@ -47,7 +47,8 @@ const appReducer = (state, action) => {
 
     case ACTIONS.EDIT_INGREDIENT:
       console.log("changing item");
-      //! continue to add data
+      const { content, id } = action.payload;
+      console.log(content, id);
       return {
         ...state,
         // ingredientsArr:

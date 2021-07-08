@@ -74,7 +74,6 @@ body {
   top: 0%;
   display: grid;
   padding: 2rem;
-  overflow-y: scroll;
 }
 
 /* 

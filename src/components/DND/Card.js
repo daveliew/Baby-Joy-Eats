@@ -34,15 +34,9 @@ const Card = (props) => {
       index={props.index}
     >
       {(provided, snapshot) => (
-        // <Item
-        //   {...provided.draggableProps} // identify children
-        //   {...provided.dragHandleProps} //allow moving
-        //   ref={provided.innerRef} // identify array
-        //   isDragging={snapshot.isDragging} //apply style
-        // >
-        // </Item>
         <ListItem
-          alignItems="flex-start"
+          {...provided.dragHandleProps} //allow moving
+          // alignItems="flex-start"
           ContainerComponent="li"
           ContainerProps={{ ref: provided.innerRef }} // identify array
           {...provided.draggableProps} // identify children
@@ -52,12 +46,11 @@ const Card = (props) => {
           )}
         >
           <ListItemText
-            {...provided.dragHandleProps} //allow moving
             primary={props.item.content}
             secondary={props.item.id}
           />
           <ListItemSecondaryAction>
-            <CardModal item={props.item.content} />
+            <CardModal item={props.item.content} id={props.item.id}/>
           </ListItemSecondaryAction>
         </ListItem>
       )}

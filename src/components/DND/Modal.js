@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-import EditIcon from "@material-ui/icons/Edit";
-import { SaveAlt } from "@material-ui/icons";
+import { Done, Edit } from "@material-ui/icons";
 import { IconButton, TextField } from "@material-ui/core";
+import { DataContext } from "../App/js";
 
 function getModalStyle() {
   const top = 50;
@@ -28,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CardModal = (props) => {
+  const value = useContext(DataContext);
+  const { dispatch, ACTIONS } = value;
+
+  const { inputRef } = useRef(); //! buggy
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = useState(getModalStyle);
@@ -45,6 +49,14 @@ const CardModal = (props) => {
 
   const handleClick = () => {
     setEdit(!edit);
+  };
+
+  const handleSubmit = () => {
+    setEdit(!edit);
+    dispatch({
+      type: ACTIONS.EDIT_INGREDIENT,
+      payload: { content: ingredient, id: props.item.id },
+    });
   };
 
   const handleChange = (e) => {
@@ -70,23 +82,22 @@ const CardModal = (props) => {
               label="Edit Ingredient"
               value={ingredient}
               onKeyPress={handleKeyPress}
+              ref={inputRef}
             />
-            <IconButton id="saveBtn" onClick={handleClick}>
-              <SaveAlt />
+            <IconButton id="saveBtn" onClick={handleSubmit}>
+              <Done />
             </IconButton>
           </>
         ) : (
           <>
             {props.item}
             <IconButton onClick={handleClick}>
-              <EditIcon />
+              <Edit />
             </IconButton>
           </>
         )}
       </h2>
-      <p id="simple-modal-description">
-        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-      </p>
+      <p id="simple-modal-description">{props.item}</p>
       close
     </div>
   );
@@ -94,7 +105,7 @@ const CardModal = (props) => {
   return (
     <div>
       <IconButton onClick={handleOpen}>
-        <EditIcon />
+        <Edit />
       </IconButton>
 
       <Modal
