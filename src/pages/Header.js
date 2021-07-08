@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { AppBar, Toolbar, Typography, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { logo } from "../Assets/Baby-Joy-Eats.jpeg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +38,9 @@ const Header = () => {
         <Toolbar className={classes.toolbar}>
           <Grid container space={2} xs={9}>
             <Grid item xs>
-              <Typography variant="h5">Baby Joy EATS</Typography>
+              <Typography variant="h3">
+                Baby Joy <span style={{ color: "#e9c46a" }}>EATS</span>
+              </Typography>
             </Grid>
           </Grid>
           <Grid container space={2} xs={3}>

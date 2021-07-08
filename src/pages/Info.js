@@ -1,23 +1,21 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
-  Avatar,
+  Button,
   Card,
-  CardHeader,
-  CardMedia,
   CardContent,
-  CardActions,
-  Collapse,
-  IconButton,
+  Container,
+  Grid,
   Typography,
 } from "@material-ui/core/";
-import { red } from "@material-ui/core/colors";
 
 import dataReturn from "../data/dataReturnById";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: "50vw",
+    maxWidth: "100vw",
+    marginTop: "2vh",
+    alignItems: "center",
   },
   media: {
     height: 0,
@@ -32,9 +30,6 @@ const useStyles = makeStyles((theme) => ({
   },
   expandOpen: {
     transform: "rotate(180deg)",
-  },
-  avatar: {
-    backgroundColor: red[500],
   },
 }));
 
@@ -63,20 +58,30 @@ const Info = () => {
     setExpanded(!expanded);
   };
 
+  const handleClick = () => {};
   return (
-    <Card className={classes.root}>
-      <CardContent>
-        <h1>{dataReturn.title}</h1>
-        <img src={dataReturn.image} alt={dataReturn.title}></img>
-        <h3>Cooking Instructions</h3>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {instructionSteps}
-        </Typography>
+    <Container className={classes.root}>
+      <Grid container>
+        <Grid item xs={3} />
+        <Grid item xs={6}>
+          <Card>
+            <CardContent>
+              <h1>{dataReturn.title}</h1>
+              <img src={dataReturn.image} alt={dataReturn.title}></img>
+              <h3>Cooking Instructions</h3>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {instructionSteps}
+              </Typography>
 
-        <hr />
-        <button>Get another recipe?</button>
-      </CardContent>
-    </Card>
+              <hr />
+              <Button variant="outlined" onClick={handleClick}>
+                Get another recipe?
+              </Button>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 export default Info;
