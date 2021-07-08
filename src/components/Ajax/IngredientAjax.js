@@ -5,6 +5,15 @@ import { TextField, IconButton } from "@material-ui/core/";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { AddBox } from "@material-ui/icons";
 
+const capitalizeWords = (words) => {
+  let result = words
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+  return result;
+};
+
 const IngredientAjax = () => {
   const value = useContext(DataContext);
   const { dispatch, ACTIONS } = value;
@@ -17,13 +26,14 @@ const IngredientAjax = () => {
   const handleSubmit = () => {
     console.log("sending tag", tags);
     console.log("sending ingredient", ingredient);
-
-    dispatch({
-      type: ACTIONS.ADD_INGREDIENT,
-      payload: { id: uuidv4(), content: tags },
-    });
-    setTags([]);
-    setIngredient([]);
+    if (tags.length > 1) {
+      dispatch({
+        type: ACTIONS.ADD_INGREDIENT,
+        payload: { id: uuidv4(), content: capitalizeWords(tags) },
+      });
+      setTags([]);
+      setIngredient([]);
+    }
   };
 
   const handleTags = (event, values) => {
@@ -85,6 +95,7 @@ const IngredientAjax = () => {
         }}
         onChange={handleTags}
         options={data.map((option) => option.name)}
+        onKeyPress={handleKeyPress}
         renderInput={(params) => (
           <TextField
             {...params}
@@ -96,7 +107,6 @@ const IngredientAjax = () => {
             InputProps={{ ...params.InputProps, type: "search" }}
             onChange={handleChange}
             placeholder="e.g. banana"
-            onKeyPress={handleKeyPress}
           />
         )}
       />

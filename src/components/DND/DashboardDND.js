@@ -130,6 +130,7 @@ const DashboardDND = () => {
       <button onClick={() => dispatch({ type: ACTIONS.CLEAR_PLANNER })}>
         Clear Planner
       </button>
+
       <DragDropContext onDragEnd={onDragEnd}>
         <Container>
           <Column

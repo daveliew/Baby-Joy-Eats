@@ -2,8 +2,10 @@ import React from "react";
 // import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
 import {
+  Avatar,
   ListItem,
   ListItemText,
+  ListItemAvatar,
   ListItemSecondaryAction,
 } from "@material-ui/core";
 import CardModal from "./Modal";
@@ -36,7 +38,7 @@ const Card = (props) => {
       {(provided, snapshot) => (
         <ListItem
           {...provided.dragHandleProps} //allow moving
-          // alignItems="flex-start"
+          alignItems="flex-start"
           ContainerComponent="li"
           ContainerProps={{ ref: provided.innerRef }} // identify array
           {...provided.draggableProps} // identify children
@@ -45,6 +47,16 @@ const Card = (props) => {
             provided.draggableProps.style //apply style
           )}
         >
+          <ListItemAvatar>
+            {/* <Avatar
+              alt="Food-Pic"
+              src={`https://spoonacular.com/cdn/ingredients_100x100/${props.item.content}.jpg`}
+            /> */}
+            <Avatar
+              src="https://spoonacular.com/cdn/ingredients_100x100/apple.jpg"
+              alt=""
+            />
+          </ListItemAvatar>
           <ListItemText
             primary={props.item.content}
             secondary={props.item.id}

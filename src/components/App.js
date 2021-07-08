@@ -36,33 +36,29 @@ const appReducer = (state, action) => {
       }
 
     case ACTIONS.CLEAR_PLANNER:
-      console.log("all gone now!");
-
       Object.entries(state.dndColumns)
         .filter((arr) => arr[0] !== "main")
         .forEach((col) => (col[1].itemsArr = []));
+      console.log("all gone now!");
+
       return {
         ...state,
       };
 
     case ACTIONS.EDIT_INGREDIENT:
       const { content, id, colId } = action.payload;
-      console.log("FROM PAYLOAD", content, id, colId);
-      // const keysArr = Object.entries(state.dndColumns);
-      // console.log(keysArr);
+      // console.log("FROM PAYLOAD", content, id, colId);
 
-      // const fetch = keysArr.forEach((arr) => arr[1].itemsArr);
-
-      // console.log("test", fetch);
       let tempArr = state.dndColumns[colId].itemsArr;
-      console.log("tempArr", tempArr);
+      // console.log("tempArr", tempArr);
       var result = tempArr.filter((obj) => obj.id === id);
-      console.log("fetched", result);
+      // console.log("fetched", result);
       result[0].content = content;
       console.log(result);
 
       return {
         ...state,
+        activeItem: { id: id, content: content },
       };
 
     default:
@@ -75,8 +71,11 @@ function App() {
     ingredientsArr: initialData.ingredients,
     dndColumns: initialData.columns,
     dndColOrder: initialData.colOrder,
+    activeItem: { id: "", content: "pear" },
   });
   const value = { state, dispatch, ACTIONS };
+
+  console.log(state.activeItem);
 
   return (
     <div className="App">

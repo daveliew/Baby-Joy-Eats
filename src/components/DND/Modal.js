@@ -4,6 +4,8 @@ import Modal from "@material-ui/core/Modal";
 import { Done, Edit } from "@material-ui/icons";
 import { IconButton, TextField } from "@material-ui/core";
 import { DataContext } from "../App";
+// import NutritionAjax from "../Ajax/NutritionAjax";
+import RecipeAjax from "../Ajax/RecipeAjax";
 
 function getModalStyle() {
   const top = 50;
@@ -29,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CardModal = (props) => {
   const value = useContext(DataContext);
-  const { dispatch, ACTIONS } = value;
+  const { state, dispatch, ACTIONS } = value;
 
   const { inputRef } = useRef(); //! buggy
   const classes = useStyles();
@@ -71,6 +73,9 @@ const CardModal = (props) => {
     }
   };
 
+  const imageURL = `https://spoonacular.com/cdn/ingredients_100x100/
+  ${props.item.toLowerCase()}.jpg`;
+
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <h2 id="simple-modal-title">
@@ -90,7 +95,6 @@ const CardModal = (props) => {
           </>
         ) : (
           <>
-            {props.item}
             <IconButton onClick={handleClick}>
               <Edit />
             </IconButton>
@@ -98,7 +102,13 @@ const CardModal = (props) => {
         )}
       </h2>
       <p id="simple-modal-description">{props.item}</p>
-      close
+
+      <img
+        src="https://spoonacular.com/cdn/ingredients_100x100/apple
+  .jpg"
+        alt="food-item-pic"
+      />
+      {/* <RecipeAjax /> */}
     </div>
   );
 
@@ -113,6 +123,7 @@ const CardModal = (props) => {
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
+        item={props.item}
       >
         {body}
       </Modal>
