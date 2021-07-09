@@ -7,6 +7,7 @@ const RecipeAjax = (props) => {
 
   const [data, setData] = useState(null);
   const [toggle, setToggle] = useState(false);
+  const [category, setCategory] = useState(value.activePage);
 
   const handleToggle = () => {
     console.log("click");

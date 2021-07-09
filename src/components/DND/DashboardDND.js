@@ -161,7 +161,7 @@ const DashboardDND = () => {
       <Container>
         <DragDropContext onDragEnd={onDragEnd}>
           <Grid container spacing={2} className={classes.main}>
-            <Grid item xs={3}>
+            <Grid item xs={6} sm={3}>
               <Column
                 key={MAIN}
                 items={columns[MAIN].itemsArr}
@@ -170,7 +170,8 @@ const DashboardDND = () => {
             </Grid>
             <Grid
               container
-              xs={9}
+              xs={12}
+              sm={9}
               spacing={1}
               direction="row"
               className={classes.days}
@@ -182,7 +183,7 @@ const DashboardDND = () => {
                   const column = columns[columnId];
 
                   return (
-                    <Grid item xs={3}>
+                    <Grid item xs={6} sm={3}>
                       <Column
                         key={column.id}
                         column={column}
@@ -192,7 +193,7 @@ const DashboardDND = () => {
                   );
                 })}
 
-              <Grid item xs={3} className={classes.bin}>
+              <Grid item xs={6} sm={3} className={classes.bin}>
                 <Column
                   key={BIN}
                   items={columns[BIN].itemsArr}

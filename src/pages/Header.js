@@ -49,8 +49,8 @@ const Header = () => {
               </Link>
             </Grid>
             <Grid item xs>
-              <Link to="/planner" className={classes.navItem}>
-                <Typography subtitle>Planner</Typography>
+              <Link to="/recipes" className={classes.navItem}>
+                <Typography subtitle>Recipes</Typography>
               </Link>
             </Grid>
             <Grid item xs>

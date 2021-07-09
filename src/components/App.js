@@ -9,7 +9,7 @@ import { Grid, Container, CssBaseline } from "@material-ui/core";
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: "#f4a261",
-    height: "100vh",
+    maxHeight: "100vh",
     padding: "0.5rem",
   },
 }));
@@ -22,6 +22,7 @@ const ACTIONS = {
   EDIT_INGREDIENT: "editIngredient",
   REORDER_ARR: "reorderArr",
   UPDATE_COLS: "updateCols",
+  SELECT_PAGE: "selectPage",
 };
 
 const appReducer = (state, action) => {
@@ -68,6 +69,12 @@ const appReducer = (state, action) => {
         activeItem: { id: id, content: content },
       };
 
+    case ACTIONS.SELECT_PAGE:
+      console.log("page set:", action.payload);
+      return {
+        ...state,
+        activePage: action.payload,
+      };
     default:
       return state;
   }
@@ -80,6 +87,7 @@ const App = () => {
     dndColumns: initialData.columns,
     dndColOrder: initialData.colOrder,
     activeItem: { id: "", content: "avocado" },
+    activePage: "/",
   });
   const value = { state, dispatch, ACTIONS };
 

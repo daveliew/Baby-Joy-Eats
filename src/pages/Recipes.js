@@ -28,14 +28,14 @@ const useStyles = makeStyles((theme) => ({
 
 const handleClick = () => {};
 
-const Planner = () => {
+const Recipes = () => {
   const classes = useStyles();
   const maxRecipesShown = 8;
   let recipes = complexData.results
     .filter((_, index) => index < maxRecipesShown)
     .map((recipe, index) => {
       return (
-        <Grid item xs={6} sm={3} key={index}>
+        <Grid item xs={12} sm={3} key={index}>
           <Card className={classes.card}>
             <CardMedia
               component="img"
@@ -58,14 +58,14 @@ const Planner = () => {
   return (
     <Container className={classes.root}>
       <Grid container xs={12}>
-        <Grid container xs={3}></Grid>
-        <Grid container xs={6} direction="row">
-          <Grid item xs={9}>
+        <Grid container xs={6} sm={3}></Grid>
+        <Grid container xs={12} sm={6} direction="row">
+          <Grid item xs={12} sm={9}>
             <Typography variant="h3" color="textPrimary" gutterBottom>
               Meals for the week
             </Typography>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={3} sm={6}>
             <Button
               variant="contained"
               color="primary"
@@ -76,7 +76,7 @@ const Planner = () => {
             </Button>
           </Grid>
         </Grid>
-        <Grid container xs={3}></Grid>
+        <Grid container xs={6} sm={3}></Grid>
         <Container className={classes.cardGrid}>
           <Grid container spacing={4} justify="center">
             {recipes}
@@ -87,7 +87,7 @@ const Planner = () => {
   );
 };
 
-export default Planner;
+export default Recipes;
 
 // let recipes = recipesArr.map((recipe, index) => {
 //   return (

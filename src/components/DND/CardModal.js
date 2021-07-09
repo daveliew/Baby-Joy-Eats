@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { DataContext } from "../App";
+import { Link } from "react-router-dom";
 
 function getModalStyle() {
   const top = 50;
@@ -110,7 +111,15 @@ const CardModal = (props) => {
         )}
       </h2>
       <Typography paragraph>I hope Joy likes this!</Typography>
-      <Button>Get some recipes!</Button>
+      <Link to="/recipes" className={classes.navItem}>
+        <Button
+          onClick={() =>
+            dispatch({ type: ACTIONS.SELECT_PAGE, payload: "recipes" })
+          }
+        >
+          Get some recipes!
+        </Button>
+      </Link>
     </div>
   );
 

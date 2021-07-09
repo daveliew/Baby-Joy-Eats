@@ -45,7 +45,10 @@ const Card = (props) => {
                 {/* <Avatar src="../../assets/Baby-Joy-Eats.jpeg" alt="" /> */}
                 <Avatar>{props.item.content.charAt(0)}</Avatar>
               </ListItemAvatar>
-              <ListItemText primary={props.item.content} secondary="fruit" />
+              <ListItemText
+                primary={props.item.content}
+                secondary={props.id.substring(0, 8)}
+              />
               <ListItemSecondaryAction>
                 <CardModal
                   item={props.item.content}
