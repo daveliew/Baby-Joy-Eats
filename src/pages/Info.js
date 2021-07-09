@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Card,
-  CardContent,
-  Container,
-  Grid,
-  Typography,
-} from "@material-ui/core/";
+import { Container } from "@material-ui/core/";
 
 import dataReturn from "../data/dataReturnById";
 
