@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { DataContext } from "../App";
 import complexData from "../../data/complexData";
 import { Link } from "react-router-dom";
@@ -33,10 +33,12 @@ const RecipeCards = (props) => {
   const classes = useStyles();
   const value = useContext(DataContext);
   const { dispatch, ACTIONS } = value;
+  const [data, setData] = useState(complexData);
+  console.log(props.data);
 
   const maxRecipesShown = 8;
 
-  let recipes = props.data
+  let recipes = data.results
     .filter((_, index) => index < maxRecipesShown)
     .map((recipe, index) => {
       return (

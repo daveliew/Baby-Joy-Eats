@@ -46,7 +46,7 @@ const IngredientAjax = () => {
   const classes = useStyles();
 
   const value = useContext(DataContext);
-  const { dispatch, ACTIONS } = value;
+  const { state, dispatch, ACTIONS } = value;
 
   const [ingredient, setIngredient] = useState([]); // capture user selection
   const [data, setData] = useState([]); // return API call
@@ -93,7 +93,7 @@ const IngredientAjax = () => {
     const autoComplete =
       "https://api.spoonacular.com/food/ingredients/autocomplete";
     const API_ROOT = autoComplete;
-    const queryItem = query;
+    const queryItem = state.activeItem.content;
     const URL = `${API_ROOT}?query=${queryItem}&apiKey=${process.env.REACT_APP_SPOONACULAR}`;
     console.log(URL);
 

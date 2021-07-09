@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Container } from "@material-ui/core/";
+import {
+  Container,
+  Grid,
+  Card,
+  CardContent,
+  Typography,
+} from "@material-ui/core/";
 
 import dataReturn from "../data/dataReturnById";
 
@@ -47,7 +53,7 @@ const Info = () => {
 
   return (
     <Container className={classes.root}>
-      {/* <Grid container>
+      <Grid container>
         <Grid item xs={3} />
         <Grid item xs={6}>
           <Card>
@@ -61,7 +67,7 @@ const Info = () => {
             </CardContent>
           </Card>
         </Grid>
-      </Grid> */}
+      </Grid>
     </Container>
   );
 };
