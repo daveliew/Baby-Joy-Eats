@@ -48,6 +48,10 @@ const CardModal = (props) => {
 
   const handleOpen = () => {
     setOpen(true);
+    dispatch({
+      type: ACTIONS.EDIT_INGREDIENT,
+      payload: { content: ingredient, id: props.id, colId: props.colId },
+    });
   };
 
   const handleClose = () => {

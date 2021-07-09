@@ -42,7 +42,6 @@ const Card = (props) => {
               )}
             >
               <ListItemAvatar>
-                {/* <Avatar src="../../assets/Baby-Joy-Eats.jpeg" alt="" /> */}
                 <Avatar>{props.item.content.charAt(0)}</Avatar>
               </ListItemAvatar>
               <ListItemText
