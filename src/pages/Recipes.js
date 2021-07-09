@@ -7,13 +7,6 @@ const Recipes = (props) => {
   const { state } = value;
 
   const [data, setData] = useState(null);
-  const [toggle, setToggle] = useState(false);
-  // const [category, setCategory] = useState(value.activePage);
-
-  const handleToggle = () => {
-    console.log("click");
-    setToggle(!toggle);
-  };
 
   const queryItem = state.activeItem.content.replace(/\s/g, "").toLowerCase();
   const imgUrl = `https://spoonacular.com/cdn/ingredients_100x100/${queryItem}.jpg`;

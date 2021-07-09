@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import complexData from "../../data/complexData";
+import React from "react";
+// import complexData from "../../data/complexData";
+import { Link } from "react-router-dom";
 
 import {
   Button,
@@ -27,15 +28,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const handleClick = () => {};
-
 const RecipeCards = (props) => {
   const classes = useStyles();
-  // const [recipeData, setRecipeData] = useState(complexData);
-
-  let currData;
-  console.log("my data", props.data);
-  // props.data === null ? (currData = recipeData) : (currData = props.Data);
 
   const maxRecipesShown = 8;
 
@@ -58,6 +52,9 @@ const RecipeCards = (props) => {
                 {recipe.title}
               </Typography>
             </CardContent>
+            <Link to="/info" className={classes.navItem}>
+              <Button>See Instructions</Button>
+            </Link>
           </Card>
         </Grid>
       );
