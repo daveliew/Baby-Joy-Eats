@@ -111,7 +111,7 @@ const IngredientAjax = () => {
       .catch((error) => {
         console.log("error");
       });
-  }, [query]);
+  }, [query, state.activeItem]);
 
   return (
     <div className={classes.autocomplete}>
