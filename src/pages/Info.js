@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
-  Button,
   Card,
   CardContent,
   Container,
@@ -33,30 +32,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// import Ajax from "../components/Ajax/Ajax";
-// const instructions = dataReturn.analyzedInstructions[0].steps[0].step;
-// console.log(dataReturn.analyzedInstructions[0].steps);
-
-const instructionsArr = dataReturn.analyzedInstructions[0].steps;
-
-let instructionSteps = instructionsArr.map((step, index) => {
-  return (
-    <div key={index}>
-      <span>
-        {index + 1}) {instructionsArr[index].step}
-      </span>
-      <img src={instructionsArr[index].ingredients.image} alt=""></img>
-    </div>
-  );
-});
+//
 
 const Info = () => {
   const classes = useStyles();
-  const [dataReturn, setDataReturn] = useState();
+  // const [dataReturn, setDataReturn] = useState(state.activeRecipe);
+
+  const instructionsArr = dataReturn.analyzedInstructions[0].steps;
+
+  let instructionSteps = instructionsArr.map((step, index) => {
+    return (
+      <div key={index}>
+        <span>
+          {index + 1}) {instructionsArr[index].step}
+        </span>
+        <img src={instructionsArr[index].ingredients.image} alt=""></img>
+      </div>
+    );
+  });
 
   return (
     <Container className={classes.root}>
-      <Grid container>
+      {/* <Grid container>
         <Grid item xs={3} />
         <Grid item xs={6}>
           <Card>
@@ -67,15 +64,10 @@ const Info = () => {
               <Typography variant="body2" color="textSecondary" component="p">
                 {instructionSteps}
               </Typography>
-              {/* 
-              <hr />
-              <Button variant="outlined" onClick={handleClick}>
-                Get another recipe?
-              </Button> */}
             </CardContent>
           </Card>
         </Grid>
-      </Grid>
+      </Grid> */}
     </Container>
   );
 };

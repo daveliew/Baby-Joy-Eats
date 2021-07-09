@@ -1,5 +1,6 @@
-import React from "react";
-// import complexData from "../../data/complexData";
+import React, { useContext } from "react";
+import { DataContext } from "../components/App";
+import complexData from "../../data/complexData";
 import { Link } from "react-router-dom";
 
 import {
@@ -30,6 +31,8 @@ const useStyles = makeStyles((theme) => ({
 
 const RecipeCards = (props) => {
   const classes = useStyles();
+  const value = useContext(DataContext);
+  const { dispatch, ACTIONS } = value;
 
   const maxRecipesShown = 8;
 
@@ -53,7 +56,13 @@ const RecipeCards = (props) => {
               </Typography>
             </CardContent>
             <Link to="/info" className={classes.navItem}>
-              <Button>See Instructions</Button>
+              <Button
+                onClick={() =>
+                  dispatch({ type: ACTIONS.ACTIVE_RECIPE, data: recipe.id })
+                }
+              >
+                See Instructions
+              </Button>
             </Link>
           </Card>
         </Grid>

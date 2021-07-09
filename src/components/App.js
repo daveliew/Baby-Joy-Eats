@@ -18,6 +18,7 @@ export const DataContext = createContext();
 
 const ACTIONS = {
   ADD_INGREDIENT: "addIngredient",
+  ACTIVE_RECIPE: "activeRecipe",
   CLEAR_PLANNER: "clearPlanner",
   EDIT_INGREDIENT: "editIngredient",
   REORDER_ARR: "reorderArr",
@@ -77,6 +78,13 @@ const appReducer = (state, action) => {
         activePage: action.payload,
       };
 
+    case ACTIONS.ACTIVE_RECIPE:
+      console.log("chose recipe: ", action.payload);
+      return {
+        ...state,
+        activeRecipe: action.payload,
+      };
+
     default:
       return state;
   }
@@ -90,6 +98,7 @@ const App = () => {
     dndColOrder: initialData.colOrder,
     activeItem: { id: "", content: "avocado" },
     activePage: "/",
+    activeRecipe: 9148,
   });
   const value = { state, dispatch, ACTIONS };
 
