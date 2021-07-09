@@ -7,9 +7,10 @@ const Recipes = (props) => {
   const { state } = value;
 
   const [data, setData] = useState(null);
+  console.log(data);
 
   const queryItem = state.activeItem.content.replace(/\s/g, "").toLowerCase();
-  console.log("parsed item", queryItem);
+
   // const imgUrl = `https://spoonacular.com/cdn/ingredients_100x100/${queryItem}.jpg`;
   // console.log(imgUrl);
 
@@ -31,8 +32,8 @@ const Recipes = (props) => {
         throw new Error("Bad Response from Server");
       })
       .then((data) => {
-        console.log("got back some data", data);
-        setData(data);
+        console.log("got back some data", data[0]);
+        setData(data[0]);
       })
       .catch((error) => {
         console.log("error");

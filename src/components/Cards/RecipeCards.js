@@ -55,7 +55,7 @@ const RecipeCards = (props) => {
               title={recipe.title}
             />
             <CardContent className={classes.CardContent}>
-              <Typography gutterBottom title variant="h5">
+              <Typography gutterBottom title variant="h6">
                 {recipe.title}
               </Typography>
             </CardContent>
@@ -75,9 +75,9 @@ const RecipeCards = (props) => {
 
   return (
     <Container className={classes.root}>
-      <Grid container xs={12}>
-        <Grid container xs={6} sm={3}></Grid>
-        <Grid container xs={12} sm={6} direction="row">
+      <Grid container>
+        <Grid container></Grid>
+        <Grid container direction="row">
           <Grid item xs={12} sm={9}>
             <Typography variant="h3" color="textPrimary" gutterBottom>
               Meals for the week
