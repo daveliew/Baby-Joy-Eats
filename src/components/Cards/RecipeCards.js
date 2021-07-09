@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { DataContext } from "../components/App";
+import { DataContext } from "../App";
 import complexData from "../../data/complexData";
 import { Link } from "react-router-dom";
 
