@@ -7,14 +7,17 @@ const Recipes = (props) => {
   const { state } = value;
 
   const [data, setData] = useState(null);
-  console.log(data);
+  console.log("data from recipes", data);
+  console.log("IN RECIPES");
 
-  const queryItem = state.activeItem.content.replace(/\s/g, "").toLowerCase();
-
+  setData(props.data);
   // const imgUrl = `https://spoonacular.com/cdn/ingredients_100x100/${queryItem}.jpg`;
   // console.log(imgUrl);
 
   useEffect(() => {
+    const queryItem = state.activeItem.content.replace(/\s/g, "").toLowerCase();
+    console.log(queryItem, "looking for this.");
+
     const API_ROOT = `https://api.spoonacular.com/`;
     const findByIngredients = "recipes/findByIngredients?ingredients=";
     const complexSearch = "recipes/complexSearch";
@@ -22,7 +25,7 @@ const Recipes = (props) => {
     const numRecipes = 10;
     const categories = [ingredients, findByIngredients, complexSearch];
     const URL = `${API_ROOT}${categories[1]}?${queryItem}&number=${numRecipes}&apiKey=${process.env.REACT_APP_SPOONACULAR}`;
-    console.log(URL);
+    console.log(URL, "from recipes component");
 
     fetch(URL)
       .then((res) => {
@@ -36,11 +39,11 @@ const Recipes = (props) => {
         setData(data[0]);
       })
       .catch((error) => {
-        console.log("error");
+        console.log("error from recipes");
       });
 
     return URL;
-  }, [state.activeItem, queryItem]);
+  }, [state.activeItem.content]);
 
   return data === null ? <h1>LOADING</h1> : <RecipeCards data={data} />;
 };

@@ -51,8 +51,8 @@ const DashboardDND = () => {
   const MAIN = "main";
   const BIN = "bin";
 
-  console.log("App state", state);
-  console.log("ingredients", state.ingredientsArr);
+  // console.log("App state", state);
+  // console.log("ingredients", state.ingredientsArr);
 
   const onDragEnd = (result) => {
     const { destination, source } = result;
