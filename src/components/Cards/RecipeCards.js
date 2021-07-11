@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { DataContext } from "../App";
-import complexData from "../../data/complexData";
+// import complexData from "../../data/complexData";
 import { Link } from "react-router-dom";
 
 import {
@@ -33,10 +33,6 @@ const RecipeCards = (props) => {
   const classes = useStyles();
   const value = useContext(DataContext);
   const { dispatch, ACTIONS } = value;
-  // const [data, setData] = useState(complexData);
-  // if (props.data) {
-  //   setData(props.data);
-  // }
 
   console.log(props.data);
 

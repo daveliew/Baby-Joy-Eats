@@ -11,7 +11,9 @@ const Recipes = (props) => {
   // const imgUrl = `https://spoonacular.com/cdn/ingredients_100x100/${queryItem}.jpg`;
   // console.log(imgUrl);
 
-  const queryItem = state.activeItem.content.replace(/\s/g, "").toLowerCase(); //take ingredient from state to search in recipes.
+  // const queryItem = state.activeItem.content.replace(/\s/g, "").toLowerCase();
+  const queryItem = state.activeItem.content.toLowerCase(); //take ingredient from state to search in recipes.
+  console.log(`Searching for < ${queryItem} > in recipes component`);
 
   useEffect(() => {
     const API_ROOT = `https://api.spoonacular.com/`;
@@ -20,7 +22,7 @@ const Recipes = (props) => {
     const ingredients = "food/ingredients/search";
     const numRecipes = 10;
     const categories = [ingredients, findByIngredients, complexSearch];
-    const URL = `${API_ROOT}${categories[1]}?${queryItem}&number=${numRecipes}&apiKey=${process.env.REACT_APP_SPOONACULAR}`;
+    const URL = `${API_ROOT}${categories[1]}${queryItem}&number=${numRecipes}&apiKey=${process.env.REACT_APP_SPOONACULAR}`;
     console.log(URL, "from recipes component");
 
     fetch(URL)
