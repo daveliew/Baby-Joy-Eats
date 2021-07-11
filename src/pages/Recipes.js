@@ -31,8 +31,8 @@ const Recipes = (props) => {
         throw new Error("Bad Response from Server");
       })
       .then((data) => {
-        console.log("got back some data", data[0]);
-        setData(data[0]);
+        console.log("got back some data", data);
+        setData(data);
       })
       .catch((error) => {
         console.log("error from recipes");

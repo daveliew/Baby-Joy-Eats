@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { DataContext } from "../App";
 import complexData from "../../data/complexData";
 import { Link } from "react-router-dom";
@@ -38,13 +38,11 @@ const RecipeCards = (props) => {
   //   setData(props.data);
   // }
 
-  // console.log("hello from recipe cards");
-
   console.log(props.data);
 
   const maxRecipesShown = 8;
 
-  let recipes = complexData.results
+  let recipes = props.data
     .filter((_, index) => index < maxRecipesShown)
     .map((recipe, index) => {
       return (
@@ -99,14 +97,3 @@ const RecipeCards = (props) => {
 };
 
 export default RecipeCards;
-
-// let recipes = recipesArr.map((recipe, index) => {
-//   return (
-//     <div className="recipe-card" key={index}>
-//       <img src={recipe.image} alt={recipe.title}></img>
-//       <h3>{recipe.title}</h3>
-
-//       {/* <p>{recipe.missedIngredients}</p> */}
-//     </div>
-//   );
-// });
