@@ -1,62 +1,128 @@
 import React, { createContext, useReducer } from "react";
 import Header from "../pages/Header";
 import Main from "../pages/Main";
-import initialData, { ingredients } from "../data/initialData";
+import initialData from "../data/initialData";
+import { makeStyles } from "@material-ui/styles";
+
+import { Grid, Container, CssBaseline } from "@material-ui/core";
+
+const useStyles = makeStyles(() => ({
+  root: {
+    backgroundColor: "#f4a261",
+    maxHeight: "100vh",
+    padding: "0.5rem",
+  },
+}));
 
 export const DataContext = createContext();
 
 const ACTIONS = {
   ADD_INGREDIENT: "addIngredient",
-  UPDATE_INGREDIENTS: "updateIngredients",
+  ACTIVE_RECIPE: "activeRecipe",
+  CLEAR_PLANNER: "clearPlanner",
+  EDIT_INGREDIENT: "editIngredient",
+  REORDER_ARR: "reorderArr",
+  UPDATE_COLS: "updateCols",
+  SELECT_PAGE: "selectPage",
 };
 
 const appReducer = (state, action) => {
   switch (action.type) {
-    case ACTIONS.UPDATE_INGREDIENTS:
+    case ACTIONS.UPDATE_COLS:
       return {
         ...state,
-        dndData: action.payload,
+        dndColumns: action.payload,
+        ingredientsArr: action.payload.main.itemsArr,
       };
+
     case ACTIONS.ADD_INGREDIENT:
       console.log("new ingredient!", action.payload);
 
+      if (action.payload.content.length === 0) {
+        console.log("nothing added");
+        return state;
+      } else {
+        return {
+          ...state,
+          ingredientsArr: [action.payload, ...state.ingredientsArr],
+        };
+      }
+
+    case ACTIONS.CLEAR_PLANNER:
+      Object.entries(state.dndColumns)
+        .filter((arr) => arr[0] !== "main")
+        .forEach((col) => (col[1].itemsArr = []));
+      console.log("all gone now!");
+
       return {
         ...state,
-        ingredientsArr: action.payload.concat(state.ingredientsArr),
       };
-    // return {
-    //   ...state,
-    //   dndData: {
-    //     ...state.columns,
-    //     columns: {
-    //       ...state.columns.main,
-    //       main: {
-    //         itemsArr: [action.payload, ...state.columns.main.itemsArr],
-    //       },
-    //     },
-    //   },
-    // };
+
+    case ACTIONS.EDIT_INGREDIENT:
+      const { content, id, colId } = action.payload;
+      const tempArr = state.dndColumns[colId].itemsArr; // make a copy of column's item array
+      var result = tempArr.filter((obj) => obj.id === id); // sift out id that matches obj id within array
+      result[0].content = content; // replace with the new content
+
+      return {
+        ...state,
+        activeItem: { id: id, content: content },
+      };
+
+    case ACTIONS.SELECT_PAGE:
+      console.log("page set:", action.payload);
+      return {
+        ...state,
+        activePage: action.payload,
+      };
+
+    case ACTIONS.ACTIVE_RECIPE:
+      console.log("chose recipe: ", action.payload);
+      return {
+        ...state,
+        activeRecipe: action.payload,
+      };
+
     default:
       return state;
   }
 };
 
-function App() {
+const App = () => {
+  const classes = useStyles();
   const [state, dispatch] = useReducer(appReducer, {
-    ingredientsArr: ingredients,
-    dndData: initialData,
+    ingredientsArr: initialData.ingredients,
+    dndColumns: initialData.columns,
+    dndColOrder: initialData.colOrder,
+    activeItem: { id: "", content: "avocado" },
+    activePage: "/",
+    activeRecipe: 9148,
   });
-
   const value = { state, dispatch, ACTIONS };
 
+  console.log("current active", state.activeItem);
+
   return (
-    <div className="App">
-      <DataContext.Provider value={value}>
-        <Header />
-        <Main />
-      </DataContext.Provider>
-    </div>
+    <>
+      <div className={classes.root}>
+        <CssBaseline />
+        <Container>
+          <DataContext.Provider value={value}>
+            <Grid
+              container
+              maxWidth="md"
+              justify="center"
+              style={{ marginTop: 50 }}
+              className={classes.container}
+            >
+              <Header />
+              <Main />
+            </Grid>
+          </DataContext.Provider>
+        </Container>
+      </div>
+    </>
   );
-}
+};
 
 export default App;

@@ -1,38 +1,80 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { DataContext } from "../App";
 import { v4 as uuidv4 } from "uuid";
-import TextField from "@material-ui/core/TextField";
+import {
+  TextField,
+  IconButton,
+  Container,
+  Grid,
+  Button,
+} from "@material-ui/core/";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import { AddBox } from "@material-ui/icons";
+import { makeStyles } from "@material-ui/core/styles";
+import DeleteIcon from "@material-ui/icons/Delete";
+
+const useStyles = makeStyles((theme) => ({
+  autocomplete: {
+    flexGrow: 1,
+    marginTop: "2vh",
+    backgroundColor: "#E9C46A",
+  },
+  grid: {
+    flexGrow: 1,
+  },
+  addBox: {
+    justifyContent: "center",
+    marginTop: "1rem",
+    marginLeft: "2rem",
+  },
+  delBtn: {
+    marginTop: "-3rem",
+    marginBottom: "1rem",
+  },
+}));
+
+const capitalizeWords = (words) => {
+  let result = words
+    .toLowerCase()
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+  return result;
+};
 
 const IngredientAjax = () => {
+  const classes = useStyles();
+
   const value = useContext(DataContext);
   const { dispatch, ACTIONS } = value;
 
-  const [ingredient, setIngredient] = useState({ id: "", content: "" }); // capture user selection
+  const [ingredient, setIngredient] = useState([]); // capture user selection
   const [data, setData] = useState([]); // return API call
   const [query, setQuery] = useState(""); //for URL
   const [tags, setTags] = useState([]); // for autocomplete
-  const [toggle, setToggle] = useState(false); //! is this needed?
-  const inputRef = useRef(); //! is this needed?
 
-  //! FIX handler to update App State
-  const sendIngredient = () => {
-    setToggle(!toggle);
-    console.log("sending ingredient", tags);
-    console.log();
-    dispatch({
-      type: ACTIONS.ADD_INGREDIENT,
-      payload: [{ id: uuidv4(), content: ingredient }],
-    });
+  const handleSubmit = () => {
+    console.log("sending tag", tags);
+    console.log("sending ingredient", ingredient);
+    if (tags.length > 1) {
+      dispatch({
+        type: ACTIONS.ADD_INGREDIENT,
+        payload: { id: uuidv4(), content: capitalizeWords(tags) },
+      });
+      setTags([]);
+      setIngredient([]);
+    }
   };
+
   const handleTags = (event, values) => {
     setTags(values);
-    setIngredient(values);
+    setIngredient(tags);
     console.log("handleTag", values);
   };
+
   const handleChange = (event, values) => {
     const value = event.target.value;
-    console.log("handleChange - value", event.target.value);
+    console.log("handleChange - query", event.target.value);
 
     setQuery(value);
     setIngredient({
@@ -41,7 +83,12 @@ const IngredientAjax = () => {
     });
   };
 
-  //! rewrite this such that we search on form submit
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      document.getElementById("addBox").click();
+    }
+  };
+
   useEffect(() => {
     const autoComplete =
       "https://api.spoonacular.com/food/ingredients/autocomplete";
@@ -67,42 +114,59 @@ const IngredientAjax = () => {
   }, [query]);
 
   return (
-    <>
-      <div>
-        <Autocomplete
-          id="free-solo"
-          style={{ width: 300 }}
-          freeSolo
-          disableClearable
-          onInputChange={(e) => {
-            setIngredient(e.target.value);
-          }}
-          onChange={handleTags}
-          options={data.map((option) => option.name)}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              id="filled-primary"
-              label="Add an ingredient"
-              margin="normal"
-              variant="outlined"
-              value={ingredient.content}
-              InputProps={{ ...params.InputProps, type: "search" }}
-              ref={inputRef}
-              onKeyDown={(e) => {
-                if (e.key === 13 && e.target.value) {
-                  setIngredient(e.target.value);
-                  console.log(e.target.value, "return key");
-                }
+    <div className={classes.autocomplete}>
+      <Container>
+        <Grid container direction="row" alignItems="flex-start">
+          <Grid item xs={3}>
+            <Autocomplete
+              id="free-solo"
+              style={{ width: 300 }}
+              freeSolo
+              disableClearable
+              onInputChange={(e) => {
+                setIngredient(e.target.value);
               }}
-              onChange={handleChange}
-              placeholder="e.g. banana"
+              onChange={handleTags}
+              options={data.map((option) => option.name)}
+              onKeyPress={handleKeyPress}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  id="filled-primary"
+                  label="Add an ingredient"
+                  margin="normal"
+                  variant="outlined"
+                  value={ingredient.content}
+                  InputProps={{ ...params.InputProps, type: "search" }}
+                  onChange={handleChange}
+                  placeholder="e.g. banana"
+                />
+              )}
             />
-          )}
-        />
-      </div>
-      <button onClick={sendIngredient}> Add to Ingredient List </button>
-    </>
+          </Grid>
+          <Grid item xs={3} sm={1} alignContent="center">
+            <IconButton
+              id="addBox"
+              onClick={handleSubmit}
+              className={classes.addBox}
+            >
+              <AddBox />
+            </IconButton>
+          </Grid>
+          <Grid container className={classes.delBtn} justify="flex-end">
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              startIcon={<DeleteIcon />}
+              onClick={() => dispatch({ type: ACTIONS.CLEAR_PLANNER })}
+            >
+              Clear Items
+            </Button>
+          </Grid>
+        </Grid>
+      </Container>
+    </div>
   );
 };
 

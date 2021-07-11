@@ -12,9 +12,10 @@ Draggable and Droppable Components (react-beautiful-dnd)
 react-router-dom
 react-beautiful-dnd
 styled-components
-material-ui
 uuid
-autosuggest-highlight
+interweave react
+material-ui
+@fontsource/roboto
 
 ### APIs
 

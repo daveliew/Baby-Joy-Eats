@@ -1,7 +1,9 @@
 body {
   margin: 0;
-  max-height: 80vmax;
-  max-width: 80vmax;
+  max-height: 100vmax;
+  max-width: 100vmax;
+  height: 100vh;
+  background-color: " #F4A261";
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -9,26 +11,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+/* .nav-item {
+color: #f7e1d7;
 }
+
 
 .nav {
   background-color: #4a5759;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
 }
 
-.nav-item {
-  color: #f7e1d7;
-  margin: 1em;
-  font-weight: bold;
-}
 
 .main {
   display: flex;
-  justify-content: center;
+
   background-color: #f7e1d7;
   height: 100vh;
   width: 100vw;
@@ -58,12 +56,24 @@ code {
   border: 1px solid blue;
 }
 
-.food-image {
-  overflow: hidden;
-  /* height: 100px;
-  width: 100px; */
+
+.Home {
+  background-color: #b0c4b1;
 }
 
+.Ingredient-Ajax {
+  background-color: skyblue;
+  padding: 2rem;
+  display: flex;
+}
+
+.Dashboard-DND {
+  top: 0%;
+  display: grid;
+  padding: 2rem;
+} */
+
+/* 
 .dashboard {
   position: relative;
   display: flex;
@@ -74,15 +84,12 @@ code {
   background-color: #b0c4b1;
 }
 .dnd {
-  display: grid;
-
-  padding: 10px;
   border: 1px solid orange;
   background-color: #edafb8;
   overflow-y: scroll;
 }
 .ingredients-dnd {
-  /* max-height: 500px; */
+  max-height: 500px;
   grid-column: 1 / 2;
   overflow: scroll;
 }
@@ -93,10 +100,7 @@ code {
   overflow: scroll;
 }
 
-.Dashboard-DND {
-  overflow-y: scroll;
-  background-color: #b0c4b1;
-}
+
 
 .ingredients {
   padding-left: 0;
@@ -129,4 +133,4 @@ code {
   display: block;
   width: 100%;
   height: auto;
-}
+} */

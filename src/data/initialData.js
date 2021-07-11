@@ -1,15 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
-const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-export const ingredients = [
-  { id: uuidv4(), content: "Fish" },
-  { id: uuidv4(), content: "Avocado" },
-  { id: uuidv4(), content: "Lemon" },
-  { id: uuidv4(), content: "Strawberry" },
-  { id: uuidv4(), content: "Blueberry" },
-  { id: uuidv4(), content: "Quinoa" },
-  { id: uuidv4(), content: "Grape" },
-];
+const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 // const objectMap = (obj, fn) => {
 //   let k, v;
@@ -17,6 +8,15 @@ export const ingredients = [
 // };
 
 const initialData = {
+  ingredients: [
+    { id: uuidv4(), content: "Fish" },
+    { id: uuidv4(), content: "Avocado" },
+    { id: uuidv4(), content: "Lemon" },
+    { id: uuidv4(), content: "Strawberry" },
+    // { id: uuidv4(), content: "Blueberry" },
+    // { id: uuidv4(), content: "Quinoa" },
+    // { id: uuidv4(), content: "Grape" },
+  ],
   columns: {
     main: {
       id: "main",
@@ -58,9 +58,14 @@ const initialData = {
       title: daysOfWeek[6],
       itemsArr: [],
     },
+    bin: {
+      id: "bin",
+      title: "Bin",
+      itemsArr: [],
+    },
   },
   // Facilitate reordering of the columns
-  columnOrder: [
+  colOrder: [
     "main",
     daysOfWeek[0],
     daysOfWeek[1],
@@ -69,6 +74,7 @@ const initialData = {
     daysOfWeek[4],
     daysOfWeek[5],
     daysOfWeek[6],
+    "bin",
   ],
 };
 
