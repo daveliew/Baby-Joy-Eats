@@ -54,6 +54,7 @@ const DashboardDND = () => {
   // console.log("App state", state);
   // console.log("ingredients", state.ingredientsArr);
 
+  //* this is a beast
   const onDragEnd = (result) => {
     const { destination, source } = result;
 
@@ -71,8 +72,8 @@ const DashboardDND = () => {
     //* Handle 3 cases: (1) Create new item (2) Shift item to new column (3) Reorder item in same column
     const startCol = state.dndColumns[source.droppableId]; // column-obj at start of drag.
     const endCol = state.dndColumns[destination.droppableId]; // column-obj at end of drag.
-    // console.log("I'm dragging", startCol.itemsArr[source.index]);
-    // console.log("I landed in", endCol.id);
+    console.log("I'm dragging", startCol.itemsArr[source.index]);
+    console.log("I landed in", endCol.id);
 
     if (startCol !== endCol) {
       const sourceItems = [...startCol.itemsArr];

@@ -40,6 +40,8 @@ const RecipeCards = (props) => {
 
   // console.log("hello from recipe cards");
 
+  console.log(props.data);
+
   const maxRecipesShown = 8;
 
   let recipes = complexData.results

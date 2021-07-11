@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { DataContext } from "../App";
+import { DataContext } from "../components/App";
 
 const NutritionAjax = (props) => {
   const value = useContext(DataContext);

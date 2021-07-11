@@ -93,7 +93,7 @@ const IngredientAjax = () => {
     const autoComplete =
       "https://api.spoonacular.com/food/ingredients/autocomplete";
     const API_ROOT = autoComplete;
-    const queryItem = state.activeItem.content;
+    const queryItem = query;
     const URL = `${API_ROOT}?query=${queryItem}&apiKey=${process.env.REACT_APP_SPOONACULAR}`;
     console.log(URL);
 
@@ -111,7 +111,7 @@ const IngredientAjax = () => {
       .catch((error) => {
         console.log("error");
       });
-  }, [query, state.activeItem]);
+  }, [query]);
 
   return (
     <div className={classes.autocomplete}>
@@ -144,7 +144,7 @@ const IngredientAjax = () => {
               )}
             />
           </Grid>
-          <Grid item xs={1} alignContent="center">
+          <Grid item xs={3} sm={1} alignContent="center">
             <IconButton
               id="addBox"
               onClick={handleSubmit}

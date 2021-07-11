@@ -59,12 +59,10 @@ const appReducer = (state, action) => {
       };
 
     case ACTIONS.EDIT_INGREDIENT:
-      // console.log("editing ingredient");
       const { content, id, colId } = action.payload;
       const tempArr = state.dndColumns[colId].itemsArr; // make a copy of column's item array
       var result = tempArr.filter((obj) => obj.id === id); // sift out id that matches obj id within array
       result[0].content = content; // replace with the new content
-      // console.log(result);
 
       return {
         ...state,
