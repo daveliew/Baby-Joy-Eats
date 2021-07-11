@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import Interweave from "interweave";
 import { DataContext } from "../components/App";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -9,7 +10,7 @@ import {
   Typography,
 } from "@material-ui/core/";
 
-import dataReturn from "../data/dataReturnById";
+// import dataReturn from "../data/dataReturnById";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,19 +65,6 @@ const Info = () => {
       });
   }, [recipeQuery]);
 
-  // const instructionsArr = data.analyzedInstructions[0].steps;
-
-  // let instructionSteps = instructionsArr.map((step, index) => {
-  //   return (
-  //     <div key={index}>
-  //       <span>
-  //         {index + 1}) {instructionsArr[index].step}
-  //       </span>
-  //       <img src={instructionsArr[index].ingredients.image} alt=""></img>
-  //     </div>
-  //   );
-  // });
-
   return data === null ? (
     <h1>LOADING</h1>
   ) : (
@@ -91,6 +79,7 @@ const Info = () => {
               <h3>Cooking Instructions</h3>
               <Typography variant="body2" color="textSecondary" component="p">
                 {/* {instructionSteps} */}
+                <Interweave content={data.summary} />
               </Typography>
             </CardContent>
           </Card>
@@ -101,20 +90,15 @@ const Info = () => {
 };
 export default Info;
 
-// // const generateRow = (arr) => {
-// //   let images = arr.map((image, index) => {
-// //     return <img src={arr[index].image} alt="" key="index"></img>;
-// //   });
-// //   return images;
-// // };
+// const instructionsArr = data.analyzedInstructions[0].steps;
 
-// // let instructionIngredients = instructionsArr.map((step, index) => {
-// //   return (
-// //     <div key={index}>
-// //       <span>
-// //         {index + 1}) {instructionsArr[index].step}
-// //       </span>
-// //       {generateRow(instructionsArr[index].ingredients)}
-// //     </div>
-// //   );
-// // });
+// let instructionSteps = instructionsArr.map((step, index) => {
+//   return (
+//     <div key={index}>
+//       <span>
+//         {index + 1}) {instructionsArr[index].step}
+//       </span>
+//       <img src={instructionsArr[index].ingredients.image} alt=""></img>
+//     </div>
+//   );
+// });

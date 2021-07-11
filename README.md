@@ -13,6 +13,7 @@ react-router-dom
 react-beautiful-dnd
 styled-components
 uuid
+interweave react
 material-ui
 @fontsource/roboto
 

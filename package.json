@@ -13,6 +13,7 @@
     "autosuggest-highlight": "^3.1.1",
     "axios": "^0.21.1",
     "eslint-config-react-app": "^6.0.0",
+    "interweave": "^12.8.0",
     "react": "^17.0.2",
     "react-autocomplete": "^1.8.1",
     "react-autosuggest": "^10.1.0",
