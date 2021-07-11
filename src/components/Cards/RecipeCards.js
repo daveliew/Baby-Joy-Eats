@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { DataContext } from "../App";
 // import complexData from "../../data/complexData";
 import { Link } from "react-router-dom";
@@ -34,7 +34,9 @@ const RecipeCards = (props) => {
   const value = useContext(DataContext);
   const { dispatch, ACTIONS } = value;
 
-  console.log(props.data);
+  console.log(
+    `${props.data.map((recipe) => console.log(recipe.id))} from RecipeCards`
+  );
 
   const maxRecipesShown = 8;
 
@@ -60,7 +62,7 @@ const RecipeCards = (props) => {
             <Link to="/info" className={classes.navItem}>
               <Button
                 onClick={() =>
-                  dispatch({ type: ACTIONS.ACTIVE_RECIPE, data: recipe.id })
+                  dispatch({ type: ACTIONS.ACTIVE_RECIPE, payload: recipe.id })
                 }
               >
                 See Instructions

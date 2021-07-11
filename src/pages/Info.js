@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { DataContext } from "../components/App";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Container,
@@ -32,37 +33,64 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-//
-
 const Info = () => {
   const classes = useStyles();
-  // const [dataReturn, setDataReturn] = useState(state.activeRecipe);
+  const value = useContext(DataContext);
+  const { state } = value;
+  const [data, setData] = useState(null);
 
-  const instructionsArr = dataReturn.analyzedInstructions[0].steps;
+  const recipeQuery = state.activeRecipe;
+  console.log(`commencing search on < ${recipeQuery}> from info component`);
 
-  let instructionSteps = instructionsArr.map((step, index) => {
-    return (
-      <div key={index}>
-        <span>
-          {index + 1}) {instructionsArr[index].step}
-        </span>
-        <img src={instructionsArr[index].ingredients.image} alt=""></img>
-      </div>
-    );
-  });
+  useEffect(() => {
+    //https://api.spoonacular.com/recipes/{id}/information
+    const API_ROOT = `https://api.spoonacular.com/`;
+    const URL = `${API_ROOT}/recipes/${recipeQuery}/information?apiKey=${process.env.REACT_APP_SPOONACULAR}`;
+    console.log(URL, "from info component");
 
-  return (
+    fetch(URL)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error("Bad Response from Server");
+      })
+      .then((data) => {
+        console.log("got back some data", data);
+        setData(data);
+      })
+      .catch((error) => {
+        console.log("error from info");
+      });
+  }, [recipeQuery]);
+
+  // const instructionsArr = data.analyzedInstructions[0].steps;
+
+  // let instructionSteps = instructionsArr.map((step, index) => {
+  //   return (
+  //     <div key={index}>
+  //       <span>
+  //         {index + 1}) {instructionsArr[index].step}
+  //       </span>
+  //       <img src={instructionsArr[index].ingredients.image} alt=""></img>
+  //     </div>
+  //   );
+  // });
+
+  return data === null ? (
+    <h1>LOADING</h1>
+  ) : (
     <Container className={classes.root}>
       <Grid container>
         <Grid item xs={3} />
         <Grid item xs={6}>
           <Card>
             <CardContent>
-              <h1>{dataReturn.title}</h1>
-              <img src={dataReturn.image} alt={dataReturn.title}></img>
+              <h1>{data.title}</h1>
+              <img src={data.image} alt={data.title}></img>
               <h3>Cooking Instructions</h3>
               <Typography variant="body2" color="textSecondary" component="p">
-                {instructionSteps}
+                {/* {instructionSteps} */}
               </Typography>
             </CardContent>
           </Card>
