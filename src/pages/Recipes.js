@@ -5,17 +5,13 @@ import RecipeCards from "../components/Cards/RecipeCards";
 const Recipes = (props) => {
   const value = useContext(DataContext);
   const { state } = value;
-
   const [data, setData] = useState(null);
-  console.log("data from recipes", data);
-  console.log("IN RECIPES");
 
   // setData(props.data);
   // const imgUrl = `https://spoonacular.com/cdn/ingredients_100x100/${queryItem}.jpg`;
   // console.log(imgUrl);
 
-  const queryItem = state.activeItem.content.replace(/\s/g, "").toLowerCase();
-  console.log(queryItem, "looking for this.");
+  const queryItem = state.activeItem.content.replace(/\s/g, "").toLowerCase(); //take ingredient from state to search in recipes.
 
   useEffect(() => {
     const API_ROOT = `https://api.spoonacular.com/`;
@@ -41,10 +37,10 @@ const Recipes = (props) => {
       .catch((error) => {
         console.log("error from recipes");
       });
-  }, [state.activeItem.content, queryItem]);
+  }, [queryItem]);
 
-  return <h1>loading</h1>;
-  // return data === null ? <h1>LOADING</h1> : <RecipeCards data={data} />;
+  // return <h1>loading</h1>;
+  return data === null ? <h1>LOADING</h1> : <RecipeCards data={data} />;
 };
 
 export default Recipes;

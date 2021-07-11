@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Home from "./Home";
 import Info from "./Info";
-import Recipes from "../components/Cards/RecipeCards";
+import Recipes from "./Recipes";
 
 const Main = () => {
   return (
