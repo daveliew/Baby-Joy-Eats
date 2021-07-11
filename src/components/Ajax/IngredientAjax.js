@@ -46,7 +46,7 @@ const IngredientAjax = () => {
   const classes = useStyles();
 
   const value = useContext(DataContext);
-  const { state, dispatch, ACTIONS } = value;
+  const { dispatch, ACTIONS } = value;
 
   const [ingredient, setIngredient] = useState([]); // capture user selection
   const [data, setData] = useState([]); // return API call
