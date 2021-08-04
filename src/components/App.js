@@ -10,6 +10,7 @@ const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: "#f4a261",
     padding: "0.5rem",
+    maxWidth: "100vw",
   },
 }));
 
