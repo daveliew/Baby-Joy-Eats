@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: "e76f51",
     minWidth: "100vw",
-    minHeight: "100vh",
+    minHeight: "95vh",
   },
   paper: {
     padding: theme.spacing(1),
@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "10vh",
   },
   main: {
-    maxHeight: "60vh",
+    maxHeight: "70vh",
+    marginTop: "1rem",
   },
   days: {
     minHeight: "20vh",
