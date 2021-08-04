@@ -1,21 +1,23 @@
 # SEI-30 Project 2 - Baby Joy Eats (Meal Plan Creator)
 
-I am building a meal planner for my daughter, Joy. I hope it'll help you and your Little One too!
+I am building a meal planner for my daughter, Joy. I hope it'll help you and your Little One too! 
+I was inspired to build a Trello-like UI and used the react-beautiful-dnd library from noneother than the Atlassian folks themselves.
+I learnt how to control state using Dispatch and context, and how to fetch items based on state changes.
 
 ## Key Features
 
--React Hooks to manage state, props (useContext, useEffect, useReducer, useRef, useState)
--Draggable and Droppable Components (react-beautiful-dnd)
+- React Hooks to manage state, props (useContext, useEffect, useReducer, useState)
+- Draggable and Droppable Components (react-beautiful-dnd)
 
 ### Dependencies
 
--react-router-dom
--react-beautiful-dnd
--styled-components
--uuid
--interweave react
--material-ui
--@fontsource/roboto
+- react-router-dom
+- react-beautiful-dnd
+- styled-components
+- uuid
+- interweave react
+- material-ui
+- @fontsource/roboto
 
 ### APIs
 
