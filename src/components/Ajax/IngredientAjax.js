@@ -24,8 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   addBox: {
     justifyContent: "center",
-    marginTop: "1rem",
-    marginLeft: "2rem",
+    marginTop: "2rem",
   },
   delBtn: {
     marginTop: "-3rem",
@@ -54,8 +53,6 @@ const IngredientAjax = () => {
   const [tags, setTags] = useState([]); // for autocomplete
 
   const handleSubmit = () => {
-    console.log("sending tag", tags);
-    console.log("sending ingredient", ingredient);
     if (tags.length > 1) {
       dispatch({
         type: ACTIONS.ADD_INGREDIENT,
@@ -69,12 +66,10 @@ const IngredientAjax = () => {
   const handleTags = (event, values) => {
     setTags(values);
     setIngredient(tags);
-    console.log("handleTag", values);
   };
 
   const handleChange = (event, values) => {
     const value = event.target.value;
-    console.log("handleChange - query", event.target.value);
 
     setQuery(value);
     setIngredient({
@@ -95,7 +90,6 @@ const IngredientAjax = () => {
     const API_ROOT = autoComplete;
     const queryItem = query;
     const URL = `${API_ROOT}?query=${queryItem}&apiKey=${process.env.REACT_APP_SPOONACULAR}`;
-    console.log(URL);
 
     fetch(URL)
       .then((res) => {
@@ -105,7 +99,6 @@ const IngredientAjax = () => {
         throw new Error("Bad Response from Server");
       })
       .then((data) => {
-        console.log(data);
         setData(data);
       })
       .catch((error) => {

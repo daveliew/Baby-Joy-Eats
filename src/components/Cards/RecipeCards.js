@@ -34,9 +34,9 @@ const RecipeCards = (props) => {
   const value = useContext(DataContext);
   const { dispatch, ACTIONS } = value;
 
-  console.log(
-    `${props.data.map((recipe) => console.log(recipe.id))} from RecipeCards`
-  );
+  // console.log(
+  //   `${props.data.map((recipe) => console.log(recipe.id))} from RecipeCards`
+  // );
 
   const maxRecipesShown = 8;
 

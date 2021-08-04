@@ -9,7 +9,6 @@ import { Grid, Container, CssBaseline } from "@material-ui/core";
 const useStyles = makeStyles(() => ({
   root: {
     backgroundColor: "#f4a261",
-    maxHeight: "100vh",
     padding: "0.5rem",
   },
 }));
