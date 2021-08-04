@@ -15,7 +15,7 @@ const initialData = {
   columns: {
     main: {
       id: "main",
-      title: "My List",
+      title: "MY CHOSEN INGREDIENTS",
       itemsArr: [],
     },
     Mon: {
@@ -55,7 +55,7 @@ const initialData = {
     },
     bin: {
       id: "bin",
-      title: "Bin",
+      title: "BIN",
       itemsArr: [],
     },
   },

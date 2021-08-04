@@ -1,7 +1,7 @@
 import React, { useContext, useState, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-import { Done, Edit } from "@material-ui/icons";
+import { Done, Edit, Info } from "@material-ui/icons";
 import {
   Button,
   Grid,
@@ -130,7 +130,7 @@ const CardModal = (props) => {
   return (
     <div>
       <IconButton onClick={handleOpen}>
-        {props.colId !== "main" && <Edit />}
+        {props.colId !== "main" && <Info fontSize="small" />}
       </IconButton>
 
       <Modal
