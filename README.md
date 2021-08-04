@@ -25,18 +25,18 @@ I learnt how to control state using Dispatch and context, and how to fetch items
 
 ### Feature Highlights
 
--React-Beautiful-DND:
--Draggable content that can be fetched from API and moved around planner Droppable zones.
+- React-Beautiful-DND:
+- Draggable content that can be fetched from API and moved around planner Droppable zones.
 
 ### Credits
 
--Courses:
-[react-beautiful-dnd egghead course by Alex reardon] (https://egghead.io/courses/beautiful-and-accessible-drag-and-drop-with-react-beautiful-dnd)
+Courses:
+- [react-beautiful-dnd egghead course by Alex reardon] (https://egghead.io/courses/beautiful-and-accessible-drag-and-drop-with-react-beautiful-dnd)
 
-[react-beautiful-dnd YouTube course by Colby Fayock] (https://youtu.be/aYZRRyukuIw)
+- [react-beautiful-dnd YouTube course by Colby Fayock] (https://youtu.be/aYZRRyukuIw)
 
-[2 column DND tutorial by LogRocket] -(https://www.youtube.com/watch?v=Vqa9NMzF3wc&t=131s)
+- [2 column DND tutorial by LogRocket] -(https://www.youtube.com/watch?v=Vqa9NMzF3wc&t=131s)
 
--React and CSS tutorials:
-[Fireship.io] (https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA)
-[Web Dev Simplified] (https://www.youtube.com/channel/UCFbNIlppjAuEX4znoulh0Cw)
+React and CSS tutorials:
+- [Fireship.io] (https://www.youtube.com/channel/UCsBjURrPoezykLs9EqgamOA)
+- [Web Dev Simplified] (https://www.youtube.com/channel/UCFbNIlppjAuEX4znoulh0Cw)
