@@ -2,20 +2,15 @@ import { v4 as uuidv4 } from "uuid";
 
 const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-// const objectMap = (obj, fn) => {
-//   let k, v;
-//   Object.fromEntries(Object.entries(obj).map([k, v], (i) => [k, fn(v, k, i)]));
-// };
-
 const initialData = {
   ingredients: [
     { id: uuidv4(), content: "Fish" },
     { id: uuidv4(), content: "Avocado" },
     { id: uuidv4(), content: "Lemon" },
     { id: uuidv4(), content: "Strawberry" },
-    // { id: uuidv4(), content: "Blueberry" },
-    // { id: uuidv4(), content: "Quinoa" },
-    // { id: uuidv4(), content: "Grape" },
+    { id: uuidv4(), content: "Blueberry" },
+    { id: uuidv4(), content: "Quinoa" },
+    { id: uuidv4(), content: "Grape" },
   ],
   columns: {
     main: {

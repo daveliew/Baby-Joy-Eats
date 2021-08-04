@@ -23,7 +23,6 @@ const Recipes = (props) => {
     const numRecipes = 10;
     const categories = [ingredients, findByIngredients, complexSearch];
     const URL = `${API_ROOT}${categories[1]}${queryItem}&number=${numRecipes}&apiKey=${process.env.REACT_APP_SPOONACULAR}`;
-    console.log(URL, "from recipes component");
 
     fetch(URL)
       .then((res) => {

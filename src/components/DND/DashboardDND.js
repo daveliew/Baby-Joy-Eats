@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: "e76f51",
-    minWidth: "90vw",
+    minWidth: "100vw",
     minHeight: "100vh",
   },
   paper: {
