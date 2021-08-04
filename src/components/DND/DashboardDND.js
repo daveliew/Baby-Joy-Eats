@@ -7,12 +7,6 @@ import Column from "./Column";
 import { DataContext } from "../App";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: "e76f51",
-    minWidth: "100vw",
-    minHeight: "95vh",
-  },
   paper: {
     padding: theme.spacing(1),
     textAlign: "center",
@@ -160,7 +154,7 @@ const DashboardDND = () => {
   };
 
   return (
-    <div className={classes.root}>
+    <div>
       <Container>
         <DragDropContext onDragEnd={onDragEnd}>
           <Grid container className={classes.main}>
