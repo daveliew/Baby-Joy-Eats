@@ -21,14 +21,15 @@ const useStyles = makeStyles((theme) => ({
   grid: {
     flexGrow: 1,
   },
-  bin: {
-    color: "#white",
-    backgroundColor: "264653",
-    minHeight: "10vh",
-  },
+  // bin: {
+  //   color: "#white",
+  //   backgroundColor: "264653",
+  //   minHeight: "20vh",
+  // },
   main: {
     maxHeight: "70vh",
     marginTop: "1rem",
+    backgroundColor: "264653",
   },
   days: {
     minHeight: "20vh",
@@ -162,7 +163,7 @@ const DashboardDND = () => {
     <div className={classes.root}>
       <Container>
         <DragDropContext onDragEnd={onDragEnd}>
-          <Grid container spacing={2} className={classes.main}>
+          <Grid container className={classes.main}>
             <Grid item xs={6} sm={3}>
               <Column
                 key={MAIN}
@@ -170,14 +171,7 @@ const DashboardDND = () => {
                 column={columns[MAIN]}
               />
             </Grid>
-            <Grid
-              container
-              xs={12}
-              sm={9}
-              spacing={1}
-              direction="row"
-              className={classes.days}
-            >
+            <Grid container xs={12} sm={9} spacing={1} direction="row">
               {state.dndColOrder
                 .filter((colId) => colId !== MAIN)
                 .filter((colId) => colId !== BIN)
@@ -190,6 +184,7 @@ const DashboardDND = () => {
                         key={column.id}
                         column={column}
                         items={column.itemsArr}
+                        className={classes.days}
                       />
                     </Grid>
                   );
