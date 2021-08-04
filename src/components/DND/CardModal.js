@@ -130,7 +130,7 @@ const CardModal = (props) => {
   return (
     <div>
       <IconButton onClick={handleOpen}>
-        <Edit />
+        {props.colId !== "main" && <Edit />}
       </IconButton>
 
       <Modal
