@@ -24,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
   },
   addBox: {
     justifyContent: "center",
-    marginTop: "2rem",
+    marginTop: "1.5rem",
+    marginLeft: "1rem",
   },
   delBtn: {
     marginTop: "-3rem",
