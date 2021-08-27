@@ -64,37 +64,3 @@ const Header = () => {
 };
 
 export default Header;
-
-// const Header = () => {
-// const classes = useStyles();
-
-//   return (
-//     <div className={classes.root}>
-//       <AppBar position="fixed">
-//         <Toolbar className={classes.toolbar}>
-//           <IconButton
-//             edge="start"
-//             className={classes.menuButton}
-//             color="inherit"
-//             aria-label="open drawer"
-//           >
-//             <MenuIcon />
-//           </IconButton>
-//           <Typography className={classes.title} variant="h5" noWrap>
-//             Baby Joy Eats
-//           </Typography>
-//           <IconButton aria-label="search" color="inherit">
-//             <SearchIcon />
-//           </IconButton>
-//           <IconButton
-//             aria-label="display more actions"
-//             edge="end"
-//             color="inherit"
-//           >
-//             <MoreIcon />
-//           </IconButton>
-//         </Toolbar>
-//       </AppBar>
-//     </div>
-//   );
-// };
