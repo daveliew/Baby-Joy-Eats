@@ -7,122 +7,122 @@ import { makeStyles } from "@material-ui/styles";
 import { Grid, Container, CssBaseline } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
-  root: {
-    backgroundColor: "#f4a261",
-    padding: "0.5rem",
-    maxWidth: "100vw",
-  },
+    root: {
+        backgroundColor: "#f4a261",
+        padding: "0.5rem",
+        maxWidth: "100vw",
+    },
 }));
 
 export const DataContext = createContext();
 
 const ACTIONS = {
-  ADD_INGREDIENT: "addIngredient",
-  ACTIVE_RECIPE: "activeRecipe",
-  CLEAR_PLANNER: "clearPlanner",
-  EDIT_INGREDIENT: "editIngredient",
-  REORDER_ARR: "reorderArr",
-  UPDATE_COLS: "updateCols",
-  SELECT_PAGE: "selectPage",
+    ADD_INGREDIENT: "addIngredient",
+    ACTIVE_RECIPE: "activeRecipe",
+    CLEAR_PLANNER: "clearPlanner",
+    EDIT_INGREDIENT: "editIngredient",
+    REORDER_ARR: "reorderArr",
+    UPDATE_COLS: "updateCols",
+    SELECT_PAGE: "selectPage",
 };
 
 const appReducer = (state, action) => {
-  switch (action.type) {
-    case ACTIONS.UPDATE_COLS:
-      return {
-        ...state,
-        dndColumns: action.payload,
-        ingredientsArr: action.payload.main.itemsArr,
-      };
+    switch (action.type) {
+        case ACTIONS.UPDATE_COLS:
+            return {
+                ...state,
+                dndColumns: action.payload,
+                ingredientsArr: action.payload.main.itemsArr,
+            };
 
-    case ACTIONS.ADD_INGREDIENT:
-      console.log("new ingredient!", action.payload);
+        case ACTIONS.ADD_INGREDIENT:
+            console.log("new ingredient!", action.payload);
 
-      if (action.payload.content.length === 0) {
-        console.log("nothing added");
-        return state;
-      } else {
-        return {
-          ...state,
-          ingredientsArr: [action.payload, ...state.ingredientsArr],
-        };
-      }
+            if (action.payload.content.length === 0) {
+                console.log("nothing added");
+                return state;
+            } else {
+                return {
+                    ...state,
+                    ingredientsArr: [action.payload, ...state.ingredientsArr],
+                };
+            }
 
-    case ACTIONS.CLEAR_PLANNER:
-      Object.entries(state.dndColumns)
-        .filter((arr) => arr[0] !== "main")
-        .forEach((col) => (col[1].itemsArr = []));
-      console.log("all gone now!");
+        case ACTIONS.CLEAR_PLANNER:
+            Object.entries(state.dndColumns)
+                .filter((arr) => arr[0] !== "main")
+                .forEach((col) => (col[1].itemsArr = []));
+            console.log("all gone now!");
 
-      return {
-        ...state,
-      };
+            return {
+                ...state,
+            };
 
-    case ACTIONS.EDIT_INGREDIENT:
-      const { content, id, colId } = action.payload;
-      const tempArr = state.dndColumns[colId].itemsArr; // make a copy of column's item array
-      var result = tempArr.filter((obj) => obj.id === id); // sift out id that matches obj id within array
-      result[0].content = content; // replace with the new content
+        case ACTIONS.EDIT_INGREDIENT:
+            const { content, id, colId } = action.payload;
+            const tempArr = state.dndColumns[colId].itemsArr; // make a copy of column's item array
+            var result = tempArr.filter((obj) => obj.id === id); // sift out id that matches obj id within array
+            result[0].content = content; // replace with the new content
 
-      return {
-        ...state,
-        activeItem: { id: id, content: content },
-      };
+            return {
+                ...state,
+                activeItem: { id: id, content: content },
+            };
 
-    case ACTIONS.SELECT_PAGE:
-      console.log("page set:", action.payload);
-      return {
-        ...state,
-        activePage: action.payload,
-      };
+        case ACTIONS.SELECT_PAGE:
+            console.log("page set:", action.payload);
+            return {
+                ...state,
+                activePage: action.payload,
+            };
 
-    case ACTIONS.ACTIVE_RECIPE:
-      console.log("chose recipe: ", action.payload);
-      return {
-        ...state,
-        activeRecipe: action.payload,
-      };
+        case ACTIONS.ACTIVE_RECIPE:
+            console.log("chose recipe: ", action.payload);
+            return {
+                ...state,
+                activeRecipe: action.payload,
+            };
 
-    default:
-      return state;
-  }
+        default:
+            return state;
+    }
 };
 
 const App = () => {
-  const classes = useStyles();
-  const [state, dispatch] = useReducer(appReducer, {
-    ingredientsArr: initialData.ingredients,
-    dndColumns: initialData.columns,
-    dndColOrder: initialData.colOrder,
-    activeItem: { id: "", content: "avocado" },
-    activePage: "/",
-    activeRecipe: 9148,
-  });
-  const value = { state, dispatch, ACTIONS };
+    const classes = useStyles();
+    const [state, dispatch] = useReducer(appReducer, {
+        ingredientsArr: initialData.ingredients,
+        dndColumns: initialData.columns,
+        dndColOrder: initialData.colOrder,
+        activeItem: { id: "", content: "avocado" },
+        activePage: "/",
+        activeRecipe: 9148,
+    });
+    const value = { state, dispatch, ACTIONS };
 
-  console.log("current active", state.activeItem);
+    console.log("current active", state.activeItem);
 
-  return (
-    <>
-      <div className={classes.root}>
-        <CssBaseline />
-        <Container>
-          <DataContext.Provider value={value}>
-            <Grid
-              container
-              maxWidth="md"
-              justify="center"
-              style={{ marginTop: 50 }}
-              className={classes.container}
-            >
-              <Header />
-              <Main />
-            </Grid>
-          </DataContext.Provider>
-        </Container>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className={classes.root}>
+                <CssBaseline />
+                <Container>
+                    <DataContext.Provider value={value}>
+                        <Grid
+                            container
+                            // maxWidth="md"
+                            justify="center"
+                            style={{ marginTop: 50 }}
+                            className={classes.container}
+                        >
+                            <Header />
+                            <Main />
+                        </Grid>
+                    </DataContext.Provider>
+                </Container>
+            </div>
+        </>
+    );
 };
 
 export default App;
