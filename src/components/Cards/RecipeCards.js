@@ -62,7 +62,7 @@ const RecipeCards = (props) => {
                         <CardMedia
                             component="img"
                             alt="food recipe"
-                            height="200"
+                            height="50%"
                             className={classes.cardMedia}
                             image={recipe.image}
                             title={recipe.title}
